@@ -220,8 +220,8 @@ a {
 }
 
 body {
-    color: black; /* Black text */
-    background: radial-gradient(circle, #ffffff, #ffffff); /* White background */
+    color: white; /* Black text */
+    background: radial-gradient(circle, #000000, #000000); /* White background */
     margin: 0;
     padding: 0;
 }
@@ -234,8 +234,8 @@ body {
 
 nav {
     font-family: 'Exo 2', sans-serif;
-    background: radial-gradient(circle, #ffffff, #ffffff); /* White background */
-    color: black; /* Black text */
+    background: radial-gradient(circle, #000000, #000000); /* White background */
+    color: white; /* Black text */
     display: flex;
     justify-content: space-between;
     align-items: center;
