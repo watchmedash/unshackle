@@ -16,21 +16,21 @@
 }
 
 @media screen and (max-width: 600px) {
-    .gallery figure {
+    .video-gallery .video {
         flex: 1 0 calc(50% - 2%);
         max-width: calc(50% - 2%);
     }
 }
 
 @media screen and (min-width: 1200px) {
-    .gallery figure {
+    .video-gallery .video {
         flex: 1 0 calc(16.666% - 2%);
         max-width: calc(16.666% - 2%);
     }
 }
 
 @media screen and (min-width: 1600px) {
-    .gallery figure {
+    .video-gallery .video {
         flex: 1 0 calc(12.5% - 2%);
         max-width: calc(12.5% - 2%);
     }
