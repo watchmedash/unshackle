@@ -15,27 +15,26 @@
     height: 100%;
 }
 
-@media (min-width: 600px) {
-    /* Medium screens, 2 items per row */
-    .video-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+@media screen and (max-width: 600px) {
+    .gallery figure {
+        flex: 1 0 calc(50% - 2%);
+        max-width: calc(50% - 2%);
     }
 }
 
-@media (min-width: 1200px) {
-    /* Large screens, 6 items per row */
-    .video-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+@media screen and (min-width: 1200px) {
+    .gallery figure {
+        flex: 1 0 calc(16.666% - 2%);
+        max-width: calc(16.666% - 2%);
     }
 }
 
-@media (min-width: 1600px) {
-    /* Extra-large screens, 8 items per row */
-    .video-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+@media screen and (min-width: 1600px) {
+    .gallery figure {
+        flex: 1 0 calc(12.5% - 2%);
+        max-width: calc(12.5% - 2%);
     }
 }
-
 
 .terra {
     display: flex;
@@ -454,166 +453,4 @@ nav .nav-links li {
     nav ul.show-menu {
         display: flex;
     }
-}
-
-footer {
-    background-color: radial-gradient(circle, #999, #555);
-    padding: 10px 0;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    color: black; /* Black text */
-}
-
-.footer-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-links,
-.social-icons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.footer-links li {
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.footer-links a {
-    color: black; /* Black text */
-    text-decoration: none;
-    font-size: 1.5vw;
-    display: block;
-    min-font-size: 16px;
-    font-size: max(min-font-size, 1.5vw);
-}
-
-.footer-links a::before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    content: attr(data-icon);
-    font-size: 1.5vw;
-    margin-right: 5px;
-}
-
-.footer-links a:hover {
-    color: #ff0000;
-}
-
-.social-icons {
-    display: flex;
-    margin-top: 10px;
-}
-
-.social-icons a {
-    color: black; /* Black text */
-    font-size: 24px;
-    margin: 0 10px;
-    text-decoration: none;
-}
-
-.social-icons a:hover {
-    color: #ff0000;
-}
-
-.footer-nav {
-    margin-top: 10px;
-}
-
-@media screen and (max-width: 768px) {
-    .footer-nav {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-links a {
-        font-size: 16px;
-    }
-}
-
-footer .copyright {
-    text-align: center;
-    font-size: 14px;
-    color: black; /* Black text */
-    margin-top: 20px;
-    font-family: 'Exo 2', sans-serif;
-}
-
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; /* Adjust the alignment of the items */
-  border: 2px solid #333; /* Customize the border color and width */
-  border-radius: 10px; /* Adds rounded corners for a softer look */
-  overflow: hidden; /* Hides overflowing content */
-  background-color: #f4f4f4; /* Optional: Set a background color */
-  padding: 10px; /* Optional: Add padding for spacing */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
-}
-
-.gallery figure {
-    flex: 1 0 calc(12.5% - 2%);
-    max-width: calc(12.5% - 2%);
-    margin: 1%;
-    padding: 0;
-    box-sizing: border-box;
-    background: none;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.0);
-    position: relative;
-}
-
-.gallery figure::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: none;
-    border-radius: 10px;
-    z-index: -1;
-}
-
-.gallery figure img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.gallery figure:hover img {
-    transform: scale(1.1);
-}
-
-@media screen and (max-width: 600px) {
-    .gallery figure {
-        flex: 1 0 calc(25% - 2%);
-        max-width: calc(25% - 2%);
-    }
-}
-
-.gallery img {
-    width: 100%;
-    height: auto;
-}
-
-.gallery figcaption {
-    text-align: center;
-    font-family: 'Exo 2', sans-serif;
-    color: black; /* Black text */
-    width: 100%;
-    word-wrap: break-word;
-}
-
-.title {
-    margin-top: 10px;
-    color: black; /* Black text */
-    font-family: 'Exo 2', sans-serif;
-    font-size: 18px;
 }
