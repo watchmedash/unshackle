@@ -6,9 +6,105 @@
     margin-top: 5px;
 }
 
+.item {
+    position: relative;
+    display: inline-block;
+}
+
+.chapter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 0, 0, 0.7); /* Red background */
+    color: white; /* Black text */
+    padding: 5px;
+    border-radius: 10px;
+    font-family: 'Exo 2', sans-serif;
+    z-index: 1;
+}
+
+#chapters {
+    text-align: center;
+    margin: 10px;
+}
+
 h2 {
     font-size: 24px;
     margin-bottom: 5px;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropbtn {
+    background-color: grey; /* White background */
+    color: white; /* Black text */
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.arrow {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 120%;
+    background-color: white; /* White background */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black; /* Black text */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 2px;
+}
+
+.dropdown-content a:hover {
+    background-color: #ff0000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.chapter-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chapter-list li {
+    background-color: grey; /* White background */
+    margin: 8px;
+    flex: 0 1 calc(50% - 16px);
+}
+
+.chapter-list a {
+    text-decoration: none;
+    color: white; /* Black text */
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.chapter-list a:hover {
+    background-color: #ff0000;
 }
 
 #goToTopBtn {
@@ -31,9 +127,56 @@ h2 {
     color: white; /* Change text color on hover */
 }
 
+
+.chapter-image {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.container {
+    margin: 20px;
+}
+
 a {
     color: black; /* Black text */
     text-decoration: none;
+}
+
+.actions {
+    text-align: center;
+}
+
+.btn {
+    color: black; /* Black text */
+    text-decoration: none;
+    padding: 7px 15px;
+    margin: 10px;
+    display: inline-block;
+    border-radius: 3px;
+    background: #7a7a7a;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ff0000;
+}
+
+#introduction {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.about-container {
+    padding: 10px;
+    background: linear-gradient(to right, white, white); /* White background */
+    border-radius: 8px;
+    color: black; /* Black text */
+    font-weight: bold;
+    max-width: 85%;
+    margin: 20px auto;
+    font-family: 'Exo 2', sans-serif;
 }
 
 body {
@@ -61,14 +204,64 @@ nav {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
+
+.image-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.image-container img {
+    width: 25%;
+    max-width: 100%;
+    opacity: 0.8;
+}
+
+.image-container2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.image-container2 img {
+    width: 30%;
+    max-width: 100%;
+    opacity: 0.8;
+}
+
 .content {
     width: 85%;
     margin: 0 auto;
 }
 
+.watchmenow-info, .safety-info, .reasons-info {
+    margin-bottom: 20px;
+}
+
 h1, h2, h3, p, li {
     color: black; /* Black text */
     font-family: 'Exo 2', sans-serif;
+}
+
+.button-container {
+    padding: 10px 20px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.watch-now-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #7a7a7a;
+    color: white; /* White text */
+    text-decoration: none;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.watch-now-button:hover {
+    background-color: #ff0000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 body::after {
@@ -137,4 +330,250 @@ nav {
     padding: 30px;
     height: 80px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: flex;
+    align-items: center;
+}
+
+nav li:not(:last-child) {
+    margin-right: 30px;
+}
+
+nav li a {
+    color: black; /* Black text */
+    text-decoration: none;
+    font-size: 1.5vw;
+    min-font-size: 16px;
+    font-size: max(min-font-size, 1.5vw);
+    transition: color 0.3s ease;
+}
+
+nav li a:hover {
+    color: #ff0000;
+}
+
+nav .icons {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    nav li a {
+        font-size: 16px;
+    }
+}
+
+nav .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+nav .nav-links li {
+    margin-right: 10px;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.bar {
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    margin: 6px 0;
+}
+
+@media screen and (max-width: 768px) {
+    nav .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav .nav-links li {
+        margin-bottom: 10px;
+    }
+
+    .menu-icon {
+        display: none;
+    }
+
+    nav ul.show-menu {
+        display: flex;
+    }
+}
+
+footer {
+    background-color: radial-gradient(circle, #999, #555);
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    color: black; /* Black text */
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links,
+.social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.footer-links li {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: black; /* Black text */
+    text-decoration: none;
+    font-size: 1.5vw;
+    display: block;
+    min-font-size: 16px;
+    font-size: max(min-font-size, 1.5vw);
+}
+
+.footer-links a::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: attr(data-icon);
+    font-size: 1.5vw;
+    margin-right: 5px;
+}
+
+.footer-links a:hover {
+    color: #ff0000;
+}
+
+.social-icons {
+    display: flex;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: black; /* Black text */
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #ff0000;
+}
+
+.footer-nav {
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .footer-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links a {
+        font-size: 16px;
+    }
+}
+
+footer .copyright {
+    text-align: center;
+    font-size: 14px;
+    color: black; /* Black text */
+    margin-top: 20px;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Adjust the alignment of the items */
+  border: 2px solid #333; /* Customize the border color and width */
+  border-radius: 10px; /* Adds rounded corners for a softer look */
+  overflow: hidden; /* Hides overflowing content */
+  background-color: #f4f4f4; /* Optional: Set a background color */
+  padding: 10px; /* Optional: Add padding for spacing */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+}
+
+.gallery figure {
+    flex: 1 0 calc(12.5% - 2%);
+    max-width: calc(12.5% - 2%);
+    margin: 1%;
+    padding: 0;
+    box-sizing: border-box;
+    background: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.0);
+    position: relative;
+}
+
+.gallery figure::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: none;
+    border-radius: 10px;
+    z-index: -1;
+}
+
+.gallery figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.gallery figure:hover img {
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 600px) {
+    .gallery figure {
+        flex: 1 0 calc(25% - 2%);
+        max-width: calc(25% - 2%);
+    }
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+.gallery figcaption {
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+    color: black; /* Black text */
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.title {
+    margin-top: 10px;
+    color: black; /* Black text */
+    font-family: 'Exo 2', sans-serif;
+    font-size: 18px;
 }
