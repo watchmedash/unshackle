@@ -16,25 +16,43 @@
 }
 
 @media screen and (max-width: 600px) {
-    .video-gallery .video {
-        flex: 1 0 calc(50% - 2%);
-        max-width: calc(50% - 2%);
+    .video-gallery {
+        grid-template-columns: 1fr;
+        padding: 5%;
+    }
+
+    .video {
+        flex: 1 0 90%;
+        max-width: 90%;
+    }
+}
+
+@media screen and (min-width: 601px) {
+    .video-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 10px;
+    }
+
+    .video {
+        flex: 1 0 calc(50% - 10px);
+        max-width: calc(50% - 10px);
     }
 }
 
 @media screen and (min-width: 1200px) {
-    .video-gallery .video {
-        flex: 1 0 calc(16.666% - 2%);
-        max-width: calc(16.666% - 2%);
+    .video {
+        flex: 1 0 calc(16.666% - 20px);
+        max-width: calc(16.666% - 20px);
     }
 }
 
 @media screen and (min-width: 1600px) {
-    .video-gallery .video {
-        flex: 1 0 calc(12.5% - 2%);
-        max-width: calc(12.5% - 2%);
+    .video {
+        flex: 1 0 calc(12.5% - 20px);
+        max-width: calc(12.5% - 20px);
     }
 }
+
 
 .terra {
     display: flex;
