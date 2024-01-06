@@ -45,11 +45,6 @@
     margin-top: 5px;
 }
 
-#chapters {
-    text-align: center;
-    margin: 10px;
-}
-
 h2 {
     font-size: 24px;
     margin-bottom: 5px;
@@ -80,24 +75,8 @@ h2 {
 }
 
 a {
-    color: black; /* Black text */
+    color: white; /* Black text */
     text-decoration: none;
-}
-
-
-.btn {
-    color: black; /* Black text */
-    text-decoration: none;
-    padding: 7px 15px;
-    margin: 10px;
-    display: inline-block;
-    border-radius: 3px;
-    background: #7a7a7a;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #ff0000;
 }
 
 #introduction {
