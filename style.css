@@ -312,7 +312,7 @@ body::after {
     left: 0;
     width: 100%;
     height: calc(100% - 80px);
-    background-color: white; /* White background */
+    background-color: black; /* White background */
     opacity: 0.3;
     z-index: -1;
 }
