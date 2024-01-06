@@ -212,26 +212,17 @@ body::after {
 }
 
 .nav-title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 80%;
-    max-height: 80px;
-}
-
-.nav-title h1, .nav-title p {
-    font-family: 'Exo 2', sans-serif;
-    margin: 0;
     text-align: center;
-    white-space: nowrap;
 }
 
 .nav-title h1 {
     font-size: calc(4vw);
     color: white; /* Black text */
+    margin: 0;
 }
 
 .nav-title p {
     font-size: calc(2vw);
     color: white; /* Black text */
+    margin: 0;
 }
