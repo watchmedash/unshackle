@@ -16,18 +16,26 @@
 }
 
 @media (min-width: 600px) {
-    /* Medium screens, 4 items per row */
+    /* Medium screens, 2 items per row */
     .video-gallery {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
 
 @media (min-width: 1200px) {
-    /* Large screens, 8 items per row */
+    /* Large screens, 6 items per row */
     .video-gallery {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
+
+@media (min-width: 1600px) {
+    /* Extra-large screens, 8 items per row */
+    .video-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
 
 .terra {
     display: flex;
