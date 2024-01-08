@@ -17,14 +17,14 @@
 @media (min-width: 1200px) {
     /* Large screens, 4 items per row */
     .video-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, calc(25% - 5px)));
+        grid-template-columns: repeat(7, minmax(200px, 1fr));
     }
 }
 
 @media (min-width: 1600px) {
     /* Extra-large screens, 8 items per row */
     .video-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(200px, calc(12.5% - 5px)));
+        grid-template-columns: repeat(5, minmax(200px, 1fr));
     }
 }
 
