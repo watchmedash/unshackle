@@ -103,7 +103,7 @@ body {
 nav {
     font-family: 'Exo 2', sans-serif;
     background: radial-gradient(circle, #000000, #000000); /* White background */
-    color: white; /* Black text */
+    color: white; /* White text */
     display: flex;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
@@ -127,7 +127,6 @@ nav {
     width: 85%;
     margin: 0 auto;
 }
-
 
 h1, h2, h3, p, li {
     color: black; /* Black text */
@@ -183,10 +182,11 @@ body::after {
 
 .nav-title h1 {
     font-size: calc(4vw);
-    color: white; /* Black text */
+    color: white; /* White text */
+    max-width: 100%;
 }
 
 .nav-title p {
     font-size: calc(2vw);
-    color: white; /* Black text */
+    color: white; /* White text */
 }
