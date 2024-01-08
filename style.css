@@ -1,9 +1,9 @@
 .video-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 5px;
-    padding: 15px;
-    width: 95%;
+    gap: 2px;
+    padding: 10px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
