@@ -39,6 +39,17 @@
     margin-top: 5px;
 }
 
+.terra2 {
+  text-align: center; /* Center the content horizontally */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+.chapter-image {
+  display: block; /* Ensure the image is a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+
 .item {
     position: relative;
     display: inline-block;
