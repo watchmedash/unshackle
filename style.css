@@ -1,28 +1,33 @@
-/* Default style for the gallery */
+/* Default styles for all screens */
 .video-gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  margin: 0 auto; /* Center the gallery */
 }
 
 .video {
-  flex: 0 0 48%; /* Two items per row by default */
-  margin: 1%;
+  flex: 1 0 50%; /* Two items per row for small screens */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Media query for small screens */
-@media screen and (max-width: 768px) {
+.video a {
+  display: block;
+}
+
+.video img {
+  width: 100%;
+  height: auto;
+}
+
+/* Styles for small screens (2 items per row) */
+@media screen and (min-width: 768px) {
   .video {
-    flex: 0 0 48%; /* Two items per row for small screens as well */
+    flex: 1 0 25%; /* Four items per row for big screens */
   }
 }
 
-/* Media query for large screens */
-@media screen and (min-width: 1024px) {
-  .video {
-    flex: 0 0 23%; /* Four items per row for large screens */
-  }
-}
 
 
 .terra {
