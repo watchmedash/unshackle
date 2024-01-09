@@ -42,6 +42,7 @@
 .terra2 {
   text-align: center; /* Center the content horizontally */
   margin: 0 auto; /* Center the container horizontally */
+  max-width: 100%;
 }
 
 .chapter-image {
