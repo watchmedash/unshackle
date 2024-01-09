@@ -6,9 +6,9 @@
 }
 
 .video {
-  flex: 1 0 50%; /* Two items per row for small screens */
+  flex: 1 0 calc(50% - 10px); /* Two items per row for small screens with 10px gap */
   box-sizing: border-box;
-  margin: 0;
+  margin: 0 5px 10px 5px; /* Adjusted margin for gap */
   padding: 0;
 }
 
