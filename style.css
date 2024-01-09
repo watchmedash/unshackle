@@ -31,18 +31,20 @@
 
 
 .terra {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;
-    margin-bottom: 5px;
-    margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: 100%; /* Limit the maximum width */
 }
 
 .terra2 {
   text-align: center; /* Center the content horizontally */
   margin: 0 auto; /* Center the container horizontally */
   max-width: 100%;
+  width: 100%; /* Limit the maximum width */
 }
 
 .chapter-image {
@@ -50,10 +52,9 @@
   margin: 0 auto; /* Center the image horizontally */
 }
 
-
 .item {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 
