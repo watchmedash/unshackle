@@ -37,6 +37,7 @@
   max-width: 100%;
   margin-bottom: 5px;
   margin-top: 5px;
+  overflow: hidden;
   width: 100%; /* Limit the maximum width */
 }
 
@@ -45,6 +46,7 @@
   margin: 0 auto; /* Center the container horizontally */
   max-width: 100%;
   width: 100%; /* Limit the maximum width */
+  overflow: hidden; 
 }
 
 .chapter-image {
