@@ -223,6 +223,31 @@ border-radius: 4px;
 #refreshButton i {
     font-size: 16px;
 }
+
+#goToTopButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+#goToTopButton:hover {
+    background-color: #444;
+}
+
+#goToTopButton i {
+    font-size: 20px;
+}
+
 </style>
 </head>
 <body oncontextmenu="return false;">
@@ -244,6 +269,8 @@ border-radius: 4px;
             <!-- Genre options will be populated dynamically -->
         </select>
     </div>
+
+    <button id="goToTopButton" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
     <div class="container">
         <!--<h1>TV Shows Gallery</h1>-->
@@ -954,6 +981,22 @@ closeButton.addEventListener('click', () => {
 <script>
 function refreshPage() {
     location.reload(); // Reloads the current page
+}
+</script>
+<script>
+// Show the button when the user scrolls down 100px from the top
+window.onscroll = function() {
+    const goToTopButton = document.getElementById("goToTopButton");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        goToTopButton.style.display = "block";
+    } else {
+        goToTopButton.style.display = "none";
+    }
+};
+
+// Scroll to the top when the button is clicked
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
               <script type="text/javascript">
