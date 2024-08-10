@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Show Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="player" class="player">
+        <div class="player-content">
+            <button class="close-btn"></button>
+            <iframe id="tv-iframe" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div id="season-episode-selection">
+            <select id="season">
+                <option value="">Select Season</option>
+            </select>
+            <select id="episode">
+                <option value="">Select Episode</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = '4f599baa15d072c9de346b2816a131b8';
+        const player = document.getElementById('player');
+        const iframe = document.getElementById('tv-iframe');
+        const seasonSelect = document.getElementById('season');
+        const episodeSelect = document.getElementById('episode');
+        const selectionDiv = document.getElementById('season-episode-selection');
+        const closeButton = document.querySelector('.player .close-btn');
+
+        let currentTmdbId = '';
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function fetchTmdbIdFromImdbId(imdbId) {
+            return fetch(`https://api.themoviedb.org/3/find/${imdbId}?api_key=${apiKey}&external_source=imdb_id`)
+                .then(response => response.json())
+                .then(data => data.tv_results[0] ? data.tv_results[0].id : null);
+        }
+
+        function fetchShowDetails(tmdbId) {
+            return fetch(`https://api.themoviedb.org/3/tv/${tmdbId}?api_key=${apiKey}&append_to_response=external_ids`)
+                .then(response => response.json())
+                .then(data => {
+                    const seasons = data.seasons;
+                    seasonSelect.innerHTML = '<option value="">Select Season</option>';
+                    episodeSelect.innerHTML = '<option value="">Select Episode</option>';
+
+                    // Add seasons to the season dropdown
+                    seasons.forEach(season => {
+                        if (season.season_number > 0) { // Skip season 0
+                            const option = document.createElement('option');
+                            option.value = season.season_number;
+                            option.textContent = `Season ${season.season_number}`;
+                            seasonSelect.appendChild(option);
+                        }
+                    });
+
+                    // Set default season and episode
+                    seasonSelect.value = '1';
+                    loadEpisodes('1');
+                    player.style.display = 'flex';
+                    selectionDiv.style.display = 'flex';
+                })
+                .catch(err => console.error('Error loading show details:', err));
+        }
+
+        function loadEpisodes(seasonNumber) {
+            fetch(`https://api.themoviedb.org/3/tv/${currentTmdbId}/season/${seasonNumber}?api_key=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    const episodes = data.episodes;
+                    episodeSelect.innerHTML = '<option value="">Select Episode</option>';
+
+                    episodes.forEach(episode => {
+                        const option = document.createElement('option');
+                        option.value = episode.episode_number;
+                        option.textContent = `Episode ${episode.episode_number}`;
+                        episodeSelect.appendChild(option);
+                    });
+
+                    // Set default episode if not already selected
+                    if (!episodeSelect.value) {
+                        episodeSelect.value = '1';
+                        playEpisode(seasonNumber, '1');
+                    }
+
+                    episodeSelect.addEventListener('change', () => playEpisode(seasonNumber, episodeSelect.value));
+                })
+                .catch(err => console.error('Error loading episodes:', err));
+        }
+
+        function playEpisode(seasonNumber, episodeNumber) {
+            const url = `https://vidsrc.xyz/embed/tv/${currentTmdbId}/${seasonNumber}-${episodeNumber}`;
+            iframe.src = url;
+        }
+
+        function initialize() {
+            const imdbId = getQueryParam('id');
+            if (imdbId) {
+                fetchTmdbIdFromImdbId(imdbId)
+                    .then(tmdbId => {
+                        if (tmdbId) {
+                            currentTmdbId = tmdbId;
+                            fetchShowDetails(tmdbId);
+                        } else {
+                            console.error('TMDb ID not found for IMDb ID:', imdbId);
+                        }
+                    })
+                    .catch(err => console.error('Error fetching TMDb ID:', err));
+            }
+
+            seasonSelect.addEventListener('change', (e) => loadEpisodes(e.target.value));
+            episodeSelect.addEventListener('change', () => playEpisode(seasonSelect.value, episodeSelect.value));
+
+            closeButton.addEventListener('click', () => {
+                // Redirect to main page
+                window.location.href = 'index.html';
+
+                // Reset player
+                player.style.display = 'none';
+                selectionDiv.style.display = 'none';
+                iframe.src = '';
+            });
+        }
+
+        initialize();
+    </script>
+</body>
+</html>
