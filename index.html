@@ -27,6 +27,7 @@
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://dashtv.top">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -170,24 +171,68 @@ border: 1px solid #555;
 border-radius: 4px;
 }
 
-#search-input {
-padding: 10px;
-width: 100%;
-max-width: 400px;
-margin: 20px auto;
-display: block;
-border: 1px solid #555;
-border-radius: 4px;
-background-color: #333;
-color: #fff;
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 500px;
 }
 
-    </style>
+#search-wrapper {
+    position: relative;
+    flex-grow: 1; /* Allows the search wrapper to take up available space */
+}
+
+#search-input {
+    padding: 10px 40px 10px 10px;
+    width: 100%;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+#search-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+#refreshButton {
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#refreshButton:hover {
+    background-color: #444;
+}
+
+#refreshButton i {
+    font-size: 16px;
+}
+</style>
 </head>
-<body>
-
-
-    <input type="text" id="search-input" placeholder="Search TV Show">
+<body oncontextmenu="return false;">
+  <div id="search-container">
+      <div id="search-wrapper">
+          <input type="text" id="search-input" placeholder="Search TV Show">
+          <button id="search-button" type="submit"><i class="fas fa-search"></i></button>
+      </div>
+      <button id="refreshButton" onclick="refreshPage()"><i class="fas fa-sync-alt"></i></button>
+  </div>
     <div id="filters">
         <select id="release-year">
             <option value="">Release Year</option>
@@ -199,6 +244,7 @@ color: #fff;
             <!-- Genre options will be populated dynamically -->
         </select>
     </div>
+
     <div class="container">
         <!--<h1>TV Shows Gallery</h1>-->
         <div id="tv-gallery" class="grid"></div>
@@ -904,6 +950,11 @@ closeButton.addEventListener('click', () => {
     selectionDiv.style.display = 'none';
     iframe.src = '';
 });
+</script>
+<script>
+function refreshPage() {
+    location.reload(); // Reloads the current page
+}
 </script>
               <script type="text/javascript">
               <!--
