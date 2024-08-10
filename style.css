@@ -102,7 +102,7 @@ color: #000;
 #season-episode-selection {
 display: none;
 position: fixed;
-bottom: 70px; /* Distance from the bottom */
+bottom: 90px; /* Distance from the bottom */
 left: 50%;
 transform: translateX(-50%);
 width: calc(100% - 40px); /* Adjust to fit within player content */
@@ -213,3 +213,49 @@ background-color: #444;
 #goToTopButton i {
 font-size: 20px;
 }
+
+/* Add these styles to your style.css */
+.nav-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.nav-btn:hover {
+    background-color: #555;
+}
+
+.nav-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .nav-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .nav-btn:hover {
+            background-color: #555;
+        }
+
+        .notice {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 14px;
+            z-index: 1001; /* Ensure it is above other content */
+            max-width: calc(100% - 20px); /* Adjust for padding */
+            text-align: center;
+        }

@@ -581,7 +581,7 @@ function fetchTVShows() {
           // Fetch and populate release years
           function fetchYears() {
               const currentYear = new Date().getFullYear();
-              for (let year = currentYear; year >= 2000; year--) { // Adjust range as needed
+              for (let year = currentYear; year >= 1960; year--) { // Adjust range as needed
                   const option = document.createElement('option');
                   option.value = year;
                   option.textContent = year;
