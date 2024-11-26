@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const currentPath = window.location.pathname.replace(/\/+$/, "");
 
         // Fetch posts JSON
-        const posts = await fetchPosts("/posts.json");
+        const posts = await fetchPosts("https://uaexpats.top/posts.json");
 
         // Exclude the current post
         const relatedPosts = getRelatedPosts(posts, currentPath, 3);
