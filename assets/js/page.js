@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const currentLink = window.location.pathname; // Current post's link
 
-    fetch("/posts.json")
+    fetch("https://uaexpats.top/posts.json")
         .then(response => response.json())
         .then(posts => {
             // Find the current post index
