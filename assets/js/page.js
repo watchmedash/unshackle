@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const currentLink = window.location.pathname.replace(/\/+$/, ""); // Normalize path
 
-    fetch("/posts.json")
+    fetch("https://uaexpats.top/posts.json")
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
