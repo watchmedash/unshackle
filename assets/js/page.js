@@ -4,15 +4,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         const currentPath = window.location.pathname.replace(/\/+$/, "");
 
         // Fetch posts JSON
-        const posts = await fetchPosts("https://uaexpats.top/posts.json");
+        const posts = await fetchPosts("/posts.json");
 
-        // Exclude the current post
-        const relatedPosts = getRelatedPosts(posts, currentPath, 3);
+        // Find the current post index
+        const currentIndex = posts.findIndex(post => post.link === currentPath);
+        if (currentIndex === -1) {
+            console.warn("Current post not found in JSON.");
+            return;
+        }
 
-        // Add related posts to the bottom of the article
-        displayRelatedPosts(relatedPosts);
+        // Get previous and next posts
+        const prevPost = posts[currentIndex - 1];
+        const nextPost = posts[currentIndex + 1];
+
+        // Add navigation links to the page
+        addPostNavigation(prevPost, nextPost);
     } catch (error) {
-        console.error("Error loading related posts:", error);
+        console.error("Error loading posts:", error);
     }
 });
 
@@ -25,82 +33,38 @@ async function fetchPosts(url) {
     return await response.json();
 }
 
-// Function to get random related posts
-function getRelatedPosts(posts, currentPath, count) {
-    // Filter out the current post
-    const filteredPosts = posts.filter(post => post.link !== currentPath);
+// Function to create and append navigation buttons
+function addPostNavigation(prevPost, nextPost) {
+    const navContainer = document.createElement("div");
+    navContainer.classList.add("post-navigation", "d-flex", "justify-content-between", "mt-4");
 
-    // Shuffle posts array (Fisher-Yates Shuffle)
-    for (let i = filteredPosts.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [filteredPosts[i], filteredPosts[j]] = [filteredPosts[j], filteredPosts[i]];
+    // Add Previous button
+    if (prevPost) {
+        const prevLink = createButton(prevPost.link, `⇐ ${prevPost.title}`, "btn btn-secondary", "prev");
+        navContainer.appendChild(prevLink);
     }
 
-    // Return the first `count` posts
-    return filteredPosts.slice(0, count);
-}
+    // Add Next button
+    if (nextPost) {
+        const nextLink = createButton(nextPost.link, `${nextPost.title} ⇒`, "btn btn-primary ms-auto", "next");
+        navContainer.appendChild(nextLink);
+    }
 
-// Function to display related posts
-function displayRelatedPosts(relatedPosts) {
-    // Create a container for related posts
-    const relatedContainer = document.createElement("div");
-    relatedContainer.classList.add("related-posts", "mt-5");
-
-    // Add a heading
-    const heading = document.createElement("h3");
-    heading.textContent = "Related Posts";
-    relatedContainer.appendChild(heading);
-
-    // Add each related post as a card or list item
-    const postsList = document.createElement("div");
-    postsList.classList.add("d-flex", "flex-wrap", "gap-3");
-
-    relatedPosts.forEach(post => {
-        const postCard = createPostCard(post);
-        postsList.appendChild(postCard);
-    });
-
-    relatedContainer.appendChild(postsList);
-
-    // Append to the bottom of the article
+    // Append to the article
     const article = document.querySelector("article");
     if (article) {
-        article.appendChild(relatedContainer);
+        article.appendChild(navContainer);
     } else {
         console.warn("No <article> element found.");
     }
 }
 
-// Function to create a card for each related post
-function createPostCard(post) {
-    const card = document.createElement("div");
-    card.classList.add("related-post-card", "card", "p-3", "shadow-sm", "flex-grow-1");
-
-    // Title link
-    const titleLink = document.createElement("a");
-    titleLink.href = post.link;
-    titleLink.textContent = post.title;
-    titleLink.classList.add("card-title", "h5", "text-decoration-none");
-
-    // Image (if available)
-    if (post.image) {
-        const img = document.createElement("img");
-        img.src = post.image;
-        img.alt = post.title;
-        img.classList.add("card-img-top", "mb-3");
-        card.appendChild(img);
-    }
-
-    // Add the title
-    card.appendChild(titleLink);
-
-    // Add tags or additional info (optional)
-    if (post.tag) {
-        const tag = document.createElement("span");
-        tag.textContent = post.tag;
-        tag.classList.add("badge", "bg-primary", "mt-2");
-        card.appendChild(tag);
-    }
-
-    return card;
+// Helper function to create navigation buttons
+function createButton(href, text, className, rel) {
+    const button = document.createElement("a");
+    button.href = href;
+    button.textContent = text;
+    button.className = className;
+    button.setAttribute("rel", rel);
+    return button;
 }
