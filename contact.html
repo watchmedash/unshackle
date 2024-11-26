@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Share Your Story - UAExpats</title>
+    <link rel="canonical" href="https://uaexpats.top/contact.html">
+    <meta property="og:url" content="https://uaexpats.top/contact.html">
+    <meta name="twitter:description" content="Share your stories and experiences with us">
+    <meta name="twitter:image" content="https://uaexpats.top/assets/img/home-bg.jpg">
+    <meta property="og:image" content="https://uaexpats.top/assets/img/home-bg.jpg">
+    <meta name="description" content="Share your stories and experiences as an expatriate in the UAE">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UAExpats">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/Lora.css">
+    <link rel="stylesheet" href="/assets/css/Open%20Sans.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="/index.html">UAExpats</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about.html">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact.html">Share Your Story</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image:url('https://www.expat.com/images/upload/3/4/9/5/1594725948-theteachingdoc-news_item_slider-t1594725948.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto position-relative">
+                    <div class="site-heading">
+                        <h1>Share Your Story with UAExpats</h1><span class="subheading">Your experiences help inspire others!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <p>Have a story or experience about living in the UAE that you'd like to share? We’d love to hear from you! Share your journey, challenges, and tips with the expat community. Fill out the form below and we may feature your story on our site!</p>
+                <form id="contactForm" name="sentMessage">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="text" id="name" required="" placeholder="Your Name" name="name">
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" type="email" id="email" required="" placeholder="Email Address" name="email">
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="message" required="" placeholder="Your Story" style="height: 150px;" name="message"></textarea>
+                        <label for="message">Your Story</label>
+                    </div>
+                    <div id="formMessage"></div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" id="sendMessageButton" type="submit">Submit Story</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></li>
+                        <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li>
+                        <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+                    </ul>
+                    <p class="text-muted copyright">Copyright&nbsp;©&nbsp;UAExpats 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script>
+    emailjs.init("Kr6r_S9kpeQzbFQZ_"); // Your EmailJS user ID
+
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Send the email using EmailJS (no subject, just name, email, and message)
+        emailjs.send("service_e154ncd", "template_o8svxg4", {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            message: formData.get("message"),
+        }).then(
+            function() {
+                document.getElementById("formMessage").textContent = "Story submitted successfully! Thank you for sharing.";
+                form.reset();
+            },
+            function(error) {
+                document.getElementById("formMessage").textContent = "Failed to submit story. Please try again.";
+                console.error("Error sending email:", error);
+            }
+        );
+    });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/clean-blog.js"></script>
+</body>
+
+</html>
