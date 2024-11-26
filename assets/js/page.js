@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const currentPath = window.location.pathname.replace(/\/+$/, "");
 
         // Fetch posts JSON
-        const posts = await fetchPosts("/posts.json");
+        const posts = await fetchPosts("https://uaexpats.top/posts.json");
 
         // Find the current post index
         const currentIndex = posts.findIndex(post => post.link === currentPath);
