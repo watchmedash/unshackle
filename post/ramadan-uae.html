@@ -63,7 +63,7 @@
                     <p>For expatriates in the UAE, Ramadan is a time of deep reflection, compassion, and community. From the early morning prayers to the breaking of the fast at *Iftar*, the whole country comes together in a shared sense of purpose and devotion. Many expatriates, regardless of their faith, partake in the Iftar gatherings, experiencing the warmth of the local culture.</p>
                     <figure>
                         <img class="img-fluid" src="https://theuaenews.com/wp-content/uploads/2017/05/Ramadan-Abu-Dhabi.jpg" alt="Ramadan Iftar in the UAE">
-                        <figcaption class="text-muted">An Iftar gathering in the UAE, where communities come together to break their fast.</figcaption>
+                        <span class="text-muted caption">An Iftar gathering in the UAE, where communities come together to break their fast.</span>
                     </figure>
                     <h2 class="section-heading">Adapting to Ramadan in the UAE</h2>
                     <p>Living in the UAE during Ramadan requires some adjustments, especially for expatriates who may not be familiar with the customs. While it is not mandatory for non-Muslims to fast, showing respect for those observing the fast is important. Public eating, drinking, and smoking are prohibited during daylight hours, but many restaurants offer *Iftar* meals after sunset.</p>
@@ -82,6 +82,52 @@
             </div>
         </div>
     </article><div class="sharethis-inline-reaction-buttons"></div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const currentLink = window.location.pathname; // Current post's link
+
+    fetch("/posts.json")
+        .then(response => response.json())
+        .then(posts => {
+            // Find the current post index
+            const currentIndex = posts.findIndex(post => post.link === currentLink);
+
+            if (currentIndex !== -1) {
+                // Get Previous and Next posts
+                const prevPost = posts[currentIndex - 1];
+                const nextPost = posts[currentIndex + 1];
+
+                // Add navigation buttons
+                const navContainer = document.createElement("div");
+                navContainer.classList.add("post-navigation", "d-flex", "justify-content-between", "mt-4");
+
+                if (prevPost) {
+                    const prevButton = `
+                        <a href="${prevPost.link}" class="btn btn-secondary">
+                            ⇐ ${prevPost.title}
+                        </a>
+                    `;
+                    navContainer.innerHTML += prevButton;
+                }
+
+                if (nextPost) {
+                    const nextButton = `
+                        <a href="${nextPost.link}" class="btn btn-primary ms-auto">
+                            ${nextPost.title} ⇒
+                        </a>
+                    `;
+                    navContainer.innerHTML += nextButton;
+                }
+
+                // Append navigation buttons to the article
+                const article = document.querySelector("article");
+                article.appendChild(navContainer);
+            }
+        })
+        .catch(error => console.error("Error loading posts:", error));
+});
+</script>
+
     <footer>
         <div class="container">
             <div class="row">

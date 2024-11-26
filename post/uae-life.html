@@ -63,7 +63,7 @@
                     <p>Living in the UAE means embracing diversity. With over 200 nationalities calling it home, the cultural exchange here is unparalleled. Whether it’s sharing a meal during *Iftar* in Ramadan or celebrating Diwali with friends, expatriates experience the beauty of global unity daily.</p>
                     <figure>
                         <img class="img-fluid" src="https://www.arabianbusiness.com/cloud/2023/06/01/Dubai-tourism.jpg" alt="Cultural exchange in UAE">
-                        <figcaption class="text-muted">Cultural festivals in the UAE bring communities together.</figcaption>
+                        <span class="text-muted caption">Cultural festivals in the UAE bring communities together.</span>
                     </figure>
                     <h2 class="section-heading">Navigating Life as an Expat</h2>
                     <p>Adapting to life in the UAE can feel overwhelming initially, but the support systems here make the transition smoother. From expat communities to government services, there’s always a helping hand. Our advice? Start with these essentials:</p>
@@ -82,6 +82,52 @@
             </div>
         </div>
     </article><div class="sharethis-inline-reaction-buttons"></div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const currentLink = window.location.pathname; // Current post's link
+
+    fetch("/posts.json")
+        .then(response => response.json())
+        .then(posts => {
+            // Find the current post index
+            const currentIndex = posts.findIndex(post => post.link === currentLink);
+
+            if (currentIndex !== -1) {
+                // Get Previous and Next posts
+                const prevPost = posts[currentIndex - 1];
+                const nextPost = posts[currentIndex + 1];
+
+                // Add navigation buttons
+                const navContainer = document.createElement("div");
+                navContainer.classList.add("post-navigation", "d-flex", "justify-content-between", "mt-4");
+
+                if (prevPost) {
+                    const prevButton = `
+                        <a href="${prevPost.link}" class="btn btn-secondary">
+                            ⇐ ${prevPost.title}
+                        </a>
+                    `;
+                    navContainer.innerHTML += prevButton;
+                }
+
+                if (nextPost) {
+                    const nextButton = `
+                        <a href="${nextPost.link}" class="btn btn-primary ms-auto">
+                            ${nextPost.title} ⇒
+                        </a>
+                    `;
+                    navContainer.innerHTML += nextButton;
+                }
+
+                // Append navigation buttons to the article
+                const article = document.querySelector("article");
+                article.appendChild(navContainer);
+            }
+        })
+        .catch(error => console.error("Error loading posts:", error));
+});
+</script>
+
     <footer>
         <div class="container">
             <div class="row">
