@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const currentLink = window.location.href.replace(/\/+$/, ""); // Normalize the current URL
+    const currentLink = window.location.pathname.replace(/\/+$/, ""); // Normalize path
 
-    fetch("https://uaexpats.top/posts.json")
+    fetch("/posts.json")
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (prevPost) {
                 const prevButton = `
-                    <a href="${prevPost.link}" class="btn btn-secondary">
+                    <a href="${prevPost.link}" class="btn btn-secondary" rel="prev">
                         ⇐ ${prevPost.title}
                     </a>
                 `;
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (nextPost) {
                 const nextButton = `
-                    <a href="${nextPost.link}" class="btn btn-primary ms-auto">
+                    <a href="${nextPost.link}" class="btn btn-primary ms-auto" rel="next">
                         ${nextPost.title} ⇒
                     </a>
                 `;
