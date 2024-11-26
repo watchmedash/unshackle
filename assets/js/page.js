@@ -1,55 +1,70 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const currentLink = window.location.pathname.replace(/\/+$/, ""); // Normalize path
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        // Normalize the current page path
+        const currentPath = window.location.pathname.replace(/\/+$/, "");
 
-    fetch("https://uaexpats.top/posts.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(posts => {
-            // Find the current post index
-            const currentIndex = posts.findIndex(post => post.link === currentLink);
+        // Fetch posts JSON
+        const posts = await fetchPosts("/posts.json");
 
-            if (currentIndex === -1) {
-                console.warn("Current post not found in JSON.");
-                return;
-            }
+        // Find the current post index
+        const currentIndex = posts.findIndex(post => post.link === currentPath);
+        if (currentIndex === -1) {
+            console.warn("Current post not found in JSON.");
+            return;
+        }
 
-            // Get Previous and Next posts
-            const prevPost = posts[currentIndex - 1];
-            const nextPost = posts[currentIndex + 1];
+        // Get previous and next posts
+        const prevPost = posts[currentIndex - 1];
+        const nextPost = posts[currentIndex + 1];
 
-            // Add navigation buttons
-            const navContainer = document.createElement("div");
-            navContainer.classList.add("post-navigation", "d-flex", "justify-content-between", "mt-4");
-
-            if (prevPost) {
-                const prevButton = `
-                    <a href="${prevPost.link}" class="btn btn-secondary" rel="prev">
-                        ⇐ ${prevPost.title}
-                    </a>
-                `;
-                navContainer.innerHTML += prevButton;
-            }
-
-            if (nextPost) {
-                const nextButton = `
-                    <a href="${nextPost.link}" class="btn btn-primary ms-auto" rel="next">
-                        ${nextPost.title} ⇒
-                    </a>
-                `;
-                navContainer.innerHTML += nextButton;
-            }
-
-            // Append navigation buttons to the article
-            const article = document.querySelector("article");
-            if (article) {
-                article.appendChild(navContainer);
-            } else {
-                console.warn("No <article> element found.");
-            }
-        })
-        .catch(error => console.error("Error loading posts:", error));
+        // Add navigation links to the page
+        addPostNavigation(prevPost, nextPost);
+    } catch (error) {
+        console.error("Error loading posts:", error);
+    }
 });
+
+// Function to fetch posts JSON
+async function fetchPosts(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch posts.json: ${response.statusText}`);
+    }
+    return await response.json();
+}
+
+// Function to create and append navigation buttons
+function addPostNavigation(prevPost, nextPost) {
+    const navContainer = document.createElement("div");
+    navContainer.classList.add("post-navigation", "d-flex", "justify-content-between", "mt-4");
+
+    // Add Previous button
+    if (prevPost) {
+        const prevLink = createButton(prevPost.link, `⇐ ${prevPost.title}`, "btn btn-secondary", "prev");
+        navContainer.appendChild(prevLink);
+    }
+
+    // Add Next button
+    if (nextPost) {
+        const nextLink = createButton(nextPost.link, `${nextPost.title} ⇒`, "btn btn-primary ms-auto", "next");
+        navContainer.appendChild(nextLink);
+    }
+
+    // Append to the article
+    const article = document.querySelector("article");
+    if (article) {
+        article.appendChild(navContainer);
+    } else {
+        console.warn("No <article> element found.");
+    }
+}
+
+// Helper function to create navigation buttons
+function createButton(href, text, className, rel) {
+    const button = document.createElement("a");
+    button.href = href;
+    button.textContent = text;
+    button.className = className;
+    button.setAttribute("rel", rel);
+    return button;
+}
