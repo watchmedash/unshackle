@@ -1,42 +1,54 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const currentLink = window.location.pathname; // Current post's link
+    const currentLink = window.location.pathname.replace(/\/+$/, ""); // Normalize path
 
-    fetch("https://uaexpats.top/posts.json")
-        .then(response => response.json())
+    fetch("/posts.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(posts => {
             // Find the current post index
             const currentIndex = posts.findIndex(post => post.link === currentLink);
 
-            if (currentIndex !== -1) {
-                // Get Previous and Next posts
-                const prevPost = posts[currentIndex - 1];
-                const nextPost = posts[currentIndex + 1];
+            if (currentIndex === -1) {
+                console.warn("Current post not found in JSON.");
+                return;
+            }
 
-                // Add navigation buttons
-                const navContainer = document.createElement("div");
-                navContainer.classList.add("post-navigation", "d-flex", "justify-content-between", "mt-4");
+            // Get Previous and Next posts
+            const prevPost = posts[currentIndex - 1];
+            const nextPost = posts[currentIndex + 1];
 
-                if (prevPost) {
-                    const prevButton = `
-                        <a href="${prevPost.link}" class="btn btn-secondary">
-                            ⇐ ${prevPost.title}
-                        </a>
-                    `;
-                    navContainer.innerHTML += prevButton;
-                }
+            // Add navigation buttons
+            const navContainer = document.createElement("div");
+            navContainer.classList.add("post-navigation", "d-flex", "justify-content-between", "mt-4");
 
-                if (nextPost) {
-                    const nextButton = `
-                        <a href="${nextPost.link}" class="btn btn-primary ms-auto">
-                            ${nextPost.title} ⇒
-                        </a>
-                    `;
-                    navContainer.innerHTML += nextButton;
-                }
+            if (prevPost) {
+                const prevButton = `
+                    <a href="${prevPost.link}" class="btn btn-secondary">
+                        ⇐ ${prevPost.title}
+                    </a>
+                `;
+                navContainer.innerHTML += prevButton;
+            }
 
-                // Append navigation buttons to the article
-                const article = document.querySelector("article");
+            if (nextPost) {
+                const nextButton = `
+                    <a href="${nextPost.link}" class="btn btn-primary ms-auto">
+                        ${nextPost.title} ⇒
+                    </a>
+                `;
+                navContainer.innerHTML += nextButton;
+            }
+
+            // Append navigation buttons to the article
+            const article = document.querySelector("article");
+            if (article) {
                 article.appendChild(navContainer);
+            } else {
+                console.warn("No <article> element found.");
             }
         })
         .catch(error => console.error("Error loading posts:", error));
