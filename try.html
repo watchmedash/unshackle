@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microsoft Overview</title>
+  <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        line-height: 1.6;
+      }
+
+      a {
+        color: #9acd32; /* Light green for links */
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b4e64a;
+      }
+
+      /* Navigation Bar Styles */
+      .navbar {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: space-between; /* Adjusted for space between items */
+        align-items: center; /* Vertically center the items */
+        background-color: #333;
+        border-bottom: 1px solid #444;
+        margin: 0 auto;
+      }
+
+      .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .navbar li {
+        float: left;
+      }
+
+      .navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .navbar li a:hover:not(.active) {
+        background-color: #111;
+      }
+
+      .active {
+        background-color: #28a745; /* Active tab color */
+      }
+
+      /* Content Container */
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      .top-section {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .main-content {
+        flex: 7;
+        background-color: #1e1e1e;
+        padding: 15px;
+        border: 1px solid #333;
+      }
+
+      .main-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 15px 0;
+      }
+
+      .main-content a {
+        display: inline-block;
+        margin-top: 5px;
+        padding: 10px 20px;
+        background-color: #28a745; /* Green for the button */
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .main-content a:hover {
+        background-color: #218838;
+      }
+
+      .sidebar {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        background-color: #1e1e1e;
+        padding: 15px;
+        border: 1px solid #333;
+      }
+
+      .popular-posts {
+        flex: 5;
+        margin-bottom: 10px;
+        background-color: #2a2a2a;
+        padding: 15px;
+      }
+
+      .popular-posts ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .popular-posts ul li {
+        margin: 8px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .popular-posts ul li::before {
+        content: "•";
+        color: #9acd32;
+        margin-right: 8px;
+      }
+
+      .footer, .extra-box {
+        width: 100%;
+        background-color: #1e1e1e;
+        padding: 15px;
+        border: 1px solid #333;
+        text-align: center;
+        margin-top: 5px;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .top-section {
+          flex-direction: column; /* Stack elements */
+          align-items: center; /* Center items */
+        }
+
+        .navbar ul {
+          align-items: center;
+        }
+
+        .main-content,
+        .sidebar {
+          flex: none;
+          margin-left: 0;
+          width: 100%; /* Full width on small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+      <ul>
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Top Section -->
+    <div class="top-section">
+      <!-- Main Content -->
+      <div class="main-content">
+        <h1>Microsoft: Empowering the Future</h1>
+        <img src="https://www.cnet.com/a/img/resize/f92ae43457ac52e0b761737181264a82aa0765bb/hub/2019/02/04/8311b046-6f2b-4b98-8036-e765f572efad/msft-microsoft-logo-2-3.jpg?auto=webp&fit=crop&height=675&width=1200" alt="Microsoft Image">
+        <p>
+          Microsoft Corporation, a global leader in technology, continues to shape the future with innovative products and services. From Windows and Office to Azure and AI advancements, Microsoft plays a key role in driving digital transformation worldwide.
+        </p>
+        <a href="https://www.microsoft.com" target="_blank">Visit Microsoft</a>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+
+        <!-- Popular Posts -->
+        <div class="popular-posts">
+          <h3>Popular Posts</h3>
+          <ul>
+            <li><a href="#">Top 5 Microsoft Tools for Productivity</a></li>
+            <li><a href="#">How Azure is Changing the Cloud</a></li>
+            <li><a href="#">Windows 11: What's New</a></li>
+            <li><a href="#">AI and the Future of Work</a></li>
+          </ul>
+        </div>
+</div>
+    <!-- Footer -->
+    <div class="footer">
+      <h2>Comments Section</h2>
+      <p>Feel free to share your thoughts below!</p>
+    </div>
+
+    <!-- Extra Box -->
+    <div class="extra-box">
+      <h2>Additional Content</h2>
+      <p>You can add more information here.</p>
+    </div>
+
+</body>
+</html>
