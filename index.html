@@ -259,6 +259,31 @@
   background-color: #1e7c31; /* Darker green on hover */
 }
 
+#tag-filter {
+  padding: 10px;
+  margin: 10px;
+  font-size: 14px;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 300px; /* Fixed width for the dropdown */
+}
+
+#tag-filter:hover {
+  background-color: #333; /* Slightly lighter on hover */
+}
+
+#tag-filter option {
+  background-color: #1e1e1e; /* Dark background for dropdown options */
+  color: #e0e0e0; /* Light text color for options */
+}
+
+#tag-filter option:hover {
+  background-color: #28a745; /* Green background on hover of options */
+  color: white; /* White text color when option is hovered */
+}
 
   </style>
 </head>
@@ -287,6 +312,9 @@
   <div class="container">
     <div class="main-content">
       <div class="sharethis-inline-share-buttons"></div>
+      <select id="tag-filter">
+        <!-- Tags will be injected here dynamically -->
+      </select>
       <div id="posts-container">
         <!-- Dynamic Posts Will Be Injected Here -->
       </div>
@@ -306,152 +334,209 @@
 
   <script>
   let postsData = []; // To store the JSON data
-let filteredPosts = []; // To store filtered posts for search
-const postsPerPage = 12; // Number of posts per page
-let currentPage = 1; // Current page number
+  let filteredPosts = []; // To store filtered posts for search and tag filtering
+  const postsPerPage = 12; // Number of posts per page
+  let currentPage = 1; // Current page number
+  let allTags = []; // Array to store unique tags
 
-// Function to display posts for the current page
-function displayPosts() {
-  const postsContainer = document.getElementById('posts-container');
-  postsContainer.innerHTML = ''; // Clear the container
+  // Function to display posts for the current page
+  function displayPosts() {
+    const postsContainer = document.getElementById('posts-container');
+    postsContainer.innerHTML = ''; // Clear the container
 
-  // Check if there are no filtered posts
-  if (filteredPosts.length === 0) {
-    postsContainer.innerHTML = '<p>No results found.</p>'; // Display no results message
-    return; // Exit the function early if no posts found
-  }
-
-  const startIndex = (currentPage - 1) * postsPerPage;
-  const endIndex = startIndex + postsPerPage;
-
-  const currentPosts = filteredPosts.slice(startIndex, endIndex);
-
-  currentPosts.forEach(post => {
-    const postElement = document.createElement('div');
-    postElement.classList.add('post');
-    postElement.innerHTML = `
-      <img src="${post.image}" alt="${post.title}">
-      <div class="post-content">
-        <h2><a href="${post.link}">${post.title}</a></h2>
-        <p>${post.snippet}</p>
-      </div>
-    `;
-    postsContainer.appendChild(postElement);
-  });
-}
-
-// Function to create pagination buttons
-function createPagination() {
-  const pagination = document.getElementById('pagination');
-  pagination.innerHTML = ''; // Clear the pagination
-
-  // If there are no posts after filtering, don't show pagination
-  if (filteredPosts.length === 0) {
-    return; // Exit the function if no posts are available
-  }
-
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-  const visibleButtons = 3; // Number of visible buttons at a time
-
-  if (currentPage > 1) {
-    const firstButton = document.createElement('button');
-    firstButton.textContent = '<<';
-    firstButton.classList.add('pagination-btn');
-    firstButton.addEventListener('click', () => {
-      currentPage = 1;
-      displayPosts();
-      createPagination();
-    });
-    pagination.appendChild(firstButton);
-
-    const prevButton = document.createElement('button');
-    prevButton.textContent = '<';
-    prevButton.classList.add('pagination-btn');
-    prevButton.addEventListener('click', () => {
-      currentPage -= 1;
-      displayPosts();
-      createPagination();
-    });
-    pagination.appendChild(prevButton);
-  }
-
-  let startPage = Math.max(1, currentPage - Math.floor(visibleButtons / 2));
-  let endPage = Math.min(totalPages, startPage + visibleButtons - 1);
-  if (endPage - startPage < visibleButtons - 1) {
-    startPage = Math.max(1, endPage - visibleButtons + 1);
-  }
-
-  for (let i = startPage; i <= endPage; i++) {
-    const button = document.createElement('button');
-    button.textContent = i;
-    button.classList.add('pagination-btn');
-    if (i === currentPage) {
-      button.classList.add('active');
+    // Check if there are no filtered posts
+    if (filteredPosts.length === 0) {
+      postsContainer.innerHTML = '<p>No results found.</p>'; // Display no results message
+      return; // Exit the function early if no posts found
     }
-    button.addEventListener('click', () => {
-      currentPage = i;
-      displayPosts();
-      createPagination();
+
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+
+    const currentPosts = filteredPosts.slice(startIndex, endIndex);
+
+    currentPosts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.classList.add('post');
+
+      postElement.innerHTML = `
+        <img src="${post.image}" alt="${post.title}">
+        <div class="post-content">
+          <h2><a href="${post.link}">${post.title}</a></h2>
+          <p>${post.snippet}</p>
+          <span class="post-tag" onclick="filterByTag('${post.tag}')">${post.tag}</span> <!-- Add the tag here -->
+        </div>
+      `;
+
+      postsContainer.appendChild(postElement);
     });
-    pagination.appendChild(button);
+
+    createPagination();
   }
 
-  if (currentPage < totalPages) {
-    const nextButton = document.createElement('button');
-    nextButton.textContent = '>';
-    nextButton.classList.add('pagination-btn');
-    nextButton.addEventListener('click', () => {
-      currentPage += 1;
-      displayPosts();
-      createPagination();
-    });
-    pagination.appendChild(nextButton);
+  // Function to create pagination buttons
+  function createPagination() {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = ''; // Clear the pagination
 
-    const lastButton = document.createElement('button');
-    lastButton.textContent = '>>';
-    lastButton.classList.add('pagination-btn');
-    lastButton.addEventListener('click', () => {
-      currentPage = totalPages;
-      displayPosts();
-      createPagination();
-    });
-    pagination.appendChild(lastButton);
+    // If there are no posts after filtering, don't show pagination
+    if (filteredPosts.length === 0) {
+      return; // Exit the function if no posts are available
+    }
+
+    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+    const visibleButtons = 3; // Number of visible buttons at a time
+
+    if (currentPage > 1) {
+      const firstButton = document.createElement('button');
+      firstButton.textContent = '<<';
+      firstButton.classList.add('pagination-btn');
+      firstButton.addEventListener('click', () => {
+        currentPage = 1;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(firstButton);
+
+      const prevButton = document.createElement('button');
+      prevButton.textContent = '<';
+      prevButton.classList.add('pagination-btn');
+      prevButton.addEventListener('click', () => {
+        currentPage -= 1;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(prevButton);
+    }
+
+    let startPage = Math.max(1, currentPage - Math.floor(visibleButtons / 2));
+    let endPage = Math.min(totalPages, startPage + visibleButtons - 1);
+    if (endPage - startPage < visibleButtons - 1) {
+      startPage = Math.max(1, endPage - visibleButtons + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      const button = document.createElement('button');
+      button.textContent = i;
+      button.classList.add('pagination-btn');
+      if (i === currentPage) {
+        button.classList.add('active');
+      }
+      button.addEventListener('click', () => {
+        currentPage = i;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(button);
+    }
+
+    if (currentPage < totalPages) {
+      const nextButton = document.createElement('button');
+      nextButton.textContent = '>';
+      nextButton.classList.add('pagination-btn');
+      nextButton.addEventListener('click', () => {
+        currentPage += 1;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(nextButton);
+
+      const lastButton = document.createElement('button');
+      lastButton.textContent = '>>';
+      lastButton.classList.add('pagination-btn');
+      lastButton.addEventListener('click', () => {
+        currentPage = totalPages;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(lastButton);
+    }
   }
-}
 
-// Function to handle search
-function searchPosts(searchTerm) {
-  const term = searchTerm.trim().toLowerCase();
-  if (!term) {
-    filteredPosts = postsData; // Reset to all posts if search is empty
-  } else {
-    filteredPosts = postsData.filter(post =>
-      post.title && post.title.toLowerCase().includes(term)
-    );
+  // Function to handle search
+  function searchPosts(searchTerm) {
+    const term = searchTerm.trim().toLowerCase();
+    if (!term) {
+      filteredPosts = postsData; // Reset to all posts if search is empty
+    } else {
+      filteredPosts = postsData.filter(post =>
+        post.title && post.title.toLowerCase().includes(term)
+      );
+    }
+
+    currentPage = 1; // Reset to the first page
+    displayPosts();
+    createPagination();
   }
 
-  currentPage = 1; // Reset to the first page
-  displayPosts();
-  createPagination();
-}
+  // Function to handle tag click and filter posts by category
+  function filterByTag(tag) {
+    filteredPosts = postsData.filter(post => post.tag === tag);
+    currentPage = 1;  // Reset to the first page when a tag is clicked
+    displayPosts();  // Display filtered posts
+    createPagination();
+  }
 
-// Fetch posts data from pages.json
-fetch('pages.json')
-  .then(response => response.json())
-  .then(data => {
-    postsData = data; // Load posts data
-    filteredPosts = postsData; // Initially show all posts
-    displayPosts(); // Display the initial posts
-    createPagination(); // Create pagination buttons
-  })
-  .catch(error => {
-    console.error('Error loading pages.json:', error);
+  // Function to show all posts
+  function showAllPosts() {
+    filteredPosts = postsData;
+    currentPage = 1;
+    displayPosts();
+    createPagination();
+  }
+
+  // Function to create tag filter dropdown
+  function createTagFilter() {
+    const tagContainer = document.getElementById('tag-filter');
+    tagContainer.innerHTML = '';  // Clear existing tags
+
+    // Create a "Show All" option
+    const showAllOption = document.createElement('option');
+    showAllOption.value = 'all';
+    showAllOption.textContent = 'Show All';
+    tagContainer.appendChild(showAllOption);
+
+    // Create an option for each unique tag
+    allTags.forEach(tag => {
+      const tagOption = document.createElement('option');
+      tagOption.value = tag;
+      tagOption.textContent = tag;
+      tagContainer.appendChild(tagOption);
+    });
+
+    // Add event listener to filter posts when a tag is selected
+    tagContainer.addEventListener('change', (e) => {
+      const selectedTag = e.target.value;
+      if (selectedTag === 'all') {
+        showAllPosts();
+      } else {
+        filterByTag(selectedTag);
+      }
+    });
+  }
+
+  // Fetch posts data from pages.json
+  fetch('pages.json')
+    .then(response => response.json())
+    .then(data => {
+      postsData = data; // Load posts data
+      filteredPosts = postsData; // Initially show all posts
+
+      // Extract unique tags from posts data
+      allTags = [...new Set(postsData.map(post => post.tag))];
+
+      createTagFilter(); // Create the tag filter dropdown
+      displayPosts(); // Display the posts
+      createPagination(); // Create pagination buttons
+    })
+    .catch(error => {
+      console.error('Error loading pages.json:', error);
+    });
+
+  // Attach search input event
+  document.getElementById('search-input').addEventListener('input', (e) => {
+    searchPosts(e.target.value); // Trigger search as input changes
   });
-
-// Attach search input event
-document.getElementById('search-input').addEventListener('input', (e) => {
-  searchPosts(e.target.value); // Trigger search as input changes
-});
 
 </script>
 <script>
