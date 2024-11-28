@@ -1,227 +1,362 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - UAExpats</title>
-    <link rel="canonical" href="https://uaexpats.top/">
-    <meta property="og:url" content="https://uaexpats.top/">
-    <meta name="twitter:description" content="Stories and tips for UAE expatriates">
-    <meta name="twitter:image" content="https://uaexpats.top/assets/img/home-bg.jpg">
-    <meta property="og:image" content="https://uaexpats.top/assets/img/home-bg.jpg">
-    <meta name="description" content="Stories and tips for UAE expatriates">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="UAExpats">
-    <script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "WebSite",
-            "name": "UAExpats",
-            "url": "https://uaexpats.top"
-        }
-    </script>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/Lora.css">
-    <link rel="stylesheet" href="/assets/css/Open%20Sans.css">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
-    <style>
-        #search-input {
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <title>Randoms - Dive Into the Unexpected</title>
+  <meta name="description" content="Randoms.top is your hub for exploring diverse topics, quirky ideas, and unexpected finds. From the curious to the fascinating, discover a bit of everything here.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
+  <style>
+    /* Add styles as per the provided theme */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        #clear-btn:hover {
-            color: #333;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
 
-        #clear-btn:focus {
-            outline: none;
-        }
-    </style>
+    a {
+      color: #28a745;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #b4e64a;
+    }
+
+    .header {
+      width: 100%;
+      max-width: 1200px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-bottom: 1px solid #444;
+      margin: 0 auto;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      text-align: left;
+    }
+
+    .header h1 a {
+      color: #dcdcdc;
+      text-decoration: none;
+    }
+
+    .header h1 a:hover {
+      color: #b4e64a;
+    }
+
+    .header p {
+      font-size: 1rem;
+      color: #28a745;
+      text-align: left;
+      font-style: italic;
+    }
+
+    .navbar {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      border-bottom: 1px solid #444;
+      margin: 0 auto;
+    }
+
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    .navbar li {
+      float: left;
+    }
+
+    .navbar li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .navbar li a:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .navbar li a i {
+      margin-right: 8px; /* Space between icon and text */
+      font-size: 1.2rem; /* Adjust the size of the icon */
+    }
+
+    .active {
+      background-color: #28a745;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .main-content {
+      background-color: #1e1e1e;
+      padding: 15px;
+      border: 1px solid #333;
+      margin-bottom: 5px;
+    }
+
+    .main-content h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .post {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 20px;
+      background-color: #2a2a2a;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .post img {
+      max-width: 150px;
+      height: auto;
+      margin-right: 15px;
+      border-radius: 5px;
+    }
+
+    .post-content {
+      flex: 1;
+    }
+
+    .post-content h2 {
+      margin-bottom: 10px;
+    }
+
+    .post-content p {
+      margin-bottom: 10px;
+      color: #dcdcdc;
+    }
+
+    .footer {
+      width: 100%;
+      background-color: #1e1e1e;
+      padding: 15px;
+      border: 1px solid #333;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination-btn {
+  margin: 0 5px;
+  padding: 10px 15px;
+  background-color: #333;
+  color: #dcdcdc;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination-btn.active {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.pagination-btn:hover {
+  background-color: #444;
+}
+
+.logo {
+  max-height: 50px; /* Adjust the size of the logo */
+  margin-right: 7px;
+  vertical-align: middle; /* Aligns the logo with the text */
+}
+  </style>
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="/index.html">UAExpats</a>
-            <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                  <li class="nav-item"><a class="nav-link" href="/index.html"><i class="fas fa-home"></i> Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/about.html"><i class="fas fa-info-circle"></i> About us</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/contact.html"><i class="fas fa-envelope"></i> Contact us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<div class="header">
+<h1><a href="index.html"><img src="logo.png" alt="Randoms Logo" class="logo"> RANDOMS</a></h1>
+<p>Discover something new every day.</p>
+</div>
 
-    <header class="masthead" style="background-image:url('/assets/img/home-bg.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-lg-8 mx-auto position-relative">
-                    <div class="site-heading">
-                        <h1>Welcome to UAExpats</h1>
-                        <span class="subheading">Your hub for stories, tips, and advice for expatriates in the UAE</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-<div class="sharethis-inline-share-buttons"></div>
-    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
-        <div style="position: relative; width: 80%; min-width: 400px; max-width: 800px;">
-            <input
-                id="search-input"
-                type="text"
-                class="form-control"
-                placeholder="Search posts..."
-                onkeyup="handleSearch()"
-                style="width: 100%; padding-right: 30px;"
-            />
-            <button
-                id="clear-btn"
-                type="button"
-                onclick="clearSearch()"
-                style="
-                    position: absolute;
-                    right: 5px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    background: none;
-                    border: none;
-                    cursor: pointer;
-                    color: #ccc;
-                    font-size: 16px;
-                "
-                aria-label="Clear Search"
-            >
-                &times;
-            </button>
-        </div>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <ul>
+      <li><a class="active" href="#"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="/contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+      <li><a href="/about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="main-content">
+      <h1>Explore the Latest</h1>
+      <div id="posts-container">
+        <!-- Dynamic Posts Will Be Injected Here -->
+      </div>
+      <div id="pagination">
+        <!-- Pagination Buttons Will Be Injected Here -->
+      </div>
     </div>
+  </div>
 
-    <div class="container">
-        <div id="post-container" class="row">
-            <div class="col-md-10 col-lg-8"></div>
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2024 Randoms.top. All rights reserved.</p>
+  </div>
+
+  <script>
+  const postsPerPage = 12; // Number of posts per page
+  let currentPage = 1; // Current page number
+  let postsData = []; // To store the JSON data
+
+  // Function to display posts for the current page
+  function displayPosts() {
+    const postsContainer = document.getElementById('posts-container');
+    postsContainer.innerHTML = ''; // Clear the container
+
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+
+    const currentPosts = postsData.slice(startIndex, endIndex);
+
+    currentPosts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.classList.add('post');
+
+      postElement.innerHTML = `
+        <img src="${post.image}" alt="${post.title}">
+        <div class="post-content">
+          <h2><a href="${post.link}">${post.title}</a></h2>
+          <p>${post.snippet}</p>
         </div>
-    </div>
+      `;
+      postsContainer.appendChild(postElement);
+    });
+  }
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const postsPerPage = 8;
-            const postContainer = document.querySelector("#post-container .col-md-10");
-            let currentPage = 1;
-            let totalPages = 1;
-            let allPosts = [];
-            let filteredPosts = [];
+  // Function to create pagination buttons with limited visible range
+  function createPagination() {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = ''; // Clear the pagination
 
-            function renderPosts(posts) {
-                totalPages = Math.ceil(posts.length / postsPerPage);
-                postContainer.innerHTML = "";
+    const totalPages = Math.ceil(postsData.length / postsPerPage);
+    const visibleButtons = 3; // Number of visible buttons at a time
 
-                const startIndex = (currentPage - 1) * postsPerPage;
-                const endIndex = startIndex + postsPerPage;
-                const postsToDisplay = posts.slice(startIndex, endIndex);
+    // Add "First" button
+    if (currentPage > 1) {
+      const firstButton = document.createElement('button');
+      firstButton.textContent = '<<';
+      firstButton.classList.add('pagination-btn');
+      firstButton.addEventListener('click', () => {
+        currentPage = 1;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(firstButton);
+    }
 
-                postsToDisplay.forEach(post => {
-                    const postHTML = `
-                        <div class="post-preview">
-                            <a href="${post.link}">
-                                <h2 class="post-title">${post.title}</h2>
-                                ${post.subtitle ? `<h3 class="post-subtitle">${post.subtitle}</h3>` : ""}
-                            </a>
-                            <p class="post-meta">Posted by <a href="#">${post.author}</a> on ${post.date}</p>
-                        </div>
-                        <hr>
-                    `;
-                    postContainer.innerHTML += postHTML;
-                });
+    // Add "Previous" button
+    if (currentPage > 1) {
+      const prevButton = document.createElement('button');
+      prevButton.textContent = '<';
+      prevButton.classList.add('pagination-btn');
+      prevButton.addEventListener('click', () => {
+        currentPage -= 1;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(prevButton);
+    }
 
-                const navigationHTML = `
-                    <div class="clearfix">
-                        ${currentPage > 1 ? `<button id="prev-btn" class="btn btn-secondary float-start">⇐ Newer Posts</button>` : ""}
-                        ${currentPage < totalPages ? `<button id="next-btn" class="btn btn-primary float-end">Older Posts ⇒</button>` : ""}
-                    </div>
-                `;
-                postContainer.innerHTML += navigationHTML;
+    // Determine range of buttons to show
+    let startPage = Math.max(1, currentPage - Math.floor(visibleButtons / 2));
+    let endPage = Math.min(totalPages, startPage + visibleButtons - 1);
 
-                if (currentPage > 1) {
-                    document.getElementById("prev-btn").addEventListener("click", () => {
-                        currentPage--;
-                        renderPosts(filteredPosts);
-                    });
-                }
-                if (currentPage < totalPages) {
-                    document.getElementById("next-btn").addEventListener("click", () => {
-                        currentPage++;
-                        renderPosts(filteredPosts);
-                    });
-                }
-            }
+    if (endPage - startPage < visibleButtons - 1) {
+      startPage = Math.max(1, endPage - visibleButtons + 1);
+    }
 
-            function handleSearch() {
-                const query = document.getElementById("search-input").value.toLowerCase();
-                if (query) {
-                    filteredPosts = allPosts.filter(post =>
-                        post.title.toLowerCase().includes(query) ||
-                        (post.subtitle && post.subtitle.toLowerCase().includes(query)) ||
-                        post.author.toLowerCase().includes(query)
-                    );
-                } else {
-                    filteredPosts = allPosts;
-                }
-                currentPage = 1;
-                renderPosts(filteredPosts);
-            }
+    // Add numbered buttons
+    for (let i = startPage; i <= endPage; i++) {
+      const button = document.createElement('button');
+      button.textContent = i;
+      button.classList.add('pagination-btn');
+      if (i === currentPage) {
+        button.classList.add('active');
+      }
+      button.addEventListener('click', () => {
+        currentPage = i;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(button);
+    }
 
-            fetch("posts.json")
-                .then(response => response.json())
-                .then(posts => {
-                    allPosts = posts;
-                    filteredPosts = posts;
-                    renderPosts(posts);
-                })
-                .catch(error => console.error("Error loading posts:", error));
+    // Add "Next" button
+    if (currentPage < totalPages) {
+      const nextButton = document.createElement('button');
+      nextButton.textContent = '>';
+      nextButton.classList.add('pagination-btn');
+      nextButton.addEventListener('click', () => {
+        currentPage += 1;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(nextButton);
+    }
 
-            // Expose the function globally for the inline `onkeyup` event
-            window.handleSearch = handleSearch;
-        });
+    // Add "Last" button
+    if (currentPage < totalPages) {
+      const lastButton = document.createElement('button');
+      lastButton.textContent = '>>';
+      lastButton.classList.add('pagination-btn');
+      lastButton.addEventListener('click', () => {
+        currentPage = totalPages;
+        displayPosts();
+        createPagination();
+      });
+      pagination.appendChild(lastButton);
+    }
+  }
 
-        function clearSearch() {
-            const searchInput = document.getElementById("search-input");
-            searchInput.value = "";
-            handleSearch(); // Re-render the full list of posts
-        }
-    </script>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-lg-8 mx-auto">
-                    <ul class="list-inline text-center">
-                      <li class="list-inline-item"><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
-                      <li class="list-inline-item"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                      <li class="list-inline-item"><a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
-                    </ul>
-                    <p class="text-muted copyright">Copyright&nbsp;©&nbsp;UAExpats 2024</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/clean-blog.js"></script>
+  // Fetch posts data from pages.json
+  fetch('pages.json')
+    .then(response => response.json())
+    .then(data => {
+      postsData = data;
+      displayPosts(); // Display the initial posts
+      createPagination(); // Create pagination buttons
+    })
+    .catch(error => {
+      console.error('Error loading pages.json:', error);
+    });
+</script>
 </body>
-
 </html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <title>Randoms - Windows 11 Disk Image</title>
+  <meta name="description" content="Randoms.top is your hub for exploring diverse topics, quirky ideas, and unexpected finds. From the curious to the fascinating, discover a bit of everything here.">
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        line-height: 1.6;
+      }
+
+      a {
+        color: #28a745; /* Light green for links */
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #b4e64a;
+      }
+
+      .header {
+        width: 100%;
+        max-width: 1200px;
+        background-color: #1e1e1e;
+        padding: 20px;
+        border-bottom: 1px solid #444;
+        margin: 0 auto;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        text-align: left;
+      }
+
+      .header h1 a {
+        color: #dcdcdc;
+        text-decoration: none;
+      }
+
+      .header h1 a:hover {
+        color: #b4e64a;
+      }
+
+      .header p {
+        font-size: 1rem;
+        color: #28a745;
+        text-align: left;
+        font-style: italic;
+      }
+
+      /* Navigation Bar Styles */
+      .navbar {
+        width: 100%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        border-bottom: 1px solid #444;
+        margin: 0 auto;
+      }
+
+      .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      .navbar li {
+        float: left;
+      }
+
+      .navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .navbar li a:hover:not(.active) {
+        background-color: #111;
+      }
+
+      .navbar li a i {
+        margin-right: 8px; /* Space between icon and text */
+        font-size: 1.2rem; /* Adjust the size of the icon */
+      }
+
+      .active {
+        background-color: #28a745; /* Active tab color */
+      }
+
+      /* Content Container */
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .top-section {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .main-content {
+        flex: 7;
+        background-color: #1e1e1e;
+        padding: 15px;
+        border: 1px solid #333;
+      }
+
+      .main-content img {
+  max-width: 300px;
+  height: auto;
+  margin: 15px auto;  /* Center the image horizontally */
+  display: block;     /* Make the image a block-level element */
+}
+
+      .main-content a {
+        display: inline-block;
+        margin-top: 5px;
+        padding: 10px 20px;
+        background-color: #28a745; /* Green for the button */
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .main-content a:hover {
+        background-color: #218838;
+      }
+
+      .sidebar {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+      }
+
+      .popular-posts {
+        flex: 5;
+        background-color: #2a2a2a;
+        padding: 15px;
+      }
+
+      .popular-posts ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .popular-posts ul li {
+        margin: 8px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .popular-posts ul li::before {
+        content: "•";
+        color: #28a745;
+        margin-right: 8px;
+      }
+
+      .footer, .extra-box {
+        width: 100%;
+        background-color: #1e1e1e;
+        padding: 15px;
+        border: 1px solid #333;
+        text-align: center;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .top-section {
+          flex-direction: column; /* Stack elements */
+          align-items: center; /* Center items */
+        }
+
+        .navbar ul {
+          align-items: center;
+        }
+
+        .main-content,
+        .sidebar {
+          flex: none;
+          margin-left: 0;
+          width: 100%; /* Full width on small screens */
+        }
+      }
+
+      .logo {
+        max-height: 50px; /* Adjust the size of the logo */
+        margin-right: 7px;
+        vertical-align: middle; /* Aligns the logo with the text */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+    <h1><a href="index.html"><img src="/logo.png" alt="Randoms Logo" class="logo"> RANDOMS</a></h1>
+    <p>Discover something new every day.</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+      <ul>
+<li><a class="active" href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+<li><a href="/contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+<li><a href="/about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+      </ul>
+    </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="extra-box">
+    <div class="sharethis-inline-share-buttons"></div>
+    </div>
+    <div class="top-section">
+      <!-- Main Content -->
+      <div class="main-content">
+        <h1>Windows 11 Disk Image (ISO) for x64 devices</h1>
+        <img src="https://vbackup.pl/wp-content/uploads/2024/05/Windows-11-Pro.png" alt="Windows 11 Disk Image">
+        <p>
+          Windows 11 is the latest major release of Microsoft's Windows NT operating system, released on October 5, 2021. It succeeded Windows 10 (2015), and is available for free for any Windows 10 devices that meet the new Windows 11 system requirements.
+
+  Windows 11 features major changes to the Windows shell influenced by the canceled Windows 10X, including a redesigned Start menu, the replacement of its "live tiles" with a separate "Widgets" panel on the taskbar, the ability to create tiled sets of windows that can be minimized and restored from the taskbar as a group, and new gaming technologies inherited from Xbox Series X and Series S such as Auto HDR and DirectStorage on compatible hardware. Internet Explorer (IE) has been replaced by the Chromium-based Microsoft Edge as the default web browser, like its predecessor, Windows 10, and Microsoft Teams is integrated into the Windows shell. Microsoft also announced plans to allow more flexibility in software that can be distributed via the Microsoft Store and to support Android apps on Windows 11 (including a partnership with Amazon to make its app store available for the function).
+        </p>
+        <a href="https://www.microsoft.com/en-us/software-download/windows11" target="_blank">Download</a>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="popular-posts">
+          <h3>Popular Posts</h3>
+          <ul id="popular-posts-list">
+            <!-- Popular posts will be dynamically loaded here -->
+          </ul>
+        </div>
+
+        <script>
+          // Fetch the JSON file and populate the popular posts section
+          fetch('/pages.json')
+            .then(response => response.json())
+            .then(data => {
+              const postsList = document.getElementById('popular-posts-list');
+              const shuffled = data.sort(() => 0.5 - Math.random()); // Shuffle the array
+              const popularPosts = shuffled.slice(0, 15); // Select the first 12
+
+              // Add each post to the list
+              popularPosts.forEach(post => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = post.link;
+                link.textContent = post.title;
+                listItem.appendChild(link);
+                postsList.appendChild(listItem);
+              });
+            })
+            .catch(error => console.error('Error fetching the pages.json:', error));
+        </script>
+
+</div>
+
+<div class="extra-box">
+<div class="sharethis-inline-reaction-buttons"></div>
+</div>
+
+<div class="footer">
+<p>&copy; 2024 Randoms.top. All rights reserved.</p>
+</div>
+
+</body>
+</html>
