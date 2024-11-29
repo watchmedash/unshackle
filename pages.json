@@ -7,10 +7,24 @@
     "tag": "Movie"
   },
   {
+    "title": "Linkin Park From Zero",
+    "link": "pages/Linkin Park From Zero.html",
+    "image": "https://i0.wp.com/wallofsoundau.com/wp-content/uploads/2024/11/linkin-park-from-zero-album-review.jpg",
+    "snippet": "From Zero is the eighth studio album by American rock band Linkin Park",
+    "tag": "Music"
+  },
+  {
     "title": "Elevation",
     "link": "pages/Elevation.html",
     "image": "https://m.media-amazon.com/images/M/MV5BY2NiNDM0NWYtNzQxNi00NmY1LTg1YmYtMDE5ZmQzMGJlMGQzXkEyXkFqcGc@._V1_.jpg",
     "snippet": "A single father and two women venture from the safety of their homes to face monstrous creatures to save the life of a young boy.",
+    "tag": "Movie"
+  },
+  {
+    "title": "Smile 2",
+    "link": "pages/Smile 2.html",
+    "image": "https://m.media-amazon.com/images/M/MV5BNDRjZmZhZTEtMzdlYi00MmE0LTgyZGMtZDc5ZWI0MjcxZTliXkEyXkFqcGc@._V1_.jpg",
+    "snippet": "About to embark on a world tour, global pop sensation Skye Riley begins experiencing increasingly terrifying and inexplicable events.",
     "tag": "Movie"
   },
   {
@@ -20,13 +34,41 @@
     "snippet": "Art the Clown is set to unleash chaos on the unsuspecting residents of Miles County as they peacefully drift off to sleep on Christmas Eve.",
     "tag": "Movie"
   },
-{
-  "title": "Linkin Park From Zero",
-  "link": "pages/Linkin Park From Zero.html",
-  "image": "https://i0.wp.com/wallofsoundau.com/wp-content/uploads/2024/11/linkin-park-from-zero-album-review.jpg",
-  "snippet": "From Zero is the eighth studio album by American rock band Linkin Park",
-  "tag": "Music"
-},
+  {
+    "title": "Piece by Piece",
+    "link": "pages/Piece by Piece.html",
+    "image": "https://m.media-amazon.com/images/M/MV5BMjUxMjE2YWQtY2YwMS00MTdkLTg0ZWQtMTQ0NzExY2U4NGZkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "snippet": "A vibrant journey through the life of Pharrell Williams, told through the lens of LEGO animation.",
+    "tag": "Movie"
+  },
+  {
+    "title": "WWE Crown Jewel 2024",
+    "link": "pages/WWE Crown Jewel 2024.html",
+    "image": "https://phcorner.net/attachments/tvd-jpg.3201895/",
+    "snippet": "WWE pits Cody Rhodes against Gunther, and Nia Jax fights Liv Morgan in two clashes of champions with the 50-carat Crown Jewel Title at stake.",
+    "tag": "Movie"
+  },
+  {
+    "title": "Super/Man: The Christopher Reeve Story",
+    "link": "pages/SuperMan The Christopher Reeve Story.html",
+    "image": "https://www.europanet.com.br/upload/id_produto/45_____/4501007g.jpg",
+    "snippet": "Reeve’s rise to becoming a film star follows with a near-fatal horse-riding accident that left him paralyzed from the neck down. After the accident, he became an activist for spinal cord injury treatments and disability rights.",
+    "tag": "Movie"
+  },
+  {
+    "title": "Look Back",
+    "link": "pages/Look Back.html",
+    "image": "https://i.namu.wiki/i/yTv6-AdmM9cLvrLykWT-BlwdX0p-pXkV-LB9OZ-SuBpRQ4KseqQNroL7wPlWL0d5qwA07Qq44qiEKd96kdElDw.webp",
+    "snippet": "The overly confident Fujino and the shut-in Kyomoto couldn’t be more different, but a love of drawing manga brings these two small town girls together.",
+    "tag": "Movie"
+  },
+  {
+    "title": "Megalopolis",
+    "link": "pages/Megalopolis.html",
+    "image": "https://m.media-amazon.com/images/M/MV5BOTQ2MTcwODgtOTg3Yi00M2RmLWEyMDQtY2IzZmRlYzM3YzhjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "snippet": "The city of New Rome faces the duel between Cesar Catilina, a brilliant artist in favor of an Utopian future, and the greedy mayor Franklyn Cicero.",
+    "tag": "Movie"
+  },
 {
   "title": "The Death of Slim Shady (Coup de Grâce) by EMINEM",
   "link": "pages/The Death of Slim Shady (Coup de Grâce).html",
