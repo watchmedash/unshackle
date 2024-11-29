@@ -7,287 +7,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <title>Randoms - Dive Into the Unexpected</title>
+  <title>Randoms - Discover something new every day</title>
+  <link rel="stylesheet" href="style.css">
   <meta name="description" content="Randoms.top is your hub for exploring diverse topics, quirky ideas, and unexpected finds. From the curious to the fascinating, discover a bit of everything here.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
-  <style>
-    /* Add styles as per the provided theme */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
-      line-height: 1.6;
-    }
-
-    a {
-      color: #28a745;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #b4e64a;
-    }
-
-    .header {
-      width: 100%;
-      max-width: 1200px;
-      background-color: #1e1e1e;
-      padding: 20px;
-      border-bottom: 1px solid #444;
-      margin: 0 auto;
-    }
-
-    .header h1 {
-      font-size: 2.5rem;
-      text-align: left;
-    }
-
-    .header h1 a {
-      color: #dcdcdc;
-      text-decoration: none;
-    }
-
-    .header h1 a:hover {
-      color: #b4e64a;
-    }
-
-    .header p {
-      font-size: 1rem;
-      color: #28a745;
-      text-align: left;
-      font-style: italic;
-    }
-
-    .navbar {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #333;
-      border-bottom: 1px solid #444;
-      margin: 0 auto;
-    }
-
-    .navbar ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
-
-    .navbar li {
-      float: left;
-    }
-
-    .navbar li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
-
-    .navbar li a:hover:not(.active) {
-      background-color: #111;
-    }
-
-    .navbar li a i {
-      margin-right: 8px; /* Space between icon and text */
-      font-size: 1.2rem; /* Adjust the size of the icon */
-    }
-
-    .active {
-      background-color: #28a745;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .main-content {
-      background-color: #1e1e1e;
-      padding: 15px;
-      border: 1px solid #333;
-      margin-bottom: 5px;
-    }
-
-    .main-content h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .post {
-      display: flex;
-      flex-direction: row;
-      margin-bottom: 20px;
-      background-color: #2a2a2a;
-      padding: 15px;
-      border-radius: 5px;
-    }
-
-    .post img {
-      max-width: 150px;
-      height: auto;
-      margin-right: 15px;
-      border-radius: 5px;
-    }
-
-    .post-content {
-      flex: 1;
-    }
-
-    .post-content h2 {
-      margin-bottom: 10px;
-    }
-
-    .post-content p {
-      margin-bottom: 10px;
-      color: #dcdcdc;
-    }
-
-    .footer {
-      width: 100%;
-      background-color: #1e1e1e;
-      padding: 15px;
-      border: 1px solid #333;
-      text-align: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footed {
-      width: 100%;
-      background-color: #1e1e1e;
-      border: 1px solid #333;
-      text-align: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    #pagination {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.pagination-btn {
-  margin: 0 5px;
-  padding: 10px 15px;
-  background-color: #333;
-  color: #dcdcdc;
-  border: none;
-  cursor: pointer;
-}
-
-.pagination-btn.active {
-  background-color: #28a745;
-  color: #fff;
-}
-
-.pagination-btn:hover {
-  background-color: #444;
-}
-
-.logo {
-  max-height: 50px; /* Adjust the size of the logo */
-  margin-right: 7px;
-  vertical-align: middle; /* Aligns the logo with the text */
-}
-
-.search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px 0;
-}
-
-.search-bar input {
-  padding: 10px;
-  width: 60%;
-  max-width: 1200px;
-  border: 1px solid #444;
-  border-radius: 5px 0 0 5px; /* Rounded left corner */
-  background-color: #1e1e1e;
-  color: #e0e0e0;
-}
-
-.search-bar button {
-  padding: 10px 15px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 0 5px 5px 0; /* Rounded right corner */
-  cursor: pointer;
-}
-
-.search-bar button:hover {
-  background-color: #1e7c31;
-}
-
-.search-bar button i {
-  font-size: 18px; /* Adjust the icon size */
-}
-
-/* Go to top button styling */
-#goToTop {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  padding: 8px 13px;
-  font-size: 18px;
-  cursor: pointer;
-  display: none; /* Hidden by default */
-  z-index: 1000; /* Make sure it's always on top */
-}
-
-#goToTop:hover {
-  background-color: #1e7c31; /* Darker green on hover */
-}
-
-#tag-filter {
-  padding: 10px;
-  margin: 10px auto; /* Auto margins on left and right to center */
-  font-size: 14px;
-  background-color: #1e1e1e;
-  color: #e0e0e0;
-  border: 1px solid #444;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 300px; /* Fixed width */
-  display: block; /* Ensures it behaves like a block element */
-}
-
-
-#tag-filter:hover {
-  background-color: #333; /* Slightly lighter on hover */
-}
-
-#tag-filter option {
-  background-color: #1e1e1e; /* Dark background for dropdown options */
-  color: #e0e0e0; /* Light text color for options */
-}
-
-#tag-filter option:hover {
-  background-color: #28a745; /* Green background on hover of options */
-  color: white; /* White text color when option is hovered */
-}
-
-  </style>
 </head>
 <body>
 <div class="header">
@@ -306,22 +30,22 @@
     <div class="search-bar">
   <input type="text" id="search-input" placeholder="Search...">
   <button id="search-btn">
-    <i class="fa fa-search"></i> <!-- Magnifier icon from Font Awesome -->
+    <i class="fa fa-search"></i>
   </button>
 </div>
   </div>
-  <!-- Main Content -->
+
   <div class="container">
     <div class="main-content">
       <div class="sharethis-inline-share-buttons"></div>
       <select id="tag-filter">
-        <!-- Tags will be injected here dynamically -->
+
       </select>
       <div id="posts-container">
-        <!-- Dynamic Posts Will Be Injected Here -->
+
       </div>
       <div id="pagination">
-        <!-- Pagination Buttons Will Be Injected Here -->
+
       </div>
     </div>
   </div>
@@ -333,217 +57,9 @@
   <button id="goToTop" class="go-to-top">
     <i class="fas fa-chevron-up"></i>
   </button>
-
   <script>
-  let postsData = []; // To store the JSON data
-  let filteredPosts = []; // To store filtered posts for search and tag filtering
-  const postsPerPage = 12; // Number of posts per page
-  let currentPage = 1; // Current page number
-  let allTags = []; // Array to store unique tags
-
-  // Function to display posts for the current page
-  function displayPosts() {
-    const postsContainer = document.getElementById('posts-container');
-    postsContainer.innerHTML = ''; // Clear the container
-
-    // Check if there are no filtered posts
-    if (filteredPosts.length === 0) {
-      postsContainer.innerHTML = '<p>No results found.</p>'; // Display no results message
-      return; // Exit the function early if no posts found
-    }
-
-    const startIndex = (currentPage - 1) * postsPerPage;
-    const endIndex = startIndex + postsPerPage;
-
-    const currentPosts = filteredPosts.slice(startIndex, endIndex);
-
-    currentPosts.forEach(post => {
-      const postElement = document.createElement('div');
-      postElement.classList.add('post');
-
-      postElement.innerHTML = `
-        <img src="${post.image}" alt="${post.title}">
-        <div class="post-content">
-          <h2><a href="${post.link}">${post.title}</a></h2>
-          <p>${post.snippet}</p>
-          <span class="post-tag" onclick="filterByTag('${post.tag}')">${post.tag}</span> <!-- Add the tag here -->
-        </div>
-      `;
-
-      postsContainer.appendChild(postElement);
-    });
-
-    createPagination();
-  }
-
-  // Function to create pagination buttons
-  function createPagination() {
-    const pagination = document.getElementById('pagination');
-    pagination.innerHTML = ''; // Clear the pagination
-
-    // If there are no posts after filtering, don't show pagination
-    if (filteredPosts.length === 0) {
-      return; // Exit the function if no posts are available
-    }
-
-    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
-    const visibleButtons = 3; // Number of visible buttons at a time
-
-    if (currentPage > 1) {
-      const firstButton = document.createElement('button');
-      firstButton.textContent = '<<';
-      firstButton.classList.add('pagination-btn');
-      firstButton.addEventListener('click', () => {
-        currentPage = 1;
-        displayPosts();
-        createPagination();
-      });
-      pagination.appendChild(firstButton);
-
-      const prevButton = document.createElement('button');
-      prevButton.textContent = '<';
-      prevButton.classList.add('pagination-btn');
-      prevButton.addEventListener('click', () => {
-        currentPage -= 1;
-        displayPosts();
-        createPagination();
-      });
-      pagination.appendChild(prevButton);
-    }
-
-    let startPage = Math.max(1, currentPage - Math.floor(visibleButtons / 2));
-    let endPage = Math.min(totalPages, startPage + visibleButtons - 1);
-    if (endPage - startPage < visibleButtons - 1) {
-      startPage = Math.max(1, endPage - visibleButtons + 1);
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      const button = document.createElement('button');
-      button.textContent = i;
-      button.classList.add('pagination-btn');
-      if (i === currentPage) {
-        button.classList.add('active');
-      }
-      button.addEventListener('click', () => {
-        currentPage = i;
-        displayPosts();
-        createPagination();
-      });
-      pagination.appendChild(button);
-    }
-
-    if (currentPage < totalPages) {
-      const nextButton = document.createElement('button');
-      nextButton.textContent = '>';
-      nextButton.classList.add('pagination-btn');
-      nextButton.addEventListener('click', () => {
-        currentPage += 1;
-        displayPosts();
-        createPagination();
-      });
-      pagination.appendChild(nextButton);
-
-      const lastButton = document.createElement('button');
-      lastButton.textContent = '>>';
-      lastButton.classList.add('pagination-btn');
-      lastButton.addEventListener('click', () => {
-        currentPage = totalPages;
-        displayPosts();
-        createPagination();
-      });
-      pagination.appendChild(lastButton);
-    }
-  }
-
-  // Function to handle search
-  function searchPosts(searchTerm) {
-    const term = searchTerm.trim().toLowerCase();
-    if (!term) {
-      filteredPosts = postsData; // Reset to all posts if search is empty
-    } else {
-      filteredPosts = postsData.filter(post =>
-        post.title && post.title.toLowerCase().includes(term)
-      );
-    }
-
-    currentPage = 1; // Reset to the first page
-    displayPosts();
-    createPagination();
-  }
-
-  // Function to handle tag click and filter posts by category
-  function filterByTag(tag) {
-    filteredPosts = postsData.filter(post => post.tag === tag);
-    currentPage = 1;  // Reset to the first page when a tag is clicked
-    displayPosts();  // Display filtered posts
-    createPagination();
-  }
-
-  // Function to show all posts
-  function showAllPosts() {
-    filteredPosts = postsData;
-    currentPage = 1;
-    displayPosts();
-    createPagination();
-  }
-
-  // Function to create tag filter dropdown
-  function createTagFilter() {
-    const tagContainer = document.getElementById('tag-filter');
-    tagContainer.innerHTML = '';  // Clear existing tags
-
-    // Create a "Show All" option
-    const showAllOption = document.createElement('option');
-    showAllOption.value = 'all';
-    showAllOption.textContent = 'Show All';
-    tagContainer.appendChild(showAllOption);
-
-    // Create an option for each unique tag
-    allTags.forEach(tag => {
-      const tagOption = document.createElement('option');
-      tagOption.value = tag;
-      tagOption.textContent = tag;
-      tagContainer.appendChild(tagOption);
-    });
-
-    // Add event listener to filter posts when a tag is selected
-    tagContainer.addEventListener('change', (e) => {
-      const selectedTag = e.target.value;
-      if (selectedTag === 'all') {
-        showAllPosts();
-      } else {
-        filterByTag(selectedTag);
-      }
-    });
-  }
-
-  // Fetch posts data from pages.json
-  fetch('pages.json')
-    .then(response => response.json())
-    .then(data => {
-      postsData = data; // Load posts data
-      filteredPosts = postsData; // Initially show all posts
-
-      // Extract unique tags from posts data
-      allTags = [...new Set(postsData.map(post => post.tag))];
-
-      createTagFilter(); // Create the tag filter dropdown
-      displayPosts(); // Display the posts
-      createPagination(); // Create pagination buttons
-    })
-    .catch(error => {
-      console.error('Error loading pages.json:', error);
-    });
-
-  // Attach search input event
-  document.getElementById('search-input').addEventListener('input', (e) => {
-    searchPosts(e.target.value); // Trigger search as input changes
-  });
-
-</script>
-<script>
-// Function to handle the "Go to Top" button visibility
-function handleScroll() {
+  // Function to handle the "Go to Top" button visibility
+  function handleScroll() {
   const goToTopButton = document.getElementById('goToTop');
 
   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
@@ -551,21 +67,22 @@ function handleScroll() {
   } else {
     goToTopButton.style.display = 'none'; // Hide the button when near the top
   }
-}
+  }
 
-// Function to scroll back to the top
-function scrollToTop() {
+  // Function to scroll back to the top
+  function scrollToTop() {
   window.scrollTo({
     top: 0,
     behavior: 'smooth', // Smooth scroll
   });
-}
+  }
 
-// Listen for scroll events to show/hide the button
-window.onscroll = handleScroll;
+  // Listen for scroll events to show/hide the button
+  window.onscroll = handleScroll;
 
-// Add click event to the "Go to Top" button
-document.getElementById('goToTop').addEventListener('click', scrollToTop);
-</script>
+  // Add click event to the "Go to Top" button
+  document.getElementById('goToTop').addEventListener('click', scrollToTop);
+  </script>
+<script src="script.js"></script>
 </body>
 </html>
