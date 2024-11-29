@@ -261,15 +261,17 @@
 
 #tag-filter {
   padding: 10px;
-  margin: 10px;
+  margin: 10px auto; /* Auto margins on left and right to center */
   font-size: 14px;
   background-color: #1e1e1e;
   color: #e0e0e0;
   border: 1px solid #444;
   border-radius: 5px;
   cursor: pointer;
-  width: 300px; /* Fixed width for the dropdown */
+  width: 300px; /* Fixed width */
+  display: block; /* Ensures it behaves like a block element */
 }
+
 
 #tag-filter:hover {
   background-color: #333; /* Slightly lighter on hover */
