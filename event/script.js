@@ -1,6 +1,7 @@
 const countdownElement = document.getElementById('countdown');
 const christmasDate = new Date('December 25, 2024 00:00:00').getTime();
 
+// Countdown Timer
 function updateCountdown() {
   const now = new Date().getTime();
   const distance = christmasDate - now;
@@ -19,7 +20,14 @@ function updateCountdown() {
 }
 const timer = setInterval(updateCountdown, 1000);
 
-const cardsContainer = document.getElementById('cards-container');
+// Shuffle Function for Randomization
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 const messages = [
   "May this Christmas season bring you endless joy and unforgettable moments spent with your loved ones! 🎅🎄",
   "Wishing you a Christmas filled with love, laughter, and everything you’ve been hoping for! ❤️❄️",
@@ -35,25 +43,19 @@ const messages = [
   "May the beauty of the season touch your heart and bring you countless blessings. 🌟🎄"
 ];
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
 function shuffleBackgrounds() {
-  const images = ['xmas.jpg', 'xmas1.jpg', 'xmas2.jpg', 'xmas3.jpg', 'xmas4.jpg', 'xmas5.jpg', 'xmas6.jpg', 'xmas7.jpg', 'xmas8.jpg', 'xmas9.jpg'];
+const images = ['xmas.jpg', 'xmas1.jpg', 'xmas2.jpg', 'xmas3.jpg', 'xmas4.jpg', 'xmas5.jpg', 'xmas6.jpg', 'xmas7.jpg', 'xmas8.jpg', 'xmas9.jpg'];
   shuffleArray(images);
   return images[0];
 }
 
 function createCards() {
+  const cardsContainer = document.getElementById('cards-container');
   const backgroundImage = shuffleBackgrounds();
 
   shuffleArray(messages);
 
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < messages.length; i++) {
     const card = document.createElement('div');
     card.className = 'card';
     card.style.backgroundImage = `url(${backgroundImage})`;
@@ -62,9 +64,12 @@ function createCards() {
   }
 }
 
+// Popup Logic
 const popup = document.getElementById('popup');
 const overlay = document.getElementById('overlay');
 const messageElement = document.getElementById('message');
+const emailInput = document.getElementById('email');
+const claimButton = document.getElementById('claim-gift-btn');
 
 function showPopup(message) {
   messageElement.textContent = message;
@@ -118,14 +123,6 @@ function showThankYouPopup() {
     font-weight: bold;
     transition: transform 0.2s, box-shadow 0.2s;
   `;
-  closeButton.addEventListener('mouseover', () => {
-    closeButton.style.transform = 'scale(1.1)';
-    closeButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
-  });
-  closeButton.addEventListener('mouseout', () => {
-    closeButton.style.transform = 'scale(1)';
-    closeButton.style.boxShadow = 'none';
-  });
 
   document.body.appendChild(thankYouPopup);
 }
@@ -137,10 +134,27 @@ function closeThankYouPopup() {
   }
 }
 
-
 function claimGift() {
-  window.open('https://luglawhaulsano.net/4/8670939', '_blank');
+  const link = document.createElement('a');
+  link.href = 'https://dashflix.top';
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
   showThankYouPopup();
 }
 
+// Email Validation Logic
+emailInput.addEventListener('input', () => {
+  const email = emailInput.value;
+  if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    claimButton.disabled = false;
+  } else {
+    claimButton.disabled = true;
+  }
+});
+
+// Initialize Cards
 createCards();
