@@ -1,0 +1,38 @@
+/* snow.css */
+
+/* Basic styling for snowflakes */
+.snowflake {
+  position: fixed;
+  top: -10px; /* Start just above the viewport */
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation-name: fall, drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Keyframes for the falling animation */
+@keyframes fall {
+  0% {
+    top: -10px;
+    opacity: 1;
+  }
+  100% {
+    top: 100vh;
+    opacity: 0;
+  }
+}
+
+/* Keyframes for the drifting animation */
+@keyframes drift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(-30px);
+  }
+}

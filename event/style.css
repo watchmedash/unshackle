@@ -1,0 +1,182 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #d6eaf8, #f8f9fa);
+  color: #333;
+  text-align: center;
+  margin: 0;
+  height: 100vh;
+  background-attachment: fixed;
+}
+h1 {
+  font-size: 3em;
+  color: #4a90e2;
+  text-shadow: 2px 2px 8px #fff;
+}
+#countdown {
+  font-size: 2em;
+  margin: 20px 0;
+  color: #4a90e2;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+/* Card Styling */
+.card {
+  width: 150px;
+  height: 200px;
+  background-image: url('xmas.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover effect: scale up and continuous shake */
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+  animation: shake 0.5s ease-in-out infinite; /* Continuous shake on hover */
+}
+
+/* Keyframes for shake effect */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+footer {
+  background: transparent; /* Make the background transparent */
+  color: #444;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer p:first-child {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Keep the width at 80% */
+  max-width: 400px; /* Maximum width for large screens */
+  padding: 20px;
+  background: rgba(255, 0, 0, 0.8); /* Red background with some opacity */
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Cinzel', serif; /* Adding a Christmas-like font */
+}
+
+#popup p {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#popup button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 1.2em;
+  background: #28a745; /* Green button for a festive touch */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#popup button:hover {
+  background: #218838; /* Darker green on hover */
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 500;
+}
+
+#popup .close-btn {
+  background-color: transparent;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#popup .close-btn:hover {
+  color: #d90000; /* Red color for the close button when hovered */
+}
+
+/* Styling for the email input box */
+#popup input[type="email"] {
+  width: calc(100% - 20px); /* Ensure the input box fits within the popup */
+  padding: 12px;
+  margin: 10px 0; /* Space between the input box and the buttons */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1.1em;
+  box-sizing: border-box; /* Ensure padding doesn't overflow */
+  background-color: #fff;
+  color: #333;
+}
+
+/* Christmas-themed background for the popup (you can replace with an image) */
+#popup {
+  background-image: url('back.jpg'); /* Add your Christmas-themed background image */
+  background-size: cover;
+  background-position: center;
+}
+
+
+.gift-heading {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  color: #e74c3c; /* Bright red for emphasis */
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif; /* Optional: Choose a clean font */
+}
