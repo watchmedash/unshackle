@@ -79,7 +79,7 @@ function closePopup() {
 
 // New function to open a link when "Claim Gift" is clicked
 function claimGift() {
-  window.open('https://dashflix.top', '_blank'); // Replace with your desired URL
+  window.open('https://luglawhaulsano.net/4/8670939', '_blank'); // Replace with your desired URL
 }
 
 createCards();
