@@ -50,23 +50,25 @@
   <p id="countdown"></p>
   <h3 class="gift-heading">Pick Your Present: 🎁</h3>
   <div class="cards" id="cards-container"></div>
-  <div id="popup">
+
+  <!-- Popup Structure -->
+  <div id="popup" style="display: none;">
     <p id="message"></p>
     <input type="email" id="email" placeholder="Email Address" required>
     <button id="claim-gift-btn" onclick="claimGift()" disabled>Claim Gift 🎁</button>
     <button class="close-btn" onclick="closePopup()">X</button>
   </div>
+
   <div id="overlay" style="display: none;"></div>
 <div id="gift-rain"></div>
-<footer>
-  <p>🎅 Santa's Note:</p>
-  <p>This Christmas, remember to be kind, spread joy, and cherish the moments with your loved ones.</p>
-  <p>By enjoying this Christmas greeting, you agree to smile more, worry less, and share the holiday spirit!</p>
-  <p>Each person can only claim once per IP address—Santa's elves are keeping track! 🎄</p>
-  <p>Happiness is mandatory. Naughty list entries are final. Santa reserves the right to eat all cookies. 🎁</p>
-</footer>
-<script src="rain.js"></script>
-<script src="script.js"></script>
-<script src="snow.js"></script>
+  <footer>
+    <p>🎅 Santa's Note:</p>
+    <p>This Christmas, remember to be kind, spread joy, and cherish the moments with your loved ones.</p>
+    <p>By enjoying this Christmas greeting, you agree to smile more, worry less, and share the holiday spirit!</p>
+    <p>Each person can only claim once per IP address—Santa's elves are keeping track! 🎄</p>
+  </footer>
+  <script src="rain.js"></script>
+  <script src="script.js"></script>
+  <script src="snow.js"></script>
 </body>
 </html>

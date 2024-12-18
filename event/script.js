@@ -5,12 +5,10 @@ const christmasDate = new Date('December 25, 2024 00:00:00').getTime();
 function updateCountdown() {
   const now = new Date().getTime();
   const distance = christmasDate - now;
-
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
   countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until Christmas!`;
 
   if (distance < 0) {
@@ -18,6 +16,7 @@ function updateCountdown() {
     countdownElement.textContent = "Merry Christmas!";
   }
 }
+
 const timer = setInterval(updateCountdown, 1000);
 
 // Shuffle Function for Randomization
@@ -33,7 +32,6 @@ const messages = [
   "The tradition of decorating Christmas trees originated in Germany in the 16th century! 🎄",
   "Santa Claus is based on Saint Nicholas, a generous bishop from the 4th century! ✨🎁",
   "The song 'Jingle Bells' was originally written for Thanksgiving, not Christmas! 🎶🦃",
-  "In some parts of the world, Santa has different names—like 'Father Christmas' in the UK and 'Père Noël' in France! 🌍🎅",
   "The world’s largest Christmas stocking measured over 106 feet and weighed nearly a ton! 🧦🎄",
   "Did you know? NORAD has been tracking Santa's journey on Christmas Eve since 1955! ✈️🎅",
   "In Japan, it’s a tradition to eat KFC on Christmas! 🎄🍗",
@@ -44,75 +42,110 @@ const messages = [
   "Santa’s sleigh is said to travel at 650 miles per second to deliver gifts to every child! 🛷🌟",
   "The largest snowflake ever recorded was 15 inches wide and fell in Montana in 1887! ❄️⛄",
   "In Iceland, the 'Yule Lads' bring gifts to children for 13 nights leading up to Christmas! 🎁",
-  "Candy canes were invented in the late 17th century and originally didn’t have the red stripes! 🍭🎄",
-  "Did you know? The abbreviation 'Xmas' comes from the Greek letter Chi (Χ), which stands for Christ. ✝️🎅",
-  "The Rockefeller Center Christmas tree tradition started in 1933 in New York City! 🌟🎄",
-  "In Italy, children await 'La Befana,' a kind witch who delivers gifts on January 6! 🧙‍♀️",
-  "The world’s tallest snowman was built in Maine, USA, and stood at 122 feet tall! ⛄❄️",
-  "The legend of Krampus tells of a half-goat, half-demon creature who punishes naughty children! 😈🛷",
-  "The tradition of Christmas stockings comes from a legend where Saint Nicholas dropped coins into stockings hung by the fireplace! 🧦✨",
-  "The Star of Bethlehem, which guided the Wise Men, is thought by some to have been a rare planetary alignment. 🌟✨",
-  "The Yule log tradition comes from a Norse celebration, symbolizing the sun’s return after the winter solstice! 🔥🌞",
-  "In the UK, it’s believed that robins on Christmas cards symbolize good luck and joy! 🐦🎄",
-  "The Christmas cracker tradition in England started in the mid-1800s as a fun twist on wrapped gifts! 🎁🎉",
-  "Did you know? The Nutcracker ballet was first performed in 1892 and is now a Christmas classic! 🩰🎶",
-  "The Finnish believe Santa Claus lives in Korvatunturi, a secret mountain in Lapland! 🏔️🎅",
-  "Mistletoe, a symbol of love and friendship, was sacred to ancient druids. 💚❄️",
-  "The poinsettia, known as the Christmas flower, originated in Mexico and symbolizes purity and joy. 🌺🎄",
-  "The Twelve Days of Christmas song is believed to have hidden Christian meanings during times of persecution. 🎶✝️",
-  "In Germany, children leave their shoes out on December 6 for Saint Nicholas to fill with treats! 👞🎁",
-  "The Grinch, a beloved Christmas character, was created by Dr. Seuss in 1957 to remind us of the holiday spirit! 💚🎅",
-  "According to legend, Christmas bells were rung to drive away evil spirits and bring blessings. 🔔✨",
-  "Did you know? Frosty the Snowman was introduced as a song in 1950 before becoming a TV classic! ⛄🎵",
-  "In Scandinavian folklore, the Yule Goat delivers presents instead of Santa! 🐐🎄",
-  "The word 'carol' originally meant a dance in a circle, often accompanied by singing. 🎶✨",
-  "In Ukraine, spider webs are considered good luck on Christmas trees, inspired by a magical legend! 🕸️🎄",
-  "The idea of Christmas elves originated in 19th-century literature as Santa's helpers! 🧝‍♂️✨",
-  "The Feast of the Nativity was first celebrated as a Christian holiday in 336 AD. ✝️🎄",
-  "According to legend, reindeer can fly because of magic corn given to them by Santa! 🦌✨",
-  "The story of the Little Drummer Boy symbolizes that even simple gifts from the heart are precious. 🥁❤️",
-  "The phrase 'Happy Holidays' gained popularity to include the many celebrations in December! 🌟❄️"
+  "Candy canes were invented in the late 17th century and originally didn’t have the red stripes! 🍭🎄"
 ];
 
+// Background Image Shuffle
 function shuffleBackgrounds() {
-const images = ['xmas.jpg', 'xmas1.jpg', 'xmas2.jpg', 'xmas3.jpg', 'xmas4.jpg', 'xmas5.jpg', 'xmas6.jpg', 'xmas7.jpg', 'xmas8.jpg', 'xmas9.jpg'];
+  const images = ['xmas.jpg', 'xmas1.jpg', 'xmas2.jpg', 'xmas3.jpg', 'xmas4.jpg', 'xmas5.jpg', 'xmas6.jpg', 'xmas7.jpg', 'xmas8.jpg', 'xmas9.jpg'];
   shuffleArray(images);
   return images[0];
 }
 
+// Create Cards
 function createCards() {
   const cardsContainer = document.getElementById('cards-container');
-  const backgroundImage = shuffleBackgrounds();
+  shuffleArray(messages); // Shuffle messages before card creation
 
-  shuffleArray(messages);
+  let emailCardIndex = Math.floor(Math.random() * messages.length); // Randomly select one card to have the email input
 
   for (let i = 0; i < messages.length; i++) {
     const card = document.createElement('div');
     card.className = 'card';
+    const backgroundImage = shuffleBackgrounds(); // Shuffle background for each card
     card.style.backgroundImage = `url(${backgroundImage})`;
-    card.onclick = () => showPopup(messages[i]);
+    card.setAttribute('data-index', i); // Store index to track opened cards
+
+    card.onclick = () => {
+      openCard(i, card, emailCardIndex); // Pass emailCardIndex to check if this is the special card
+    };
     cardsContainer.appendChild(card);
+  }
+
+  return emailCardIndex;  // Return the email card index so it's available for checking
+}
+
+// Open Card and Show Popup
+function openCard(index, card, emailCardIndex) {
+  const message = messages[index];
+  const openedCardImage = 'opened.jpg'; // Image representing the card has been opened
+  card.style.backgroundImage = `url(${openedCardImage})`; // Change card background to opened state
+
+  const popup = document.getElementById('popup');
+  const overlay = document.getElementById('overlay');
+  const messageElement = document.getElementById('message');
+
+  // Clear previous content (email input and buttons)
+  popup.innerHTML = ''; // Clear previous content in the popup
+  overlay.style.display = 'block'; // Show overlay
+  popup.style.display = 'block'; // Show popup
+
+  // Create Try Another button (Only for regular cards)
+  const tryAnotherButton = document.createElement('button');
+  tryAnotherButton.textContent = "Try another card";
+
+  // If it's the special card, show email input and claim button
+  if (index === emailCardIndex) {
+    // Clear the content before adding new
+    const emailInputContainer = document.createElement('div');
+    emailInputContainer.innerHTML = `${message} <br><input type="email" id="email" placeholder="Enter your email" required/><br><button id="claim-gift-btn" onclick="claimGift()" disabled>Claim Gift 🎁</button>`;
+    popup.appendChild(emailInputContainer); // Add email input container
+
+    const emailInput = document.getElementById('email');
+    const claimButton = document.getElementById('claim-gift-btn');
+
+    // Enable claim button only if email is valid
+    emailInput.addEventListener('input', () => {
+      const email = emailInput.value;
+      if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        claimButton.disabled = false;
+      } else {
+        claimButton.disabled = true;
+      }
+    });
+  } else {
+    // For regular cards, show the message and the "Try another card" button
+    messageElement.textContent = message;
+    popup.appendChild(messageElement);
+    tryAnotherButton.onclick = () => {
+      closePopup();
+    };
+    popup.appendChild(tryAnotherButton);
   }
 }
 
-// Popup Logic
-const popup = document.getElementById('popup');
-const overlay = document.getElementById('overlay');
-const messageElement = document.getElementById('message');
-const emailInput = document.getElementById('email');
-const claimButton = document.getElementById('claim-gift-btn');
-
-function showPopup(message) {
-  messageElement.textContent = message;
-  popup.style.display = 'block';
-  overlay.style.display = 'block';
-}
-
+// Close Popup
 function closePopup() {
+  const popup = document.getElementById('popup');
+  const overlay = document.getElementById('overlay');
   popup.style.display = 'none';
   overlay.style.display = 'none';
 }
 
+// Claim Gift
+function claimGift() {
+  const link = document.createElement('a');
+  link.href = 'https://luglawhaulsano.net/4/8670939';
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  showThankYouPopup();
+}
+
+// Show Thank You Popup
 function showThankYouPopup() {
   const thankYouPopup = document.createElement('div');
   thankYouPopup.id = 'thank-you-popup';
@@ -165,27 +198,5 @@ function closeThankYouPopup() {
   }
 }
 
-function claimGift() {
-  const link = document.createElement('a');
-  link.href = 'https://dashflix.top';
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  showThankYouPopup();
-}
-
-// Email Validation Logic
-emailInput.addEventListener('input', () => {
-  const email = emailInput.value;
-  if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-    claimButton.disabled = false;
-  } else {
-    claimButton.disabled = true;
-  }
-});
-
-// Initialize Cards
-createCards();
+// Initialize Cards and store the special card index
+const emailCardIndex = createCards();
