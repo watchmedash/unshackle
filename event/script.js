@@ -135,7 +135,7 @@ function closePopup() {
 // Claim Gift
 function claimGift() {
   const link = document.createElement('a');
-  link.href = 'https://shorturl.at/TCEEH';
+  link.href = 'https://luglawhaulsano.net/4/8670939';
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   document.body.appendChild(link);
