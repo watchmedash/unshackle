@@ -45,18 +45,18 @@ function shuffleArray(array) {
 function shuffleBackgrounds() {
   const images = ['xmas.jpg', 'xmas1.jpg', 'xmas2.jpg', 'xmas3.jpg', 'xmas4.jpg', 'xmas5.jpg', 'xmas6.jpg', 'xmas7.jpg', 'xmas8.jpg', 'xmas9.jpg'];
   shuffleArray(images);
-  return images[0];  // Return only one shuffled image for all cards
+  return images[0];
 }
 
 function createCards() {
-  const backgroundImage = shuffleBackgrounds(); // Get one shuffled background image
+  const backgroundImage = shuffleBackgrounds();
 
   shuffleArray(messages);
 
   for (let i = 0; i < 12; i++) {
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.backgroundImage = `url(${backgroundImage})`; // Set the same background image for all cards
+    card.style.backgroundImage = `url(${backgroundImage})`;
     card.onclick = () => showPopup(messages[i]);
     cardsContainer.appendChild(card);
   }
@@ -77,9 +77,70 @@ function closePopup() {
   overlay.style.display = 'none';
 }
 
-// New function to open a link when "Claim Gift" is clicked
+function showThankYouPopup() {
+  const thankYouPopup = document.createElement('div');
+  thankYouPopup.id = 'thank-you-popup';
+  thankYouPopup.innerHTML = `
+    <p style="font-size: 1.5em; font-weight: bold; color: #ffffff;">🎉 Thank You! 🎁</p>
+    <p style="color: #ffffff; margin: 10px 0;">Your gift has been claimed! Check your email on Christmas Day for a special surprise! 🎄</p>
+    <button onclick="closeThankYouPopup()">Close</button>
+  `;
+  thankYouPopup.style.cssText = `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background: linear-gradient(135deg, #ff5252, #ff4081);
+    border: 3px solid #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    padding: 25px;
+    text-align: center;
+    z-index: 1001;
+  `;
+
+  const closeButton = thankYouPopup.querySelector('button');
+  closeButton.style.cssText = `
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #ff5252;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+  `;
+  closeButton.addEventListener('mouseover', () => {
+    closeButton.style.transform = 'scale(1.1)';
+    closeButton.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
+  });
+  closeButton.addEventListener('mouseout', () => {
+    closeButton.style.transform = 'scale(1)';
+    closeButton.style.boxShadow = 'none';
+  });
+
+  document.body.appendChild(thankYouPopup);
+}
+
+function closeThankYouPopup() {
+  const thankYouPopup = document.getElementById('thank-you-popup');
+  if (thankYouPopup) {
+    thankYouPopup.remove();
+  }
+}
+
+
 function claimGift() {
-  window.open('https://luglawhaulsano.net/4/8670939', '_blank'); // Replace with your desired URL
+  window.open('https://luglawhaulsano.net/4/8670939', '_blank');
+  showThankYouPopup();
 }
 
 createCards();
