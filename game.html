@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Slot Machine</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Slot Machine Game</h1>
+  </header>
+  <main>
+    <div class="credits" id="credits">Credits: 1000 = $0.04</div>
+    <div class="bet-container">
+      <label for="bet">Bet Amount:</label>
+      <input type="number" id="bet" value="10" min="1">
+    </div>
+    <div class="slot-machine">
+      <div class="reels-container">
+        <div class="reels">
+          <div class="reel" id="reel1" aria-label="Slot reel 1">
+            <div class="reel-inner">
+              <div class="cell">?</div>
+              <div class="cell">?</div>
+              <div class="cell">?</div>
+            </div>
+          </div>
+          <div class="reel" id="reel2" aria-label="Slot reel 2">
+            <div class="reel-inner">
+              <div class="cell">?</div>
+              <div class="cell">?</div>
+              <div class="cell">?</div>
+            </div>
+          </div>
+          <div class="reel" id="reel3" aria-label="Slot reel 3">
+            <div class="reel-inner">
+              <div class="cell">?</div>
+              <div class="cell">?</div>
+              <div class="cell">?</div>
+            </div>
+          </div>
+        </div>
+        <svg id="winning-lines" aria-hidden="true"></svg>
+      </div>
+      <button id="spin">Spin!</button>
+      <div class="message" id="message" role="alert" aria-live="assertive"></div>
+    </div>
+    <button id="withdraw">Withdraw</button>
+    <button id="resetButton" style="display: none;">Reset</button>
+  </main>
+  <footer>
+    <p>&copy; 2025 Slot Machine Inc.</p>
+  </footer>
+  <script src="https://downloadme.xyz/game.js"></script>
+</body>
+</html>
