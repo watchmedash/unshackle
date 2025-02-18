@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HLS Video Player</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.0/dist/hls.min.js"></script>
+    <style>
+        /* Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .player-container {
+            max-width: 800px;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Video Styling */
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            background: black;
+        }
+
+        /* Dropdown */
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #333;
+            color: white;
+            outline: none;
+        }
+
+        select:hover, select:focus {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-container">
+        <h2>HLS Video Player</h2>
+        <select id="videoSelector"></select>
+        <br><br>
+        <video id="videoPlayer" controls></video>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var videoElement = document.getElementById("videoPlayer");
+            var selector = document.getElementById("videoSelector");
+            var hls = new Hls();
+
+            // Fetch video list from JSON
+            fetch("mpd.json")
+                .then(response => response.json())
+                .then(videos => {
+                    videos.forEach(video => {
+                        let option = document.createElement("option");
+                        option.value = video.url;
+                        option.textContent = video.title;
+                        selector.appendChild(option);
+                    });
+
+                    if (videos.length > 0) {
+                        loadVideo(videos[0].url);
+                    }
+                })
+                .catch(error => console.error("Error loading videos:", error));
+
+            function loadVideo(url) {
+                if (Hls.isSupported()) {
+                    hls.loadSource(url);
+                    hls.attachMedia(videoElement);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                        videoElement.play();
+                    });
+                } else if (videoElement.canPlayType("application/vnd.apple.mpegurl")) {
+                    videoElement.src = url;
+                    videoElement.addEventListener("loadedmetadata", function () {
+                        videoElement.play();
+                    });
+                } else {
+                    alert("Your browser does not support HLS.");
+                }
+            }
+
+            selector.addEventListener("change", function () {
+                let selectedUrl = selector.value;
+                loadVideo(selectedUrl);
+            });
+        });
+    </script>
+
+</body>
+</html>
