@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <title>When It Hurts More: Rudeness from Your Own Community</title>
+  <meta name="description" content="Randoms is your hub for exploring diverse topics, quirky ideas, and unexpected finds. From the curious to the fascinating, discover a bit of everything here.">
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="pages.css">
+  </head>
+  <body>
+    <div class="header">
+    <h1><a href="/index.html"><img src="/logo.png" alt="Randoms Logo" class="logo"> RANDOMS</a></h1>
+    <p>Discover something new every day.</p>
+    </div>
+    <div class="navbar">
+      <ul>
+<li><a class="active" href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+<li><a href="/contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+<li><a href="/about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+      </ul>
+    </div>
+  <div class="container">
+    <div class="extra-box">
+    <div class="sharethis-inline-share-buttons"></div>
+    </div>
+    <div class="top-section">
+      <div class="main-content">
+        <h1>When It Hurts More: Rudeness from Your Own Community</h1>
+
+        <img src="https://i.postimg.cc/c4WCV0F2/image1-large.jpg" alt="When It Hurts More: Rudeness from Your Own Community" style="max-width:100%; height:auto; margin-bottom:20px;"><br><br>
+
+        So I’ve been living as an expat for quite some time, and I’ve also spent a good number of years in Western countries. I’m Pakistani myself, but I’ve noticed something odd — sometimes it feels like other Pakistanis here are unusually rude for no reason.<br><br>
+
+        Today I went to a bank in Sharjah, and the staff member (also Pakistani, I believe) looked at me with a disgusted expression when I asked a question. His tone and body language felt unnecessarily dismissive. I didn’t say or do anything odd — just a normal banking query.<br><br>
+
+        Maybe I’m overthinking it, but has anyone else experienced something similar?<br><br>
+
+        When it’s someone from your own community, it hits differently. It feels heavier. There’s a strange kind of disappointment when the person on the other end of the coldness shares your background, your culture, even your language.<br><br>
+
+        I’ve felt more welcome and respected in places where I was a complete outsider than in moments like today.<br><br>
+
+        I’m not writing this to generalize or call anyone out — I know there are kind and respectful people everywhere. But sometimes, the silence around these interactions makes them feel even more isolating.<br><br>
+
+        All I’m saying is — kindness costs nothing. And when it comes from your own people, it means everything.
+</div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="popular-posts">
+          <h3>Popular Posts</h3>
+          <ul id="popular-posts-list">
+
+          </ul>
+        </div>
+
+        <script>
+          fetch('/pages.json')
+            .then(response => response.json())
+            .then(data => {
+              const postsList = document.getElementById('popular-posts-list');
+              const shuffled = data.sort(() => 0.5 - Math.random()); // Shuffle the array
+              const popularPosts = shuffled.slice(0, 15); // Select the first 12
+
+              popularPosts.forEach(post => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = post.link;
+                link.textContent = post.title;
+                listItem.appendChild(link);
+                postsList.appendChild(listItem);
+              });
+            })
+            .catch(error => console.error('Error fetching the pages.json:', error));
+        </script>
+</div>
+
+<div class="extra-box">
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+      this.page.url = window.location.href; // Current page URL
+      this.page.identifier = document.title; // Use the page's title as a unique identifier
+  };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://randoms-3.disqus.com/embed.js'; // Replace 'randoms-3' with your Disqus shortname
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+      Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</div>
+</body>
+</html>
