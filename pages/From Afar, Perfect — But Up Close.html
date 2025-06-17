@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <title>Do Them Right: A Message to Every Manager in the UAE</title>
+  <meta name="description" content="Randoms is your hub for exploring diverse topics, quirky ideas, and unexpected finds. From the curious to the fascinating, discover a bit of everything here.">
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="pages.css">
+  </head>
+  <body>
+    <div class="header">
+    <h1><a href="/index.html"><img src="/logo.png" alt="Randoms Logo" class="logo"> RANDOMS</a></h1>
+    <p>Discover something new every day.</p>
+    </div>
+    <div class="navbar">
+      <ul>
+<li><a class="active" href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+<li><a href="/contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+<li><a href="/about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+      </ul>
+    </div>
+  <div class="container">
+    <div class="extra-box">
+    <div class="sharethis-inline-share-buttons"></div>
+    </div>
+    <div class="top-section">
+      <div class="main-content">
+<h1>From Afar, Perfect — But Up Close?</h1>
+
+<img src="https://i.postimg.cc/cCtsn51p/image1-large.jpg" alt="From Afar, Perfect — But Up Close?">
+
+<p>There’s a gentleman in our office — the kind of person who turns heads.</p>
+
+<p>Always sharply dressed. Confident. Handsome. From a distance, he’s the kind of guy many would look up to or want to emulate. He fits the image of success.</p>
+
+<p>But then you get a little closer… and things change.</p>
+
+<p>If he’s been in the office alone, the air carries a strong body odour. When he speaks, the smell from his breath makes it difficult to stand near him. It’s awkward. Uncomfortable. And honestly, it’s something no one wants to address.</p>
+
+<p>Because of this, I find myself avoiding close interaction. I prefer messaging him on Teams or talking from a distance, just to dodge the awkwardness.</p>
+
+<p>But here’s the question — should someone tell him?</p>
+
+<p>Is it more respectful to stay silent and keep avoiding, or to quietly let him know so he can do something about it?</p>
+
+<p>Body odour and breath issues can be deeply personal and often linked to health or stress — sometimes the person genuinely has no idea. But it’s a sensitive topic. No one wants to feel embarrassed or shamed.</p>
+
+<p>So what’s the right move?</p>
+
+<p>Personally, I’m still unsure. But I do know this — <strong>kindness and discretion</strong> go a long way. If I ever muster the courage, it won’t be to insult. It’ll be to help.</p>
+
+<p>And maybe that’s what we all need more of in the workplace — not just honesty, but the courage to be <em>kind</em> when it's uncomfortable.</p>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="popular-posts">
+          <h3>Popular Posts</h3>
+          <ul id="popular-posts-list">
+
+          </ul>
+        </div>
+
+        <script>
+          fetch('/pages.json')
+            .then(response => response.json())
+            .then(data => {
+              const postsList = document.getElementById('popular-posts-list');
+              const shuffled = data.sort(() => 0.5 - Math.random()); // Shuffle the array
+              const popularPosts = shuffled.slice(0, 15); // Select the first 12
+
+              popularPosts.forEach(post => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = post.link;
+                link.textContent = post.title;
+                listItem.appendChild(link);
+                postsList.appendChild(listItem);
+              });
+            })
+            .catch(error => console.error('Error fetching the pages.json:', error));
+        </script>
+</div>
+
+<div class="extra-box">
+  <div id="disqus_thread"></div>
+  <script>
+  var disqus_config = function () {
+      this.page.url = window.location.href; // Current page URL
+      this.page.identifier = document.title; // Use the page's title as a unique identifier
+  };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://randoms-3.disqus.com/embed.js'; // Replace 'randoms-3' with your Disqus shortname
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+      Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</div>
+</body>
+</html>
