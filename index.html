@@ -1,88 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <title>Randoms - Discover something new every day</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Randoms.top is your hub for exploring diverse topics, quirky ideas, and unexpected finds. From the curious to the fascinating, discover a bit of everything here.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Player</title>
+    <link rel="stylesheet" href="stilongmalupet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<div class="header">
-<h1><a href="/index.html"><img src="logo.png" alt="Randoms Logo" class="logo"> RANDOMS</a></h1>
-<p>Discover something new every day.</p>
-</div>
+    <div class="player-widget">
+        <div class="widget-content">
+            <div class="search-section">
+                <div class="search-container">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search for movies or TV shows..."
+                        autocomplete="off"
+                    >
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
 
-  <div class="navbar">
-    <ul>
-      <li><a href="/contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
-      <li><a href="/about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-      <li><a href="/dmca.html"><i class="fas fa-copyright"></i> DMCA</a></li>
-    </ul>
-  </div>
-  <div class="footed">
-    <div class="search-bar">
-  <input type="text" id="search-input" placeholder="Search...">
-  <button id="search-btn">
-    <i class="fa fa-search"></i>
-  </button>
-</div>
-  </div>
+                <div id="loadingSpinner" class="loading-spinner">
+                    <div>
+                        <i class="fas fa-spinner"></i>
+                        <div>Searching the database...</div>
+                    </div>
+                </div>
 
-  <div class="container">
-    <div class="main-content">
-      <div class="sharethis-inline-share-buttons"></div>
-      <select id="tag-filter">
+                <div id="searchResults" class="search-results"></div>
 
-      </select>
-      <div id="posts-container">
+                <div id="seasonEpisodeControls" class="season-episode-controls">
+                    <div class="input-group">
+                        <select id="seasonSelect" class="dropdown-select">
+                            <option value="1">Season 1</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <select id="episodeSelect" class="dropdown-select">
+                            <option value="1">Episode 1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-      </div>
-      <div id="pagination">
+            <div id="errorMessage" class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span></span>
+            </div>
 
-      </div>
+            <div id="playerContainer" class="player-container">
+              <div id="introOverlay" style="
+                  position: absolute;
+                  top: 0; left: 0;
+                  right: 0; bottom: 0;
+                  background: rgba(0, 0, 0, 0.9);
+                  color: #fff;
+                  font-size: 16px;
+                  font-weight: 500;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: 20;
+                  backdrop-filter: blur(6px);
+              ">
+                  <div class="spinner" style="
+                      border: 4px solid rgba(255, 255, 255, 0.2);
+                      border-top: 4px solid #fff;
+                      border-radius: 50%;
+                      width: 40px;
+                      height: 40px;
+                      animation: spin 1s linear infinite;
+                      margin-bottom: 16px;
+                  "></div>
+                  <div></div>
+              </div>
+              <iframe id="introPlayer" class="player-iframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe id="playerIframe" class="player-iframe" style="display:none;" src="" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div id="selectedContent" class="selected-content">
+            <div class="selected-title" id="selectedTitle"></div>
+            <div class="selected-meta" id="selectedMeta"></div>
+        </div>
     </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <p>&copy; 2025 Randoms.top. All rights reserved.</p>
-  </div>
-  <button id="goToTop" class="go-to-top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-  <script>
-  // Function to handle the "Go to Top" button visibility
-  function handleScroll() {
-  const goToTopButton = document.getElementById('goToTop');
-
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-    goToTopButton.style.display = 'block'; // Show the button after scrolling down 300px
-  } else {
-    goToTopButton.style.display = 'none'; // Hide the button when near the top
-  }
-  }
-
-  // Function to scroll back to the top
-  function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth', // Smooth scroll
-  });
-  }
-
-  // Listen for scroll events to show/hide the button
-  window.onscroll = handleScroll;
-
-  // Add click event to the "Go to Top" button
-  document.getElementById('goToTop').addEventListener('click', scrollToTop);
-  </script>
-<script src="script.js"></script>
+<script src="stilongmalupiton.js"></script>
 </body>
 </html>
