@@ -1,93 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Player</title>
-    <link rel="stylesheet" href="stilongmalupet.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashflix — Watch Free Movies &amp; TV Shows Online</title>
+<meta name="description" content="Stream thousands of free HD movies and TV shows on Dashflix. No account, no subscription — just browse and watch instantly. New titles updated daily.">
+<meta name="keywords" content="dashflix, free movies online, watch movies free, free streaming, HD movies, TV shows online free, no sign up streaming, free movie streaming site 2026">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Dashflix">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://dashflix.top/">
+<meta property="og:title" content="Dashflix — Watch Free Movies &amp; TV Shows Online">
+<meta property="og:description" content="Stream thousands of free HD movies and TV shows. No account, no subscription — just browse and watch instantly.">
+<meta property="og:image" content="https://dashflix.top/og.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta property="og:image:alt" content="Dashflix — Free HD Movies &amp; TV Shows">
+<meta property="og:url" content="https://dashflix.top/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dashflix">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@dashflix">
+<meta name="twitter:title" content="Dashflix — Watch Free Movies &amp; TV Shows Online">
+<meta name="twitter:description" content="Stream thousands of free HD movies and TV shows. No account, no subscription — just browse and watch instantly.">
+<meta name="twitter:image" content="https://dashflix.top/og.webp">
+<meta name="twitter:image:alt" content="Dashflix — Free HD Movies &amp; TV Shows">
+<link rel="preconnect" href="https://api.themoviedb.org">
+<link rel="preconnect" href="https://image.tmdb.org">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="index.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5412699736062085" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=64b0f5079f35fb00121494d9&product=sticky-share-buttons" async></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Dashflix",
+    "alternateName": "Dashflix.top",
+    "url": "https://dashflix.top/",
+    "description": "Free streaming aggregator for movies and TV shows — no sign-up required.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://dashflix.top/movies.html?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Dashflix",
+    "url": "https://dashflix.top/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dashflix.top/logo.png",
+      "width": 512,
+      "height": 512
+    },
+    "description": "Dashflix is a free streaming aggregator for movies and TV shows — no sign-up or subscription required.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "support@dashflix.top",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Dashflix completely free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 100% free. No account, no credit card, no subscription. Just browse and watch." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to create an account?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No registration needed. Find something you like and start watching immediately." }
+      },
+      {
+        "@type": "Question",
+        "name": "What video quality is available?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dashflix streams in HD where available, depending on the server and your internet speed." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a movie not playing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Try switching to a different server using the server buttons on the player page." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I save movies to watch later?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — right-click any poster to add it to your Watchlist. It's saved locally in your browser." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I watch TV show episodes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Click any TV show poster, then select the season and episode on the player page." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are some movies unavailable?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Content may be region-restricted or temporarily down. Try switching servers or check back later." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Dashflix work on mobile?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Dashflix is fully optimised for mobile browsers — no app needed." }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
-    <div class="player-widget">
-        <div class="widget-content">
-            <div class="search-section">
-                <div class="search-container">
-                    <input
-                        type="text"
-                        id="searchInput"
-                        class="search-input"
-                        placeholder="Search for movies or TV shows..."
-                        autocomplete="off"
-                    >
-                    <button id="searchBtn" class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
 
-                <div id="loadingSpinner" class="loading-spinner">
-                    <div>
-                        <i class="fas fa-spinner"></i>
-                        <div>Searching the database...</div>
-                    </div>
-                </div>
-
-                <div id="searchResults" class="search-results"></div>
-
-                <div id="seasonEpisodeControls" class="season-episode-controls">
-                    <div class="input-group">
-                        <select id="seasonSelect" class="dropdown-select">
-                            <option value="1">Season 1</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <select id="episodeSelect" class="dropdown-select">
-                            <option value="1">Episode 1</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div id="errorMessage" class="error-message">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span></span>
-            </div>
-
-            <div id="playerContainer" class="player-container">
-              <div id="introOverlay" style="
-                  position: absolute;
-                  top: 0; left: 0;
-                  right: 0; bottom: 0;
-                  background: rgba(0, 0, 0, 0.9);
-                  color: #fff;
-                  font-size: 16px;
-                  font-weight: 500;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  justify-content: center;
-                  z-index: 20;
-                  backdrop-filter: blur(6px);
-              ">
-                  <div class="spinner" style="
-                      border: 4px solid rgba(255, 255, 255, 0.2);
-                      border-top: 4px solid #fff;
-                      border-radius: 50%;
-                      width: 40px;
-                      height: 40px;
-                      animation: spin 1s linear infinite;
-                      margin-bottom: 16px;
-                  "></div>
-                  <div></div>
-              </div>
-              <iframe id="introPlayer" class="player-iframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-<iframe id="playerIframe" class="player-iframe" style="display:none;" src="" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div id="selectedContent" class="selected-content">
-            <div class="selected-title" id="selectedTitle"></div>
-            <div class="selected-meta" id="selectedMeta"></div>
-        </div>
+<!-- HERO (full width on home, no sidebar) -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <div class="logo">
+        <span class="logo-text">DASHFLIX</span>
+      </div>
     </div>
-<script src="stilongmalupiton.js"></script>
+    <p class="hero-tag">
+      <strong>Stream movies &amp; TV shows</strong> instantly, for free.<br>
+      No sign-up. No subscription. Just hit play.
+    </p>
+    <div class="hero-search search-wrap">
+      <i class="fas fa-search"></i>
+      <input class="search-input" id="gSearch" type="text"
+        placeholder="Search movies or TV shows…" autocomplete="off">
+      <div class="srp-drop" id="gDrop"></div>
+    </div>
+    <div class="hero-pills">
+      <a href="movies.html" class="hpill"><i class="fas fa-film"></i> Movies</a>
+      <a href="shows.html"  class="hpill"><i class="fas fa-tv"></i> Shows</a>
+      <a href="watchlist.html" class="hpill"><i class="fas fa-bookmark"></i> Watchlist</a>
+    </div>
+    <div class="hero-apps">
+      <a href="https://dashflix.top/Dashflix-v1.0.5.apk" class="app-btn" download>
+        <i class="fab fa-android"></i>
+        <span><small>Download for</small><strong>Android</strong></span>
+      </a>
+      <a href="donate.html" class="donate-pill"><i class="fas fa-heart"></i> Support Us</a>
+    </div>
+    <div class="sharethis-inline-share-buttons"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat"><div class="stat-val">10K+</div><div class="stat-lbl">Movies</div></div>
+  <div class="stat"><div class="stat-val">5K+</div><div class="stat-lbl">TV Shows</div></div>
+  <div class="stat"><div class="stat-val">FREE</div><div class="stat-lbl">No Sign-up</div></div>
+  <div class="stat"><div class="stat-val">HD</div><div class="stat-lbl">Quality</div></div>
+</div>
+
+<!-- TRENDING MOVIES -->
+<div class="section-header">
+  <h2 class="section-title">Trending <span>Movies</span></h2>
+  <a href="movies.html" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
+</div>
+<div class="t-strip" id="tMovies"></div>
+
+<!-- TRENDING SHOWS -->
+<div class="section-header" style="margin-top:16px;">
+  <h2 class="section-title">Popular <span>Shows</span></h2>
+  <a href="shows.html" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
+</div>
+<div class="t-strip" id="tShows"></div>
+
+<!-- FAQ -->
+<div class="section-header" style="margin-top:20px;">
+  <h2 class="section-title">FAQ</h2>
+</div>
+<div class="faq-wrap" id="faqWrap"></div>
+
+<!-- BOTTOM NAV (mobile) -->
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="tos.html">Terms</a>
+    <a href="dmca.html">DMCA</a>
+    <a href="donate.html"><i class="fas fa-heart"></i> Donate</a>
+  </div>
+  <p class="footer-copy">© 2026 Dashflix · dashflix.top</p>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="index.html"     class="nav-item active"><i class="fas fa-home"></i>Home</a>
+  <a href="movies.html"    class="nav-item"><i class="fas fa-film"></i>Movies</a>
+  <a href="shows.html"     class="nav-item"><i class="fas fa-tv"></i>Shows</a>
+  <a href="watchlist.html" class="nav-item"><i class="fas fa-bookmark"></i>Watchlist</a>
+  <button class="nav-item" onclick="toggleTheme()"><i class="fas fa-sun theme-icon"></i>Theme</button>
+</nav>
+
+<script src="app.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
