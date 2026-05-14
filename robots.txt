@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-Disallow: /player.html
-Disallow: /players.html
-Disallow: /watchlist.html
-Disallow: /home.html
-
-Sitemap: https://dashflix.top/sitemap.xml

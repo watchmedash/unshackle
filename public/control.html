@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meow Race — Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scrollbar-width: none; }
+  html::-webkit-scrollbar { display: none; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f5f5;
+    color: #222;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .connect-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px 40px;
+    width: 380px;
+    max-width: 95vw;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .connect-card h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+  .connect-card p  { font-size: 13px; color: #888; margin-bottom: 24px; }
+
+  .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .connect-input {
+    flex: 1; border: 1.5px solid #e0e0e0; border-radius: 10px;
+    padding: 11px 14px; font-size: 14px; font-family: inherit;
+    outline: none; transition: border-color .2s;
+  }
+  .connect-input:focus { border-color: #fe2c55; }
+  .go-btn {
+    background: #fe2c55; color: #fff; border: none;
+    border-radius: 10px; padding: 11px 20px;
+    font-size: 14px; font-weight: 700; font-family: inherit;
+    cursor: pointer; transition: opacity .2s;
+  }
+  .go-btn:hover { opacity: .85; }
+  .go-btn:disabled { opacity: .4; cursor: default; }
+
+  .connect-msg { font-size: 13px; min-height: 18px; color: #888; margin-bottom: 16px; }
+  .connect-msg.err { color: #fe2c55; }
+
+  .status-bar {
+    display: none;
+    align-items: center; justify-content: space-between;
+    background: #f5f5f5; border-radius: 10px;
+    padding: 10px 14px; margin-top: 4px;
+    font-size: 13px;
+  }
+  .status-bar.visible { display: flex; }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #fe2c55;
+    animation: blink 1.2s infinite; margin-right: 8px; flex-shrink: 0;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .stream-name { font-weight: 600; }
+  .stop-btn {
+    font-size: 12px; color: #aaa; background: none; border: 1px solid #e0e0e0;
+    border-radius: 6px; padding: 3px 10px; cursor: pointer; font-family: inherit;
+    transition: all .2s;
+  }
+  .stop-btn:hover { color: #fe2c55; border-color: #fe2c55; }
+
+  .overlay-link {
+    display: block; margin-top: 20px;
+    font-size: 12px; color: #bbb; text-decoration: none;
+  }
+  .overlay-link:hover { color: #fe2c55; }
+</style>
+</head>
+<body>
+<div class="connect-card">
+  <h1>Meow Race</h1>
+  <p>Control Panel</p>
+  <div class="input-row">
+    <input id="u-input" class="connect-input" placeholder="@username" autocomplete="off" spellcheck="false" />
+    <button class="go-btn" id="go-btn" onclick="doConnect()">Go</button>
+  </div>
+  <div class="connect-msg" id="conn-msg"></div>
+  <div class="status-bar" id="status-bar">
+    <div style="display:flex;align-items:center">
+      <div class="live-dot"></div>
+      <span class="stream-name" id="stream-name"></span>
+    </div>
+    <button class="stop-btn" onclick="doDisconnect()">Stop</button>
+  </div>
+  <a href="/" class="overlay-link" target="_blank">Open overlay →</a>
+</div>
+
+<script>
+const WS = `ws://${location.host}`;
+let socket;
+
+async function doConnect() {
+  const raw = document.getElementById('u-input').value.trim().replace(/^@/, '');
+  if (!raw) return;
+  setMsg('Connecting…', false);
+  document.getElementById('go-btn').disabled = true;
+  try {
+    await fetch('/connect', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ username: raw })
+    });
+  } catch {
+    setMsg('Server error', true);
+    document.getElementById('go-btn').disabled = false;
+  }
+}
+
+async function doDisconnect() {
+  await fetch('/disconnect', { method: 'POST' });
+}
+
+function setMsg(text, isErr) {
+  const el = document.getElementById('conn-msg');
+  el.textContent = text;
+  el.className = 'connect-msg' + (isErr ? ' err' : '');
+}
+
+function initWS() {
+  socket = new WebSocket(WS);
+  socket.onmessage = e => handle(JSON.parse(e.data));
+  socket.onclose = () => setTimeout(initWS, 1000);
+  socket.onerror = () => socket.close();
+}
+
+function handle(msg) {
+  if (msg.type === 'init' || msg.type === 'connection_status') {
+    applyStatus(msg.status, msg.username, msg.error);
+  }
+}
+
+function applyStatus(status, username, error) {
+  const statusBar = document.getElementById('status-bar');
+  if (status === 'connecting') {
+    setMsg(`Connecting to @${username}…`, false);
+    document.getElementById('go-btn').disabled = true;
+    statusBar.classList.remove('visible');
+  } else if (status === 'connected') {
+    setMsg('', false);
+    document.getElementById('go-btn').disabled = false;
+    document.getElementById('stream-name').textContent = `@${username}`;
+    statusBar.classList.add('visible');
+    document.getElementById('u-input').value = '';
+  } else if (status === 'error') {
+    setMsg(error || 'Failed. Is the user LIVE?', true);
+    document.getElementById('go-btn').disabled = false;
+    statusBar.classList.remove('visible');
+  } else {
+    setMsg('', false);
+    document.getElementById('go-btn').disabled = false;
+    statusBar.classList.remove('visible');
+  }
+}
+
+document.getElementById('u-input').addEventListener('keydown', e => { if (e.key==='Enter') doConnect(); });
+
+initWS();
+</script>
+</body>
+</html>
