@@ -1,0 +1,22 @@
+{
+  "properties": [],
+  "settings": {
+    "companyName": "Art Real Estate",
+    "phone": "+971 5 5176 1111",
+    "email": "info@artrealstate.ae",
+    "whatsapp": "+971551761111"
+  },
+  "enquiries": [
+    {
+      "id": "e1778749618890",
+      "name": "dadadad",
+      "email": "dashlamperough@gmail.com",
+      "phone": "+971509275405",
+      "message": "dadfSFSDFDSGVDSV",
+      "propertyRef": null,
+      "propertyTitle": null,
+      "read": true,
+      "createdAt": "2026-05-14T09:06:58.890Z"
+    }
+  ]
+}
