@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch TV Show – Dashnews</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="player.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5412699736062085"
+ crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- PLAYER HEADER -->
+<div class="ph">
+  <a href="index.html" class="logo">
+    <span class="logo-text" style="font-size:16px;letter-spacing:2px;">DASHNEWS</span>
+  </a>
+</div>
+
+<!-- INFO BANNER -->
+<div class="info-bar">
+  <i class="fas fa-info-circle"></i>
+  Having trouble? Switch to a different server below.
+</div>
+
+<!-- SERVER SELECT -->
+<div class="srv-wrap">
+  <div class="srv-label"><i class="fas fa-server"></i> Server</div>
+  <select class="srv-select" id="srvSel" onchange="changeServer()">
+    <option value="0">Server 1</option>
+    <option value="1">Server 2</option>
+    <option value="2">Server 3</option>
+    <option value="3">Server 4</option>
+    <option value="4">Server 5</option>
+  </select>
+</div>
+
+<!-- SEASON + EPISODE -->
+<div class="ep-selectors">
+  <select class="ep-sel" id="seasonSel"><option>Loading…</option></select>
+</div>
+<div class="ep-grid" id="epGrid"></div>
+
+<!-- VIDEO PLAYER -->
+<div class="vid-wrap">
+  <iframe id="vidPlayer" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
+</div>
+
+<!-- ACTION BUTTONS -->
+<div class="act-row">
+  <button class="act-btn primary" id="trlBtn" style="display:none;">
+    <i class="fas fa-play"></i> Trailer
+  </button>
+  <button class="act-btn sec" id="wlBtn">
+    <i class="fas fa-bookmark"></i> Add to Watchlist
+  </button>
+  <a class="act-btn sec" id="dlBtn" href="#" target="_blank" rel="noopener">
+    <i class="fas fa-download"></i> Download
+  </a>
+</div>
+<p class="dl-note"><i class="fas fa-info-circle"></i> Download doesn't work in the Android app — use a browser instead.</p>
+
+<!-- SHOW DETAILS -->
+<div class="details" id="details">
+  <div class="det-poster"><div class="skel" style="width:80px;aspect-ratio:2/3;"></div></div>
+  <div class="det-info" style="flex:1;">
+    <div class="skel" style="height:20px;width:60%;margin-bottom:10px;"></div>
+    <div class="skel" style="height:12px;width:88%;margin-bottom:6px;"></div>
+    <div class="skel" style="height:12px;width:50%;"></div>
+  </div>
+</div>
+
+<!-- RELATED SHOWS -->
+<div class="section-header" style="margin-top:8px;">
+  <h2 class="section-title">Related <span>Shows</span></h2>
+</div>
+<div class="rel-grid" id="relGrid"></div>
+
+<!-- TRAILER MODAL -->
+<div class="trl-modal" id="trlModal">
+  <div class="trl-inner">
+    <button class="trl-close" id="trlClose"><i class="fas fa-times"></i></button>
+    <iframe id="trlFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav">
+  <a href="index.html"     class="nav-item"><i class="fas fa-home"></i>Home</a>
+  <a href="movies.html"    class="nav-item"><i class="fas fa-film"></i>Movies</a>
+  <a href="shows.html"     class="nav-item active"><i class="fas fa-tv"></i>Shows</a>
+  <a href="watchlist.html" class="nav-item"><i class="fas fa-bookmark"></i>Watchlist</a>
+  <button class="nav-item" onclick="toggleTheme()"><i class="fas fa-sun theme-icon"></i>Theme</button>
+</nav>
+
+<script src="app.js"></script>
+<script src="players.js"></script>
+</body>
+</html>
