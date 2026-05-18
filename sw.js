@@ -1,4 +1,4 @@
-const CACHE = "dashnews-v3";
+const CACHE = "dashtube-v3";
 const OFFLINE = "./offline.html";
 
 self.addEventListener("install", e => {
