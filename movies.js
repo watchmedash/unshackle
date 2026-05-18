@@ -40,9 +40,9 @@ function yearParams(v) {
 function updateMovieTitle() {
   const genreOpt = fGenre.options[fGenre.selectedIndex];
   const genre = fGenre.value && genreOpt ? genreOpt.textContent : "";
-  if (query) document.title = `"${query}" Movies — Dashnews`;
-  else if (genre) document.title = `Free ${genre} Movies Online | Dashnews`;
-  else document.title = "Free Movies Online — Browse & Stream HD | Dashnews";
+  if (query) document.title = `"${query}" Movies — Dashtube`;
+  else if (genre) document.title = `Free ${genre} Movies Online | Dashtube`;
+  else document.title = "Free Movies Online — Browse & Stream HD | Dashtube";
 }
 
 async function fetchMovies(append = false) {

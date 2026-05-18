@@ -32,7 +32,7 @@ async function loadDetails() {
     const credits = await cRes.json();
     const videos  = await vRes.json();
 
-    document.title = `${movie.title} – Dashnews`;
+    document.title = `${movie.title} – Dashtube`;
     RW.add({ ...movie, type: "movie" });
 
     const schema = {
@@ -40,7 +40,7 @@ async function loadDetails() {
       "name": movie.title,
       "description": movie.overview || "",
       "datePublished": movie.release_date || "",
-      "url": `https://dashnews.top/player.html?id=${movie.id}`,
+      "url": `https://dashtube.top/player.html?id=${movie.id}`,
       "genre": (movie.genres || []).map(g => g.name),
       ...(movie.poster_path && { "image": `${IMG}w500${movie.poster_path}` }),
       ...(movie.runtime && { "duration": `PT${movie.runtime}M` }),

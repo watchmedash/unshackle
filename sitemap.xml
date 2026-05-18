@@ -3,68 +3,68 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://dashnews.top/</loc>
+    <loc>https://dashtube.top/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <lastmod>2026-05-10</lastmod>
     <image:image>
-      <image:loc>https://dashnews.top/og.webp</image:loc>
-      <image:title>Dashnews — Free HD Movies &amp; TV Shows</image:title>
+      <image:loc>https://dashtube.top/og.webp</image:loc>
+      <image:title>Dashtube — Free HD Movies &amp; TV Shows</image:title>
       <image:caption>Stream thousands of free HD movies and TV shows. No sign-up required.</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://dashnews.top/movies.html</loc>
+    <loc>https://dashtube.top/movies.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <lastmod>2026-05-10</lastmod>
   </url>
 
   <url>
-    <loc>https://dashnews.top/shows.html</loc>
+    <loc>https://dashtube.top/shows.html</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <lastmod>2026-05-10</lastmod>
   </url>
 
   <url>
-    <loc>https://dashnews.top/about.html</loc>
+    <loc>https://dashtube.top/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <lastmod>2026-05-10</lastmod>
   </url>
 
   <url>
-    <loc>https://dashnews.top/contact.html</loc>
+    <loc>https://dashtube.top/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <lastmod>2026-05-10</lastmod>
   </url>
 
   <url>
-    <loc>https://dashnews.top/donate.html</loc>
+    <loc>https://dashtube.top/donate.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
     <lastmod>2026-05-10</lastmod>
   </url>
 
   <url>
-    <loc>https://dashnews.top/privacy.html</loc>
+    <loc>https://dashtube.top/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <lastmod>2026-05-10</lastmod>
   </url>
 
   <url>
-    <loc>https://dashnews.top/dmca.html</loc>
+    <loc>https://dashtube.top/dmca.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <lastmod>2026-05-10</lastmod>
   </url>
 
   <url>
-    <loc>https://dashnews.top/tos.html</loc>
+    <loc>https://dashtube.top/tos.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <lastmod>2026-05-10</lastmod>

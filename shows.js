@@ -39,9 +39,9 @@ function yearParams(v) {
 function updateShowTitle() {
   const genreOpt = fGenre.options[fGenre.selectedIndex];
   const genre = fGenre.value && genreOpt ? genreOpt.textContent : "";
-  if (query) document.title = `"${query}" Shows — Dashnews`;
-  else if (genre) document.title = `Free ${genre} Shows Online | Dashnews`;
-  else document.title = "Free TV Shows Online — Browse & Stream HD | Dashnews";
+  if (query) document.title = `"${query}" Shows — Dashtube`;
+  else if (genre) document.title = `Free ${genre} Shows Online | Dashtube`;
+  else document.title = "Free TV Shows Online — Browse & Stream HD | Dashtube";
 }
 
 async function fetchShows(append = false) {

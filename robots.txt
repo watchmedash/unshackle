@@ -6,4 +6,4 @@ Disallow: /players.html
 Disallow: /watchlist.html
 Disallow: /home.html
 
-Sitemap: https://dashnews.top/sitemap.xml
+Sitemap: https://dashtube.top/sitemap.xml

@@ -137,14 +137,14 @@ async function doSearch(q) {
 
 // ── FAQ ──
 const FAQS = [
-  { q: "Is Dashnews completely free?",          a: "Yes — 100% free. No account, no credit card, no subscription. Just browse and watch." },
+  { q: "Is Dashtube completely free?",          a: "Yes — 100% free. No account, no credit card, no subscription. Just browse and watch." },
   { q: "Do I need to create an account?",       a: "No registration needed. Find something you like and start watching immediately." },
-  { q: "What video quality is available?",      a: "Dashnews streams in HD where available, depending on the server and your internet speed." },
+  { q: "What video quality is available?",      a: "Dashtube streams in HD where available, depending on the server and your internet speed." },
   { q: "Why is a movie not playing?",           a: "Try switching to a different server using the server buttons on the player page." },
   { q: "Can I save movies to watch later?",     a: "Yes — right-click any poster to add it to your Watchlist. It's saved locally in your browser." },
   { q: "How do I watch TV show episodes?",      a: "Click any TV show poster, then select the season and episode on the player page." },
   { q: "Why are some movies unavailable?",      a: "Content may be region-restricted or temporarily down. Try switching servers or check back later." },
-  { q: "Does Dashnews work on mobile?",         a: "Absolutely. Dashnews is fully optimised for mobile browsers — no app needed." },
+  { q: "Does Dashtube work on mobile?",         a: "Absolutely. Dashtube is fully optimised for mobile browsers — no app needed." },
 ];
 const fWrap = document.getElementById("faqWrap");
 FAQS.forEach(f => {

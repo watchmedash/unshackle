@@ -58,7 +58,7 @@ async function loadDetails() {
     ]);
     const show   = await dRes.json();
     const videos = await vRes.json();
-    document.title = `${show.name} – Dashnews`;
+    document.title = `${show.name} – Dashtube`;
     RW.add({ ...show, type: "tv" });
 
     const schema = {
@@ -66,7 +66,7 @@ async function loadDetails() {
       "name": show.name,
       "description": show.overview || "",
       "datePublished": show.first_air_date || "",
-      "url": `https://dashnews.top/players.html?id=${show.id}`,
+      "url": `https://dashtube.top/players.html?id=${show.id}`,
       "genre": (show.genres || []).map(g => g.name),
       "numberOfSeasons": show.number_of_seasons || 1,
       ...(show.poster_path && { "image": `${IMG}w500${show.poster_path}` }),
