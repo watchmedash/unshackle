@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){if(localStorage.getItem("df_theme")==="dark")document.documentElement.setAttribute("data-theme","dark");})()</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free TV Shows Online — Browse &amp; Stream HD | Dashtube</title>
 <meta name="description" content="Browse and stream thousands of free TV shows on Dashtube. Watch full episodes by genre, year, and rating. No account needed — stream any series instantly.">
 <meta name="keywords" content="free TV shows online, watch TV shows free, stream series online, dashtube TV shows, watch episodes free 2026">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="Dashtube">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#f9f9f9">
 <link rel="canonical" href="https://dashtube.top/shows.html">
 <meta property="og:title" content="Free TV Shows Online — Browse &amp; Stream HD | Dashtube">
 <meta property="og:description" content="Browse and stream thousands of free TV shows. Filter by genre, year, and rating. Watch full episodes instantly — no account required.">
@@ -24,12 +25,18 @@
 <meta name="twitter:image" content="https://dashtube.top/og.webp">
 <link rel="preconnect" href="https://api.themoviedb.org">
 <link rel="preconnect" href="https://image.tmdb.org">
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" fetchpriority="high">
+<style>
+  @font-face { font-family: "Font Awesome 6 Free"; font-style: normal; font-weight: 900; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-solid-900.woff2") format("woff2"); }
+  @font-face { font-family: "Font Awesome 6 Free"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-regular-400.woff2") format("woff2"); }
+  @font-face { font-family: "Font Awesome 6 Brands"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-brands-400.woff2") format("woff2"); }
+</style>
 <link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5412699736062085" crossorigin="anonymous"></script>
 <script src="https://pl29494302.effectivecpmnetwork.com/30/f4/4e/30f44ef9510cf64a5f8634f83aebcc85.js"></script>
 <script type="application/ld+json">
 [
@@ -53,68 +60,91 @@
 </script>
 </head>
 <body>
-<div class="shell">
 
-  <main class="content">
-    <div class="page-header">
-      <a href="index.html" class="logo">
-        <span class="logo-text">DASHTUBE</span>
-      </a>
-    </div>
+<!-- HEADER -->
+<header class="yt-header">
+  <div class="yt-header-left">
+    <button class="hamburger" id="sidebarToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="yt-logo">Dash<span>tube</span></a>
+  </div>
+  <div class="yt-header-center">
+    <form class="yt-search" id="searchForm" action="movies.html" method="GET">
+      <input type="text" name="q" id="sBar" placeholder="Search TV shows…" autocomplete="off">
+      <button type="submit" class="yt-search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+  <div class="yt-header-right">
+    <a href="watchlist.html" class="yt-icon-btn" title="Watchlist"><i class="fas fa-bookmark"></i></a>
+    <button class="yt-icon-btn" onclick="toggleTheme()" title="Toggle theme"><i class="fas fa-moon theme-icon"></i></button>
+    <a href="donate.html" class="yt-icon-btn" title="Support us"><i class="fas fa-heart"></i></a>
+  </div>
+</header>
 
-    <div class="topbar">
-      <h1 class="topbar-title"><span>Browse</span> Shows</h1>
-    </div>
+<!-- SIDEBAR -->
+<aside class="yt-sidebar" id="sidebar">
+  <nav class="sidebar-nav">
+    <a href="index.html"     class="sidebar-item"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="movies.html"    class="sidebar-item"><i class="fas fa-film"></i><span>Movies</span></a>
+    <a href="shows.html"     class="sidebar-item active"><i class="fas fa-tv"></i><span>TV Shows</span></a>
+    <a href="watchlist.html" class="sidebar-item"><i class="fas fa-bookmark"></i><span>Watchlist</span></a>
+    <div class="sidebar-divider"></div>
+    <a href="donate.html"  class="sidebar-item"><i class="fas fa-heart"></i><span>Donate</span></a>
+    <a href="about.html"   class="sidebar-item"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html" class="sidebar-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
+    <a href="dmca.html"    class="sidebar-item"><i class="fas fa-shield-alt"></i><span>DMCA</span></a>
+    <a href="privacy.html" class="sidebar-item"><i class="fas fa-lock"></i><span>Privacy</span></a>
+    <a href="tos.html"     class="sidebar-item"><i class="fas fa-file-alt"></i><span>Terms</span></a>
+  </nav>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-    <div class="browse-search">
-      <div class="search-wrap">
-        <i class="fas fa-search"></i>
-        <input class="search-input" id="sBar" type="text" placeholder="Search TV shows…" autocomplete="off">
-      </div>
-    </div>
+<!-- MAIN -->
+<main class="yt-main">
+  <h1 class="section-title" style="margin-bottom:16px;">Browse <span>TV Shows</span></h1>
 
-    <div class="filters-bar">
-      <select class="f-select" id="fGenre"><option value="">All Genres</option></select>
-      <select class="f-select" id="fYear">
-        <option value="">All Years</option>
-        <option value="2026">2026</option>
-        <option value="2025">2025</option>
-        <option value="2024">2024</option>
-        <option value="2023">2023</option>
-        <option value="2022">2022</option>
-        <option value="2021">2021</option>
-        <option value="2020">2020</option>
-        <option value="2019">2019</option>
-        <option value="2018">2018</option>
-        <option value="2010s">2010–2019</option>
-        <option value="2000s">2000–2009</option>
-        <option value="older">Before 2000</option>
-      </select>
-      <select class="f-select" id="fSort">
-        <option value="popularity.desc">Popular</option>
-        <option value="vote_average.desc">Top Rated</option>
-        <option value="first_air_date.desc">Newest</option>
-        <option value="first_air_date.asc">Oldest</option>
-      </select>
-    </div>
+  <div class="filters-bar">
+    <select class="f-select" id="fGenre"><option value="">All Genres</option></select>
+    <select class="f-select" id="fYear">
+      <option value="">All Years</option>
+      <option value="2026">2026</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
+      <option value="2019">2019</option>
+      <option value="2018">2018</option>
+      <option value="2010s">2010–2019</option>
+      <option value="2000s">2000–2009</option>
+      <option value="older">Before 2000</option>
+    </select>
+    <select class="f-select" id="fSort">
+      <option value="popularity.desc">Popular</option>
+      <option value="vote_average.desc">Top Rated</option>
+      <option value="first_air_date.desc">Newest</option>
+      <option value="first_air_date.asc">Oldest</option>
+    </select>
+  </div>
 
-    <div class="grid" id="grid"></div>
-    <div class="load-more" id="loader" style="display:none;"><div class="spinner"></div> Loading…</div>
-    <div class="empty-state" id="empty">
-      <i class="fas fa-tv"></i>
-      <p>No shows found.<br>Try a different filter.</p>
-    </div>
-    <div id="sentinel" style="height:1px;"></div>
-  </main>
-</div>
+  <div class="grid" id="grid"></div>
+  <div class="load-more" id="loader" style="display:none;"><div class="spinner"></div> Loading…</div>
+  <div class="empty-state" id="empty">
+    <i class="fas fa-tv"></i>
+    <p>No shows found.<br>Try a different filter.</p>
+  </div>
+  <div id="sentinel" style="height:1px;"></div>
+</main>
 
 <button class="goto-top" id="toTop"><i class="fas fa-chevron-up"></i></button>
+
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <a href="index.html"     class="nav-item"><i class="fas fa-home"></i>Home</a>
   <a href="movies.html"    class="nav-item"><i class="fas fa-film"></i>Movies</a>
   <a href="shows.html"     class="nav-item active"><i class="fas fa-tv"></i>Shows</a>
   <a href="watchlist.html" class="nav-item"><i class="fas fa-bookmark"></i>Watchlist</a>
-  <button class="nav-item" onclick="toggleTheme()"><i class="fas fa-sun theme-icon"></i>Theme</button>
+  <a href="donate.html"    class="nav-item"><i class="fas fa-heart"></i>Donate</a>
 </nav>
 
 <script src="app.js"></script>

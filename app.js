@@ -1,23 +1,25 @@
-// ── THEME ──
+// ── THEME (light / dark only) ──
 (function() {
-  if (localStorage.getItem("df_theme") !== "dark")
-    document.documentElement.setAttribute("data-theme", "light");
+  if (localStorage.getItem("df_theme") === "dark")
+    document.documentElement.setAttribute("data-theme", "dark");
 })();
+
 function toggleTheme() {
-  const isLight = document.documentElement.getAttribute("data-theme") === "light";
-  if (isLight) {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  if (isDark) {
     document.documentElement.removeAttribute("data-theme");
-    localStorage.setItem("df_theme", "dark");
+    localStorage.setItem("df_theme", "light");
   } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.removeItem("df_theme");
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("df_theme", "dark");
   }
   _syncThemeIcons();
 }
+
 function _syncThemeIcons() {
-  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
   document.querySelectorAll(".theme-icon").forEach(el => {
-    el.className = `fas ${isLight ? "fa-moon" : "fa-sun"} theme-icon`;
+    el.className = isDark ? "fas fa-sun theme-icon" : "fas fa-moon theme-icon";
   });
 }
 document.addEventListener("DOMContentLoaded", _syncThemeIcons);
@@ -26,12 +28,32 @@ document.addEventListener("DOMContentLoaded", _syncThemeIcons);
 const API_KEY = "4f599baa15d072c9de346b2816a131b8";
 const BASE    = "https://api.themoviedb.org/3";
 const IMG     = "https://image.tmdb.org/t/p/w500";
+const IMG_SM  = "https://image.tmdb.org/t/p/w185";
 const BLOCKED_MOVIES = new Set([1163258, 969492, 634649, 957452, 299534]);
 const BLOCKED_SHOWS  = new Set([81329, 94722, 112470, 259288]);
+
+// ── CACHED FETCH (localStorage, 12h TTL) ──
+function cachedFetch(url, ttl = 43200000) {
+  const k = "cf:" + url;
+  try {
+    const raw = localStorage.getItem(k);
+    if (raw) {
+      const { data, exp } = JSON.parse(raw);
+      if (Date.now() < exp) return Promise.resolve(data);
+      localStorage.removeItem(k);
+    }
+  } catch {}
+  return fetch(url).then(r => r.json()).then(data => {
+    try { localStorage.setItem(k, JSON.stringify({ data, exp: Date.now() + ttl })); } catch {}
+    return data;
+  });
+}
 
 // ── SERVICE WORKER ──
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+  // When a new SW takes control (after skipWaiting), reload to get fresh assets.
+  navigator.serviceWorker.addEventListener("controllerchange", () => window.location.reload());
 }
 
 // ── RECENTLY WATCHED ──
@@ -148,6 +170,20 @@ const imgObs = new IntersectionObserver(entries => {
   });
 }, { rootMargin: "200px" });
 
+// ── SKELETON CARD ──
+function buildSkeleton() {
+  const card = document.createElement("div");
+  card.className = "card";
+  const wrap = document.createElement("div");
+  wrap.className = "card-poster-wrap";
+  card.appendChild(wrap);
+  const info = document.createElement("div");
+  info.className = "card-info";
+  info.innerHTML = '<div class="skel-line wide"></div><div class="skel-line narrow"></div>';
+  card.appendChild(info);
+  return card;
+}
+
 // ── BUILD CARD ──
 function buildCard(item) {
   const isMovie = item.type === "movie";
@@ -162,7 +198,7 @@ function buildCard(item) {
   const wrap = document.createElement("div");
   wrap.className = "card-poster-wrap";
   if (item.poster_path) {
-    wrap.dataset.src = IMG + item.poster_path;
+    wrap.dataset.src = IMG_SM + item.poster_path;
     const img = document.createElement("img");
     img.className = "card-poster"; img.alt = title;
     wrap.appendChild(img);
@@ -210,8 +246,18 @@ function buildCard(item) {
 
   card.appendChild(wrap);
   card.appendChild(info);
-  card.addEventListener("click",       () => location.href = url);
-  card.addEventListener("contextmenu", e  => showCtx(e, { ...item }));
+  card.addEventListener("click", () => {
+    try { sessionStorage.setItem("scroll:" + location.pathname, window.scrollY); } catch {}
+    location.href = url;
+  });
+  card.addEventListener("contextmenu", e => showCtx(e, { ...item }));
+  card.addEventListener("pointerenter", () => {
+    const href = isMovie ? "player.html" : "players.html";
+    if (!document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
+      const l = document.createElement("link"); l.rel = "prefetch"; l.href = href;
+      document.head.appendChild(l);
+    }
+  }, { once: true });
   return card;
 }
 
@@ -222,3 +268,43 @@ document.addEventListener("DOMContentLoaded", () => {
     a.classList.toggle("active", a.getAttribute("href") === p);
   });
 });
+
+// ── SIDEBAR TOGGLE ──
+function initSidebar() {
+  const sidebar  = document.getElementById("sidebar");
+  const toggle   = document.getElementById("sidebarToggle");
+  const backdrop = document.getElementById("sidebarBackdrop");
+  if (!sidebar) return;
+  if (window.innerWidth >= 900 && localStorage.getItem("df_sidebar") === "collapsed") {
+    sidebar.classList.add("collapsed");
+    document.body.classList.add("sidebar-collapsed");
+  }
+  if (!toggle) return;
+  toggle.addEventListener("click", () => {
+    if (window.innerWidth < 900) {
+      const open = sidebar.classList.toggle("open");
+      backdrop?.classList.toggle("show", open);
+    } else {
+      const isCollapsed = sidebar.classList.toggle("collapsed");
+      document.body.classList.toggle("sidebar-collapsed", isCollapsed);
+      localStorage.setItem("df_sidebar", isCollapsed ? "collapsed" : "expanded");
+    }
+  });
+  backdrop?.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    backdrop.classList.remove("show");
+  });
+}
+
+function applyHeaderHeight() {
+  const header = document.querySelector(".yt-header");
+  if (!header) return;
+  const h = Math.ceil(header.getBoundingClientRect().height);
+  document.documentElement.style.setProperty("--actual-header-h", h + "px");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initSidebar();
+  applyHeaderHeight();
+});
+window.addEventListener("resize", applyHeaderHeight);

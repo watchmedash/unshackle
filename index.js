@@ -3,8 +3,7 @@ async function loadStrip(type, containerId) {
   const blocked = type === "movie" ? BLOCKED_MOVIES : BLOCKED_SHOWS;
   const ep = type === "movie" ? "movie/popular" : "tv/popular";
   try {
-    const res  = await fetch(`${BASE}/${ep}?api_key=${API_KEY}&language=en-US&page=1`);
-    const data = await res.json();
+    const data = await cachedFetch(`${BASE}/${ep}?api_key=${API_KEY}&language=en-US&page=1`);
     const list = (data.results || []).filter(x => !blocked.has(x.id)).slice(0, 10);
     const wrap = document.getElementById(containerId);
     list.forEach((item, i) => {
@@ -69,71 +68,14 @@ async function loadStrip(type, containerId) {
     const lbl = document.createElement("div");
     lbl.className = "t-lbl"; lbl.textContent = item.title;
     card.appendChild(lbl);
-    card.addEventListener("click", () => location.href = url);
+    card.addEventListener("click",       () => location.href = url);
+    card.addEventListener("contextmenu", e  => showCtx(e, { ...item }));
     strip.appendChild(card);
   });
 })();
 
 loadStrip("movie", "tMovies");
 loadStrip("tv",    "tShows");
-
-// ── GLOBAL SEARCH ──
-const gInput = document.getElementById("gSearch");
-const gDrop  = document.getElementById("gDrop");
-let   gTimer;
-
-gInput.addEventListener("input", () => {
-  clearTimeout(gTimer);
-  const q = gInput.value.trim();
-  if (!q) { gDrop.classList.remove("open"); return; }
-  gTimer = setTimeout(() => doSearch(q), 380);
-});
-document.addEventListener("click", e => {
-  if (!e.target.closest(".hero-search")) gDrop.classList.remove("open");
-});
-
-async function doSearch(q) {
-  gDrop.innerHTML = `<div class="srp-empty"><i class="fas fa-circle-notch fa-spin"></i></div>`;
-  gDrop.classList.add("open");
-  try {
-    const today = new Date().toISOString().slice(0, 10);
-    const [mr, tr] = await Promise.all([
-      fetch(`${BASE}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(q)}&page=1`).then(r => r.json()),
-      fetch(`${BASE}/search/tv?api_key=${API_KEY}&query=${encodeURIComponent(q)}&page=1`).then(r => r.json()),
-    ]);
-    const movies = (mr.results || []).filter(x => !BLOCKED_MOVIES.has(x.id) && x.release_date && x.release_date <= today).slice(0, 5);
-    const shows  = (tr.results || []).filter(x => !BLOCKED_SHOWS.has(x.id)).slice(0, 4);
-    const all    = [...movies.map(x => ({ ...x, type: "movie" })), ...shows.map(x => ({ ...x, type: "tv" }))];
-    if (!all.length) { gDrop.innerHTML = `<div class="srp-empty">No results found</div>`; return; }
-    gDrop.innerHTML = "";
-    all.forEach(item => {
-      const title = item.title || item.name;
-      const year  = (item.release_date || item.first_air_date || "").slice(0, 4);
-      const url   = item.type === "movie" ? `player.html?id=${item.id}` : `players.html?id=${item.id}`;
-      const row   = document.createElement("div");
-      row.className = "srp-item";
-      if (item.poster_path) {
-        const img = document.createElement("img");
-        img.className = "srp-thumb"; img.src = IMG + item.poster_path;
-        img.alt = title; img.loading = "lazy";
-        row.appendChild(img);
-      } else {
-        const ph = document.createElement("div");
-        ph.className = "srp-thumb-ph"; ph.innerHTML = '<i class="fas fa-film"></i>';
-        row.appendChild(ph);
-      }
-      const info = document.createElement("div"); info.className = "srp-info";
-      info.innerHTML = `<h4>${title}</h4><span>${year}</span>`;
-      const badge = document.createElement("span"); badge.className = "srp-badge";
-      badge.textContent = item.type === "movie" ? "Movie" : "Show";
-      row.appendChild(info); row.appendChild(badge);
-      row.addEventListener("click", () => location.href = url);
-      gDrop.appendChild(row);
-    });
-  } catch {
-    gDrop.innerHTML = `<div class="srp-empty">Search failed. Try again.</div>`;
-  }
-}
 
 // ── FAQ ──
 const FAQS = [

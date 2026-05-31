@@ -1,52 +1,67 @@
-.wl-top {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 12px 8px;
-}
-.clear-btn {
-  background: none; border: 1px solid var(--border);
-  color: var(--text-muted); border-radius: var(--r);
-  padding: 6px 12px; font-size: 12px;
-  display: flex; align-items: center; gap: 6px;
-  transition: color 0.15s, border-color 0.15s;
-}
-.clear-btn:hover { color: var(--text); border-color: var(--border2); }
-
+/* ── WATCHLIST TABS ── */
 .tab-row {
-  display: flex; gap: 5px; padding: 0 12px 10px;
+  display: flex; gap: 8px; margin-bottom: 8px;
 }
 .wl-tab {
-  background: var(--surface2); border: 1px solid var(--border);
-  color: var(--text-muted); border-radius: var(--r);
-  padding: 6px 14px; font-size: 12px; font-family: inherit;
-  cursor: pointer; transition: all 0.15s;
-  display: flex; align-items: center; gap: 5px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 20px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 13px; font-weight: 500;
+  font-family: inherit; cursor: pointer;
+  transition: all 0.15s;
 }
-.wl-tab.active {
-  background: var(--accent-dim); border-color: rgba(128,128,128,0.35);
-  color: var(--text);
-}
+.wl-tab:hover { border-color: var(--border2); color: var(--text); }
+.wl-tab.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+/* ── WATCHLIST COUNT ── */
 .wl-count {
-  text-align: center; font-size: 11px;
-  color: var(--text-muted); padding: 0 0 6px;
+  font-size: 12px; color: var(--text-muted); margin-bottom: 14px;
 }
 
+/* ── CLEAR BUTTON ── */
+.clear-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 20px;
+  background: none; border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 13px; font-family: inherit;
+  cursor: pointer; transition: all 0.15s;
+}
+.clear-btn:hover { border-color: #ef5350; color: #ef5350; }
+
+/* ── CLEAR BUTTON CONFIRM STATE ── */
+.clear-btn.confirming {
+  border-color: #ef5350; color: #ef5350;
+  gap: 8px; cursor: default;
+}
+.clear-btn.confirming span { font-size: 13px; }
+.confirm-yes, .confirm-no {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 12px; font-weight: 500; font-family: inherit;
+  cursor: pointer; transition: opacity 0.15s;
+}
+.confirm-yes { background: #ef5350; border: 1px solid #ef5350; color: #fff; }
+.confirm-yes:hover { opacity: 0.85; }
+.confirm-no  { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+.confirm-no:hover  { border-color: var(--border2); color: var(--text); }
+
+/* ── REMOVE BUTTON (on cards) ── */
 .rm-btn {
-  position: absolute; top: 5px; right: 5px; z-index: 10;
-  width: 22px; height: 22px; background: rgba(0,0,0,0.78);
-  border: 1px solid var(--border); color: var(--text-sub);
-  border-radius: 3px; font-size: 10px;
+  position: absolute; top: 8px; left: 8px; z-index: 5;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(0,0,0,0.65); color: #fff; font-size: 11px;
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s, color 0.15s;
+  opacity: 0; transition: opacity 0.15s;
 }
-.rm-btn:hover { background: rgba(0,0,0,0.95); color: var(--text); }
+.card:hover .rm-btn { opacity: 1; }
 
-.browse-links {
-  display: flex; gap: 8px; justify-content: center; margin-top: 14px;
-}
+/* ── BROWSE LINKS (empty state) ── */
+.browse-links { display: flex; gap: 12px; margin-top: 12px; }
 .browse-link {
   display: inline-flex; align-items: center; gap: 6px;
-  border: 1px solid var(--border); border-radius: var(--r);
-  padding: 7px 16px; font-size: 12px; color: var(--text-muted);
-  transition: color 0.15s, border-color 0.15s;
+  padding: 8px 18px; border-radius: 20px;
+  background: var(--accent-dim); border: 1px solid var(--accent);
+  color: var(--accent); font-size: 13px; font-weight: 500;
+  transition: opacity 0.15s;
 }
-.browse-link:hover { color: var(--text); border-color: var(--border2); }
+.browse-link:hover { opacity: 0.8; }

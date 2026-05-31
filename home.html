@@ -2,23 +2,72 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){if(localStorage.getItem("df_theme")==="dark")document.documentElement.setAttribute("data-theme","dark");})()</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashtube</title>
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="home.css">
 </head>
-<body>
-<main class="home">
-  <a href="movies.html" class="hbtn">
-    <i class="fas fa-film"></i>
-    Movies
-  </a>
-  <a href="shows.html" class="hbtn">
-    <i class="fas fa-tv"></i>
-    Shows
-  </a>
+<body class="no-search">
+
+<header class="yt-header">
+  <div class="yt-header-left">
+    <button class="hamburger" id="sidebarToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="yt-logo">Dash<span>tube</span></a>
+  </div>
+  <div class="yt-header-center">
+    <form class="yt-search" id="searchForm" action="movies.html" method="GET">
+      <input type="text" name="q" id="sBar" placeholder="Search movies &amp; shows…" autocomplete="off">
+      <button type="submit" class="yt-search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+  <div class="yt-header-right">
+    <a href="watchlist.html" class="yt-icon-btn" title="Watchlist"><i class="fas fa-bookmark"></i></a>
+    <button class="yt-icon-btn" onclick="toggleTheme()" title="Toggle theme"><i class="fas fa-moon theme-icon"></i></button>
+    <a href="donate.html" class="yt-icon-btn" title="Support us"><i class="fas fa-heart"></i></a>
+  </div>
+</header>
+<aside class="yt-sidebar" id="sidebar">
+  <nav class="sidebar-nav">
+    <a href="index.html"     class="sidebar-item active"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="movies.html"    class="sidebar-item"><i class="fas fa-film"></i><span>Movies</span></a>
+    <a href="shows.html"     class="sidebar-item"><i class="fas fa-tv"></i><span>TV Shows</span></a>
+    <a href="watchlist.html" class="sidebar-item"><i class="fas fa-bookmark"></i><span>Watchlist</span></a>
+    <div class="sidebar-divider"></div>
+    <a href="donate.html"  class="sidebar-item"><i class="fas fa-heart"></i><span>Donate</span></a>
+    <a href="about.html"   class="sidebar-item"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html" class="sidebar-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
+    <a href="dmca.html"    class="sidebar-item"><i class="fas fa-shield-alt"></i><span>DMCA</span></a>
+    <a href="privacy.html" class="sidebar-item"><i class="fas fa-lock"></i><span>Privacy</span></a>
+    <a href="tos.html"     class="sidebar-item"><i class="fas fa-file-alt"></i><span>Terms</span></a>
+  </nav>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<main class="yt-main">
+  <div class="home-btns">
+    <a href="movies.html" class="hbtn">
+      <i class="fas fa-film"></i>
+      Movies
+    </a>
+    <a href="shows.html" class="hbtn">
+      <i class="fas fa-tv"></i>
+      Shows
+    </a>
+  </div>
 </main>
+
+<nav class="bottom-nav">
+  <a href="index.html"     class="nav-item active"><i class="fas fa-home"></i>Home</a>
+  <a href="movies.html"    class="nav-item"><i class="fas fa-film"></i>Movies</a>
+  <a href="shows.html"     class="nav-item"><i class="fas fa-tv"></i>Shows</a>
+  <a href="watchlist.html" class="nav-item"><i class="fas fa-bookmark"></i>Watchlist</a>
+  <a href="donate.html"    class="nav-item"><i class="fas fa-heart"></i>Donate</a>
+</nav>
+
+<script src="app.js"></script>
 </body>
 </html>

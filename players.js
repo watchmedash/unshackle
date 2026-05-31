@@ -14,11 +14,19 @@ const SERVERS = [
 ];
 
 function setPlayer() {
-  const idx = parseInt(document.getElementById("srvSel").value);
+  const idx = parseInt(document.querySelector(".srv-tab.active")?.dataset.idx || "0");
   document.getElementById("vidPlayer").src = SERVERS[idx](showId, selSeason, selEpisode);
   document.getElementById("dlBtn").href = `https://vidvault.ru/tv/${showId}/${selSeason}/${selEpisode}`;
 }
 function changeServer() { setPlayer(); }
+
+document.querySelectorAll(".srv-tab").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".srv-tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    setPlayer();
+  });
+});
 
 const seasonSel = document.getElementById("seasonSel");
 const epGrid    = document.getElementById("epGrid");
@@ -27,8 +35,7 @@ async function loadEpisodes(season) {
   selSeason = season; selEpisode = 1;
   epGrid.innerHTML = "";
   try {
-    const r = await fetch(`${BASE}/tv/${showId}/season/${season}?api_key=${API_KEY}&language=en-US`);
-    const d = await r.json();
+    const d = await cachedFetch(`${BASE}/tv/${showId}/season/${season}?api_key=${API_KEY}&language=en-US`);
     const eps = (d.episodes || []).filter(e => e.episode_number > 0);
 
     eps.forEach(ep => {
@@ -52,12 +59,11 @@ seasonSel.addEventListener("change", () => loadEpisodes(parseInt(seasonSel.value
 
 async function loadDetails() {
   try {
-    const [dRes, vRes] = await Promise.all([
-      fetch(`${BASE}/tv/${showId}?api_key=${API_KEY}&language=en-US`),
-      fetch(`${BASE}/tv/${showId}/videos?api_key=${API_KEY}`),
+    const [show, credits, videos] = await Promise.all([
+      cachedFetch(`${BASE}/tv/${showId}?api_key=${API_KEY}&language=en-US`),
+      cachedFetch(`${BASE}/tv/${showId}/credits?api_key=${API_KEY}`),
+      cachedFetch(`${BASE}/tv/${showId}/videos?api_key=${API_KEY}`),
     ]);
-    const show   = await dRes.json();
-    const videos = await vRes.json();
     document.title = `${show.name} – Dashtube`;
     RW.add({ ...show, type: "tv" });
 
@@ -91,11 +97,6 @@ async function loadDetails() {
     const creator = (show.created_by || [])[0];
 
     document.getElementById("details").innerHTML = `
-      <div class="det-poster">
-        ${show.poster_path
-          ? `<img src="${IMG}${show.poster_path}" alt="${show.name}">`
-          : `<div class="det-ph"><i class="fas fa-tv"></i></div>`}
-      </div>
       <div class="det-info">
         <div class="det-title">${show.name}</div>
         <div class="chips">
@@ -105,8 +106,10 @@ async function loadDetails() {
         </div>
         ${genres ? `<div class="det-genres">${genres}</div>` : ""}
         <div class="det-overview">${show.overview || "No overview available."}</div>
-        ${creator ? `<div class="det-creator"><i class="fas fa-user"></i>Created by ${creator.name}</div>` : ""}
+        ${creator ? `<div class="det-creator"><i class="fas fa-user"></i> Created by ${creator.name}</div>` : ""}
       </div>`;
+
+    renderCast(credits.cast || []);
 
     const trailer = (videos.results || []).find(v => v.type === "Trailer" && v.site === "YouTube");
     const trlBtn  = document.getElementById("trlBtn");
@@ -132,10 +135,24 @@ async function loadDetails() {
   } catch (e) { console.error(e); }
 }
 
+function renderCast(cast) {
+  const row = document.getElementById("castRow");
+  if (!row) return;
+  cast.slice(0, 20).forEach(p => {
+    const card = document.createElement("a");
+    card.className = "cast-card";
+    card.href = `person.html?id=${p.id}`;
+    card.innerHTML = p.profile_path
+      ? `<img class="cast-photo" src="https://image.tmdb.org/t/p/w185${p.profile_path}" alt="${p.name}" loading="lazy">`
+      : `<div class="cast-photo-ph"><i class="fas fa-user"></i></div>`;
+    card.innerHTML += `<div class="cast-name">${p.name}</div><div class="cast-char">${p.character || ""}</div>`;
+    row.appendChild(card);
+  });
+}
+
 async function loadRelated() {
   try {
-    const r = await fetch(`${BASE}/tv/${showId}/similar?api_key=${API_KEY}&language=en-US&page=1`);
-    const d = await r.json();
+    const d = await cachedFetch(`${BASE}/tv/${showId}/similar?api_key=${API_KEY}&language=en-US&page=1`);
     const items = (d.results || []).filter(s => !BLOCKED_SHOWS.has(s.id)).slice(0, 12);
     const grid  = document.getElementById("relGrid");
     items.forEach(s => grid.appendChild(buildCard({ ...s, type: "tv" })));

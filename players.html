@@ -2,84 +2,94 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){if(localStorage.getItem("df_theme")==="dark")document.documentElement.setAttribute("data-theme","dark");})()</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Watch TV Show – Dashtube</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="preconnect" href="https://api.themoviedb.org">
+<link rel="preconnect" href="https://image.tmdb.org">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" fetchpriority="high">
+<style>
+  @font-face { font-family: "Font Awesome 6 Free"; font-style: normal; font-weight: 900; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-solid-900.woff2") format("woff2"); }
+  @font-face { font-family: "Font Awesome 6 Free"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-regular-400.woff2") format("woff2"); }
+  @font-face { font-family: "Font Awesome 6 Brands"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/webfonts/fa-brands-400.woff2") format("woff2"); }
+</style>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="player.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5412699736062085" crossorigin="anonymous"></script>
 <script src="https://pl29494302.effectivecpmnetwork.com/30/f4/4e/30f44ef9510cf64a5f8634f83aebcc85.js"></script>
 </head>
-<body>
+<body class="no-search">
 
-<!-- PLAYER HEADER -->
-<div class="ph">
-  <a href="index.html" class="logo">
-    <span class="logo-text" style="font-size:16px;letter-spacing:2px;">DASHTUBE</span>
-  </a>
-</div>
+<!-- MINIMAL HEADER -->
+<header class="yt-header">
+  <div class="yt-header-left">
+    <a href="javascript:history.back()" class="yt-icon-btn" title="Back"><i class="fas fa-arrow-left"></i></a>
+    <a href="index.html" class="yt-logo">Dash<span>tube</span></a>
+  </div>
+  <div class="yt-header-right">
+    <button class="yt-icon-btn" onclick="toggleTheme()" title="Toggle theme"><i class="fas fa-moon theme-icon"></i></button>
+  </div>
+</header>
 
-<!-- INFO BANNER -->
-<div class="info-bar">
-  <i class="fas fa-info-circle"></i>
-  Having trouble? Switch to a different server below.
-</div>
+<div class="yt-player-main">
+  <div class="player-wrap">
 
-<!-- SERVER SELECT -->
-<div class="srv-wrap">
-  <div class="srv-label"><i class="fas fa-server"></i> Server</div>
-  <select class="srv-select" id="srvSel" onchange="changeServer()">
-    <option value="0">Server 1</option>
-    <option value="1">Server 2</option>
-    <option value="2">Server 3</option>
-    <option value="3">Server 4</option>
-    <option value="4">Server 5</option>
-  </select>
-</div>
+    <div class="player-main">
+      <div class="srv-tabs" id="srvTabs">
+        <button class="srv-tab active" data-idx="0">Server 1</button>
+        <button class="srv-tab" data-idx="1">Server 2</button>
+        <button class="srv-tab" data-idx="2">Server 3</button>
+        <button class="srv-tab" data-idx="3">Server 4</button>
+        <button class="srv-tab" data-idx="4">Server 5</button>
+      </div>
+      <div class="ep-selectors">
+        <select class="ep-sel" id="seasonSel"><option>Loading…</option></select>
+      </div>
+      <div class="ep-grid" id="epGrid"></div>
+      <div class="vid-wrap">
+        <iframe id="vidPlayer" src="" allowfullscreen allow="autoplay; fullscreen" scrolling="no"></iframe>
+      </div>
+      <div class="act-row">
+        <button class="act-btn primary" id="trlBtn" style="display:none;">
+          <i class="fas fa-play"></i> Trailer
+        </button>
+        <button class="act-btn sec" id="wlBtn">
+          <i class="fas fa-bookmark"></i> Add to Watchlist
+        </button>
+        <a class="act-btn sec" id="dlBtn" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-download"></i> Download
+        </a>
+      </div>
+      <p class="dl-note"><i class="fas fa-info-circle"></i> Download doesn't work in the Android app — use a browser instead.</p>
+    </div>
 
-<!-- SEASON + EPISODE -->
-<div class="ep-selectors">
-  <select class="ep-sel" id="seasonSel"><option>Loading…</option></select>
-</div>
-<div class="ep-grid" id="epGrid"></div>
+    <div class="player-side">
+      <div class="details" id="details">
+        <div class="skel" style="width:100%;aspect-ratio:16/9;border-radius:8px;"></div>
+        <div class="skel" style="height:20px;width:60%;margin-top:12px;"></div>
+        <div class="skel" style="height:12px;width:88%;margin-top:8px;"></div>
+      </div>
+    </div>
 
-<!-- VIDEO PLAYER -->
-<div class="vid-wrap">
-  <iframe id="vidPlayer" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
-</div>
+  </div>
 
-<!-- ACTION BUTTONS -->
-<div class="act-row">
-  <button class="act-btn primary" id="trlBtn" style="display:none;">
-    <i class="fas fa-play"></i> Trailer
-  </button>
-  <button class="act-btn sec" id="wlBtn">
-    <i class="fas fa-bookmark"></i> Add to Watchlist
-  </button>
-  <a class="act-btn sec" id="dlBtn" href="#" target="_blank" rel="noopener">
-    <i class="fas fa-download"></i> Download
-  </a>
-</div>
-<p class="dl-note"><i class="fas fa-info-circle"></i> Download doesn't work in the Android app — use a browser instead.</p>
+  <div class="player-below">
+    <div class="section-header">
+      <h2 class="section-title">Cast</h2>
+    </div>
+    <div class="cast-row" id="castRow"></div>
 
-<!-- SHOW DETAILS -->
-<div class="details" id="details">
-  <div class="det-poster"><div class="skel" style="width:80px;aspect-ratio:2/3;"></div></div>
-  <div class="det-info" style="flex:1;">
-    <div class="skel" style="height:20px;width:60%;margin-bottom:10px;"></div>
-    <div class="skel" style="height:12px;width:88%;margin-bottom:6px;"></div>
-    <div class="skel" style="height:12px;width:50%;"></div>
+    <div class="section-header" style="margin-top:16px;">
+      <h2 class="section-title">Related <span>Shows</span></h2>
+    </div>
+    <div class="rel-grid" id="relGrid"></div>
   </div>
 </div>
-
-<!-- RELATED SHOWS -->
-<div class="section-header" style="margin-top:8px;">
-  <h2 class="section-title">Related <span>Shows</span></h2>
-</div>
-<div class="rel-grid" id="relGrid"></div>
 
 <!-- TRAILER MODAL -->
 <div class="trl-modal" id="trlModal">
@@ -89,13 +99,12 @@
   </div>
 </div>
 
-<!-- BOTTOM NAV (mobile) -->
 <nav class="bottom-nav">
   <a href="index.html"     class="nav-item"><i class="fas fa-home"></i>Home</a>
   <a href="movies.html"    class="nav-item"><i class="fas fa-film"></i>Movies</a>
   <a href="shows.html"     class="nav-item active"><i class="fas fa-tv"></i>Shows</a>
   <a href="watchlist.html" class="nav-item"><i class="fas fa-bookmark"></i>Watchlist</a>
-  <button class="nav-item" onclick="toggleTheme()"><i class="fas fa-sun theme-icon"></i>Theme</button>
+  <a href="donate.html"    class="nav-item"><i class="fas fa-heart"></i>Donate</a>
 </nav>
 
 <script src="app.js"></script>

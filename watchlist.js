@@ -39,13 +39,36 @@ document.querySelectorAll(".wl-tab").forEach(btn => {
   });
 });
 
-document.getElementById("clearBtn").addEventListener("click", () => {
+const clearBtn = document.getElementById("clearBtn");
+
+function resetClearBtn() {
+  clearBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Clear All';
+  clearBtn.classList.remove("confirming");
+}
+
+clearBtn.addEventListener("click", () => {
   if (!WL.get().length) return;
-  if (confirm("Clear your entire watchlist?")) {
+  if (clearBtn.classList.contains("confirming")) return;
+
+  clearBtn.classList.add("confirming");
+  clearBtn.innerHTML = `
+    <span>Clear all?</span>
+    <button class="confirm-yes" id="confirmYes"><i class="fas fa-check"></i> Yes</button>
+    <button class="confirm-no"  id="confirmNo"><i class="fas fa-times"></i></button>
+  `;
+
+  document.getElementById("confirmYes").addEventListener("click", e => {
+    e.stopPropagation();
     localStorage.removeItem("df_wl");
     renderWatchlist();
     showToast('<i class="fas fa-trash-alt"></i> Watchlist cleared');
-  }
+    resetClearBtn();
+  });
+
+  document.getElementById("confirmNo").addEventListener("click", e => {
+    e.stopPropagation();
+    resetClearBtn();
+  });
 });
 
 renderWatchlist();

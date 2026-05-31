@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(){if(localStorage.getItem("df_theme")==="dark")document.documentElement.setAttribute("data-theme","dark");})()</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Watchlist – Dashtube</title>
 <meta name="robots" content="noindex, nofollow">
@@ -11,53 +12,82 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="watchlist.css">
-<script src="https://pl29494302.effectivecpmnetwork.com/30/f4/4e/30f44ef9510cf64a5f8634f83aebcc85.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5412699736062085" crossorigin="anonymous"></script>
 </head>
-<body>
-<div class="shell">
+<body class="no-search">
 
-  <!-- CONTENT -->
-  <main class="content">
+<!-- HEADER -->
+<header class="yt-header">
+  <div class="yt-header-left">
+    <button class="hamburger" id="sidebarToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <a href="index.html" class="yt-logo">Dash<span>tube</span></a>
+  </div>
+  <div class="yt-header-center">
+    <form class="yt-search" id="searchForm" action="movies.html" method="GET">
+      <input type="text" name="q" id="sBar" placeholder="Search movies &amp; shows…" autocomplete="off">
+      <button type="submit" class="yt-search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+  <div class="yt-header-right">
+    <a href="watchlist.html" class="yt-icon-btn" title="Watchlist"><i class="fas fa-bookmark"></i></a>
+    <button class="yt-icon-btn" onclick="toggleTheme()" title="Toggle theme"><i class="fas fa-moon theme-icon"></i></button>
+    <a href="donate.html" class="yt-icon-btn" title="Support us"><i class="fas fa-heart"></i></a>
+  </div>
+</header>
 
-    <div class="wl-top">
-      <a href="index.html" class="logo">
-        <span class="logo-text">DASHTUBE</span>
-      </a>
-      <button class="clear-btn" id="clearBtn"><i class="fas fa-trash-alt"></i> Clear All</button>
+<!-- SIDEBAR -->
+<aside class="yt-sidebar" id="sidebar">
+  <nav class="sidebar-nav">
+    <a href="index.html"     class="sidebar-item"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="movies.html"    class="sidebar-item"><i class="fas fa-film"></i><span>Movies</span></a>
+    <a href="shows.html"     class="sidebar-item"><i class="fas fa-tv"></i><span>TV Shows</span></a>
+    <a href="watchlist.html" class="sidebar-item active"><i class="fas fa-bookmark"></i><span>Watchlist</span></a>
+    <div class="sidebar-divider"></div>
+    <a href="donate.html"  class="sidebar-item"><i class="fas fa-heart"></i><span>Donate</span></a>
+    <a href="about.html"   class="sidebar-item"><i class="fas fa-info-circle"></i><span>About</span></a>
+    <a href="contact.html" class="sidebar-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
+    <a href="dmca.html"    class="sidebar-item"><i class="fas fa-shield-alt"></i><span>DMCA</span></a>
+    <a href="privacy.html" class="sidebar-item"><i class="fas fa-lock"></i><span>Privacy</span></a>
+    <a href="tos.html"     class="sidebar-item"><i class="fas fa-file-alt"></i><span>Terms</span></a>
+  </nav>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<!-- MAIN -->
+<main class="yt-main">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <h1 class="section-title">My <span>Watchlist</span></h1>
+    <button class="clear-btn" id="clearBtn"><i class="fas fa-trash-alt"></i> Clear All</button>
+  </div>
+
+  <div class="tab-row">
+    <button class="wl-tab active" data-f="all"><i class="fas fa-th"></i> All</button>
+    <button class="wl-tab" data-f="movie"><i class="fas fa-film"></i> Movies</button>
+    <button class="wl-tab" data-f="tv"><i class="fas fa-tv"></i> Shows</button>
+  </div>
+  <div class="wl-count" id="wlCount"></div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="empty-state" id="empty" style="display:none;">
+    <i class="fas fa-bookmark"></i>
+    <p>Your watchlist is empty.<br>Right-click any poster to save something.</p>
+    <div class="browse-links">
+      <a href="movies.html" class="browse-link"><i class="fas fa-film"></i> Movies</a>
+      <a href="shows.html"  class="browse-link"><i class="fas fa-tv"></i> Shows</a>
     </div>
+  </div>
 
-    <div class="section-header" style="padding-top:2px;">
-      <h2 class="section-title">My <span>Watchlist</span></h2>
-    </div>
+</main>
 
-    <div class="tab-row">
-      <button class="wl-tab active" data-f="all"><i class="fas fa-th"></i> All</button>
-      <button class="wl-tab" data-f="movie"><i class="fas fa-film"></i> Movies</button>
-      <button class="wl-tab" data-f="tv"><i class="fas fa-tv"></i> Shows</button>
-    </div>
-    <div class="wl-count" id="wlCount"></div>
-
-    <div class="grid" id="grid"></div>
-
-    <div class="empty-state" id="empty" style="display:none;">
-      <i class="fas fa-bookmark"></i>
-      <p>Your watchlist is empty.<br>Right-click any poster to save something.</p>
-      <div class="browse-links">
-        <a href="movies.html" class="browse-link"><i class="fas fa-film"></i> Movies</a>
-        <a href="shows.html"  class="browse-link"><i class="fas fa-tv"></i> Shows</a>
-      </div>
-    </div>
-
-  </main>
-</div>
-
-<!-- BOTTOM NAV (mobile) -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <a href="index.html"     class="nav-item"><i class="fas fa-home"></i>Home</a>
   <a href="movies.html"    class="nav-item"><i class="fas fa-film"></i>Movies</a>
   <a href="shows.html"     class="nav-item"><i class="fas fa-tv"></i>Shows</a>
   <a href="watchlist.html" class="nav-item active"><i class="fas fa-bookmark"></i>Watchlist</a>
-  <button class="nav-item" onclick="toggleTheme()"><i class="fas fa-sun theme-icon"></i>Theme</button>
+  <a href="donate.html"    class="nav-item"><i class="fas fa-heart"></i>Donate</a>
 </nav>
 
 <script src="app.js"></script>

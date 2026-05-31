@@ -1,4 +1,4 @@
-const CACHE = "dashtube-v3";
+const CACHE = "dashtube-v9";
 const OFFLINE = "./offline.html";
 
 self.addEventListener("install", e => {
@@ -15,8 +15,17 @@ self.addEventListener("activate", e => {
 });
 
 self.addEventListener("fetch", e => {
-  if (e.request.mode !== "navigate") return;
-  e.respondWith(
-    fetch(e.request).catch(() => caches.match(OFFLINE))
-  );
+  const url = new URL(e.request.url);
+
+  // Never intercept non-GET or external requests (TMDB API, CDN, ads)
+  if (e.request.method !== "GET" || url.origin !== self.location.origin) return;
+
+  // HTML navigation — network-first, fall back to offline page
+  if (e.request.mode === "navigate") {
+    e.respondWith(fetch(e.request).catch(() => caches.match(OFFLINE)));
+    return;
+  }
+
+  // Everything else — network only, no caching
+  // This ensures JS/CSS changes are always picked up immediately
 });

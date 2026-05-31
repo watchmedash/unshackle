@@ -1,9 +1,3 @@
-/* ── DONATE HEADER ── */
-.don-hdr {
-  display: flex; align-items: center; padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-}
-
 /* ── DONATE WRAP ── */
 .donate-wrap {
   display: flex; justify-content: center;
@@ -21,8 +15,8 @@
 }
 
 .donate-title {
-  font-family: 'Bebas Neue', sans-serif; font-size: 28px;
-  letter-spacing: 2px; color: var(--text); margin-bottom: 10px;
+  font-size: 24px; font-weight: 700;
+  color: var(--text); margin-bottom: 10px;
 }
 
 .donate-desc {
@@ -65,8 +59,8 @@
 
 .copy-btn {
   flex-shrink: 0;
-  background: var(--surface4); border: 1px solid var(--border2);
-  border-radius: var(--r); color: var(--text-sub);
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: var(--r); color: var(--text-muted);
   font-size: 11px; font-weight: 500; padding: 6px 10px;
   white-space: nowrap; transition: background 0.15s, color 0.15s;
 }
