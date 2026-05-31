@@ -26,6 +26,11 @@ self.addEventListener("fetch", e => {
     return;
   }
 
-  // Everything else — network only, no caching
-  // This ensures JS/CSS changes are always picked up immediately
+  // Local JS/CSS — bypass browser HTTP cache so changes deploy immediately
+  const ext = url.pathname.split(".").pop().toLowerCase();
+  if (ext === "js" || ext === "css") {
+    e.respondWith(
+      fetch(e.request, { cache: "no-store" }).catch(() => Response.error())
+    );
+  }
 });
